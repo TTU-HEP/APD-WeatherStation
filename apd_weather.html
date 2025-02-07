@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Display</title>
+    <style>
+        /* Container to hold the PDFs */
+        .pdf-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        iframe {
+            width: 32%; /* Adjust to fit three iframes in each row */
+            height: 400px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>APD Weather Station Status</h1>
+
+    <div class="pdf-container">
+        <iframe src="Pi%20Aweather.pdf" type="application/pdf"></iframe>
+        <iframe src="Pi%20Bweather.pdf" type="application/pdf"></iframe>
+        <iframe src="Pi%20Cweather.pdf" type="application/pdf"></iframe>
+
+        <iframe src="Pi%20Dweather.pdf" type="application/pdf"></iframe>
+        <iframe src="Pi%20Eweather.pdf" type="application/pdf"></iframe>
+        <iframe src="Pi%20Fweather.pdf" type="application/pdf"></iframe>
+    </div>
+
+</body>
+</html>
