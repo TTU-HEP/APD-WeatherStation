@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Display</title>
+    <style>
+        /* Ensure full width and height usage */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black; /* Set background to black to hide gray */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pdf-container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: black; /* Ensure container background is black */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            background-color: transparent; /* Remove internal background */
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-container">
+        <iframe id="pdfFrame" src="Pi%20Aweather.pdf#view=FitH" type="application/pdf"></iframe>
+    </div>
+
+    <script>
+        const pdfs = [
+            "Pi%20Aweather.pdf", 
+            "Pi%20Bweather.pdf", 
+            "Pi%20Cweather.pdf", 
+            "Pi%20Dweather.pdf", 
+            "Pi%20Eweather.pdf", 
+            "Pi%20Fweather.pdf"
+        ];
+        let index = 0;
+        function cyclePDF() {
+            index = (index + 1) % pdfs.length;
+            document.getElementById('pdfFrame').src = pdfs[index] + "#view=FitH";
+        }
+        setInterval(cyclePDF, 10000); // Cycle every 10 seconds
+    </script>
+</body>
+</html>
