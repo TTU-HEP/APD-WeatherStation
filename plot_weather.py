@@ -54,3 +54,4 @@ for i in files:
         ax.tick_params(axis='x', rotation=30)
     plt.subplots_adjust(bottom=0.2)
     plt.savefig("/Users/sloks/Public/TTU-MAC-SOFTWARE/APD_weatherstation/"+naming_dict[i]+"weather.pdf")
+    plt.savefig("/Users/sloks/Public/TTU-MAC-SOFTWARE/APD_weatherstation/"+naming_dict[i]+"weather.png")
