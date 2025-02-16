@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Display</title>
     <style>
-        /* Container to hold the PDFs */
         .image-row {
             display: flex;
             justify-content: center;
@@ -13,25 +12,81 @@
             margin-bottom: 20px;
         }
         img {
-            width: 450px; /* Adjust to fit three iframes in each row */
+            width: 600px;
             height: auto;
             border: 1px solid #ddd;
+        }
+        .set1 img {
+            width: 200px;
+            height: auto;
+        }
+        .set2 {
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center;     /* Vertically center */
+            width: 100vw;
+            height: auto;
+        }
+        .set2 img {
+            max-width: 100%;         /* Ensure the image takes up as much space as possible without overflow */
+            max-height: 100%;        /* Ensure the image scales to fit the screen vertically as well */
+            object-fit: contain;     /* Maintain aspect ratio */
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .title-container {
+            border-top: 10px solid red;
+            padding-top: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>APD Weather Station Status</h1>
-
-    <div class="image-row">
-        <img src="Pi%20Aweather.png" type="application/png"></img>
-        <img src="Pi%20Bweather.png" type="application/png"></img>
-        <img src="Pi%20Cweather.png" type="application/png"></img>
+    <div class="title-container">
+        <h1>APD Weather Station Status</h1>
     </div>
-    <div class="image-row">
-        <img src="Pi%20Dweather.png" type="application/png"></img>
-        <img src="Pi%20Eweather.png" type="application/png"></img>
-        <img src="Pi%20Fweather.png" type="application/png"></img>
+    <div id="image-container">
+        <div class="image-row">
+            <img src="Pi%20Aweather.png" class="set1">
+            <img src="Pi%20Bweather.png" class="set1">
+            <img src="Pi%20Cweather.png" class="set1">
+        </div>
+        <div class="image-row">
+            <img src="Pi%20Dweather.png" class="set1">
+            <img src="Pi%20Eweather.png" class="set1">
+            <img src="Pi%20Fweather.png" class="set1">
+        </div>
+        <div class="image-row" id="set2" style="display: none;">
+            <img src="overlaid_plots.png" class="set2">
+        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="toggleImages()">Click Me!</button>
     </div>
 
+    <script>
+        let currentSet = 1;
+        function toggleImages() {
+            let set1 = document.querySelectorAll(".set1");
+            let set2 = document.getElementById("set2");  // Use set2 div by ID
+            
+            if (currentSet === 1) {
+                set1.forEach(img => img.style.display = "none");
+                set2.style.display = "flex";  // Use flex display for centering
+                currentSet = 2;
+            } else {
+                set1.forEach(img => img.style.display = "block");
+                set2.style.display = "none";
+                currentSet = 1;
+            }
+        }
+    </script>
 </body>
 </html>

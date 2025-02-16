@@ -32,7 +32,7 @@ for i in files:
     axs[2].plot(time[mask], pressure[mask],marker='o')
     #axs[2].set_ylim(875,925)
     axs[2].set_xlabel("Time")
-    axs[2].set_ylabel("Pressure [unit]")
+    axs[2].set_ylabel("Pressure [kpa]")
     axs[2].set_title(naming_dict[i])
     axs[0].xaxis.set_major_locator(MaxNLocator(integer=True, prune='both', nbins=7))
     axs[1].xaxis.set_major_locator(MaxNLocator(integer=True, prune='both', nbins=7))
