@@ -3,58 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Display</title>
+    <title>APD Weather Station Status</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 3px solid red;
+        }
+
+        .header h1 {
+            margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        .logo-container img {
+            height: 150px; /* Adjust logo size */
+            width: auto;
+        }
+
         .image-row {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-bottom: 20px;
         }
-        img {
-            width: 450px;
+
+        .set1 img {
+            width: 150px;  /* Reduced size */
             height: auto;
             border: 1px solid #ddd;
+            padding: 5px;
+            background: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .set1 img {
-            display: flex;
+
+        .set2-container {
+            display: none;
             justify-content: center;
             align-items: center;
-            width: 200px;
-            height: auto;
+            height: 80vh; /* Occupy most of the viewport height */
         }
-        .set2 {
-            display: flex;
-            justify-content: center; /* Horizontally center */
-            align-items: center;     /* Vertically center */
-            width: 100vw;
-            height: auto;
+
+        .set2-container img {
+            max-width: 90%;
+            max-height: 100%;
+            object-fit: contain;
         }
-        .set2 img {
-            max-width: 100%;         /* Ensure the image takes up as much space as possible without overflow */
-            max-height: 100%;        /* Ensure the image scales to fit the screen vertically as well */
-            object-fit: contain;     /* Maintain aspect ratio */
-        }
+
         .button-container {
             text-align: center;
             margin-top: 20px;
         }
+
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background-color: red;
+            color: white;
             cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
         }
-        .title-container {
-            border-top: 10px solid red;
-            padding-top: 10px;
-            text-align: center;
+
+        button:hover {
+            background-color: darkred;
         }
     </style>
 </head>
 <body>
-    <div class="title-container">
+    <div class="header">
         <h1>APD Weather Station Status</h1>
+        <div class="logo-container">
+            <img src="APDLABLOGO.jpg"> <!-- Replace with your logo path -->
+        </div>
     </div>
+
     <div id="image-container">
         <div class="image-row">
             <img src="Pi%20Aweather.png" class="set1">
@@ -66,23 +102,25 @@
             <img src="Pi%20Eweather.png" class="set1">
             <img src="Pi%20Fweather.png" class="set1">
         </div>
-        <div class="image-row" id="set2" style="display: none;">
+        <div class="set2-container" id="set2">
             <img src="overlaid_plots.png" class="set2">
         </div>
     </div>
+
     <div class="button-container">
         <button onclick="toggleImages()">Click Me!</button>
     </div>
 
     <script>
         let currentSet = 1;
+
         function toggleImages() {
             let set1 = document.querySelectorAll(".set1");
-            let set2 = document.getElementById("set2");  // Use set2 div by ID
-            
+            let set2 = document.getElementById("set2");
+
             if (currentSet === 1) {
                 set1.forEach(img => img.style.display = "none");
-                set2.style.display = "flex";  // Use flex display for centering
+                set2.style.display = "flex"; // Show overlayed plot in center
                 currentSet = 2;
             } else {
                 set1.forEach(img => img.style.display = "block");
