@@ -1,4 +1,7 @@
 from pymodbus.client.sync import ModbusTcpClient
+from pymodbus.payload import BinaryPayloadDecoder
+from pymodbus.constants import Endian
+
 import struct
 from datetime import datetime
 import json
@@ -17,8 +20,8 @@ LOG_FILE = "particle_log.json"
 
 def read_particle_data(client):
     #Make sure to have a new statement for each value grabbed. Try to avoid errors.
-    result_temp = client.read_holding_registers(REGISTER_temp, 1, unit=UNIT_ID)
-    result_rh = client.read_holding_registers(REGISTER_rh, 1, unit=UNIT_ID)
+    result_temp = client.read_holding_registers(REGISTER_temp)
+    result_rh = client.read_holding_registers(REGISTER_rh)
     
     if result_temp.isError():
         print(f"Error reading registers at {REGISTER_temp}: {result}")
@@ -48,6 +51,29 @@ def read_particle_data(client):
 
     return data
 
+def explore_channel_sizes(client):
+    BASE_ADDRESS = 10100  # Starting register address for channel sizes
+    NUM_CHANNELS = 200  
+    REGISTERS_PER_CHANNEL = 2  # Each float is 32 bits = 2 registers (2 x 16 bits)
+
+    for i in range(NUM_CHANNELS):
+        address = BASE_ADDRESS + (i * REGISTERS_PER_CHANNEL)
+        result = client.read_holding_registers(address, REGISTERS_PER_CHANNEL)
+
+        if result.isError():
+            print(f"Error reading channel {i} at address {address}: {result}")
+            continue
+
+        # Decode using correct byte and word order
+        decoder = BinaryPayloadDecoder.fromRegisters(
+            result.registers,
+            byteorder=Endian.Little,    # Across registers
+            wordorder=Endian.Big        # Inside each register
+        )
+        channel_size_um = decoder.decode_32bit_float()
+
+        print(f"Register {address}: {channel_size_um:.4f} µm")
+
 def log_data_to_file(data):
     with open(LOG_FILE, "a") as f:
         f.write(json.dumps(data) + "\n")
@@ -67,6 +93,7 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print("Logging stopped by user.")
         finally:
+            explore_channel_sizes(client) #Comment out & remove function when applicable.
             client.close()
     else:
         print("Failed to connect to device.")
