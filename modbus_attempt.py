@@ -72,7 +72,7 @@ def explore_channel_sizes(client):
         )
         channel_size_um = decoder.decode_32bit_float()
 
-        print(f"Register {address}: {channel_size_um:.4f} µm")
+        print(f"Channel {i} (Registers {address}-{address+1}):: {channel_size_um:.4f} µm")
 
 def log_data_to_file(data):
     with open(LOG_FILE, "a") as f:
