@@ -22,7 +22,7 @@ REGISTER_rh = 9080
 LOG_FILE = "particle_log.json"
 
 def read_particle_data(client):
-    #Make sure to have a new statement for each value grabbed. Try to avoid errors.
+    #temp and rh info
     result_temp = client.read_holding_registers(REGISTER_temp)
     result_rh = client.read_holding_registers(REGISTER_rh)
     
@@ -40,45 +40,58 @@ def read_particle_data(client):
 
     # Convert the raw values to meaningful measurements
     temp = temp_raw / 10.0   # Adjust scaling factors as necessary
-    rh = rh_raw       # Adjust scaling factors as necessary
+    rh = rh_raw              # Adjust scaling factors as necessary
 
-    # Prepare the data dictionary with timestamp and processed values
-    data = {
-        "timestamp": datetime.now().isoformat(),
-        "temp": temp,
-        "rh": rh
-    }
+   # Particle size and count info
+    CHANNEL_SIZE_BASE = 10100
+    PARTICLE_COUNT_BASE = 10700
+    REGISTERS_PER_CHANNEL = 2
+    NUM_CHANNELS = 6
 
-    # Optionally, print the data for debugging
-    print(f"Temperature: {temp}°C, RH: {rh}%")
+    particle_data = {}
 
-    return data
+    for i in range(NUM_CHANNELS):
+        size_addr = CHANNEL_SIZE_BASE + (i * REGISTERS_PER_CHANNEL)
+        count_addr = PARTICLE_COUNT_BASE + (i * REGISTERS_PER_CHANNEL)
 
-def explore_channel_sizes(client):
-    BASE_ADDRESS = 10100  # Starting register address for channel sizes
-    NUM_CHANNELS = 200  
-    REGISTERS_PER_CHANNEL = 2  # Each float is 32 bits = 2 registers (2 x 16 bits)
+        result_size = client.read_holding_registers(address=size_addr, count=REGISTERS_PER_CHANNEL)
+        result_count = client.read_holding_registers(address=count_addr, count=REGISTERS_PER_CHANNEL)
 
-    for i in range(6):
-        address = BASE_ADDRESS + (i * REGISTERS_PER_CHANNEL)
-        result = client.read_holding_registers(address=address,count=REGISTERS_PER_CHANNEL)
-       
-        if result.isError():
-            print(f"Error reading channel {i} at address {address}: {result}")
+        if result_size.isError() or result_count.isError():
+            print(f"Error reading particle channel {i}")
             continue
-    
-        print(f"raw registers from address {address}: {result.registers}")
-        #print(f"type of regisiters: {type(result.registers)}, contents: {result.registers}")
 
-        # Decode using correct byte and word order
-        decoder = BinaryPayloadDecoder.fromRegisters(
-            result.registers,
+        decoder_size = BinaryPayloadDecoder.fromRegisters(
+            result_size.registers,
             byteorder=Endian.BIG,
             wordorder=Endian.LITTLE
         )
-        
-        channel_size_um = decoder.decode_32bit_float()
-        print("channel size (um):", channel_size_um)
+
+        decoder_count = BinaryPayloadDecoder.fromRegisters(
+            result_count.registers,
+            byteorder=Endian.BIG,
+            wordorder=Endian.LITTLE
+        )
+
+        size_um = decoder_size.decode_32bit_float()
+        count_m3 = decoder_count.decode_32bit_float()
+
+        # Store in dictionary with formatted key
+        particle_data[f"{size_um:.2f} um"] = count_m3
+
+    # Final data dictionary
+    data = {
+        "timestamp": datetime.now().isoformat(),
+        "temp": temp,
+        "rh": rh,
+        "particle_counts_m3": particle_data
+    }
+
+    print(f"Temperature: {temp}°C, RH: {rh}%")
+    for size, count in particle_data.items():
+        print(f"Size: {size}, Count/m³: {count}")
+
+    return data
 
 def log_data_to_file(data):
     with open(LOG_FILE, "a") as f:

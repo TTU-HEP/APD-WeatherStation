@@ -1,4 +1,4 @@
-from pymodbus.client.sync import ModbusTcpClient
+from pymodbus.client import ModbusTcpClient
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.constants import Endian
 
@@ -37,7 +37,7 @@ def read_particle_data(client):
 
     # Convert the raw values to meaningful measurements
     temp = temp_raw / 10.0   # Adjust scaling factors as necessary
-    rh = rh_raw / 10.0       # Adjust scaling factors as necessary
+    rh = rh_raw              # Adjust scaling factors as necessary
 
     # Prepare the data dictionary with timestamp and processed values
     data = {
