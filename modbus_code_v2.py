@@ -81,7 +81,7 @@ def read_particle_data(client):
 
     # Final data dictionary
     data = {
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": datetime.now().strftime("%H:%M:%S"),
         "temp": temp,
         "rh": rh,
         "particle_counts_m3": particle_data
