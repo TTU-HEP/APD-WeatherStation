@@ -2,8 +2,7 @@
 export PATH=$PATH:"/home/gvetters/anaconda3/bin:/home/gvetters/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.4.11.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Git/bin"
 export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python3.7/dist-packages"
 # List of Raspberry Pi IP addresses (or hostnames)
-PI_ADDRESSES=("10.191.12.6" "10.191.12.130" "10.191.12.4" "10.191.12.129" "10.191.12.132" "10.191.12.3") #"10.191.12.5","10.191.12.132","10.191.12.1",
-
+PI_ADDRESSES=("129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
 # The remote script you want to run on each Raspberry Pi
 REMOTE_SCRIPT_PATH="collect_sensor_data.sh"
 
