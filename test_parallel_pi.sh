@@ -1,6 +1,6 @@
 #!/bin/bash
-export PATH=$PATH:"/home/gvetters/anaconda3/bin:/home/gvetters/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.4.11.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Git/bin"
-export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python3.7/dist-packages"
+export PATH=$PATH:"/home/daq2-admin/root/bin:/opt/oracle/instantclient:/home/daq2-admin/.local/bin:/home/daq2-admin/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin"
+export PYTHONPATH=$PYTHONPATH:"/home/daq2-admin/root/lib"
 # List of Raspberry Pi IP addresses (or hostnames)
 PI_ADDRESSES=("129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
 # The remote script you want to run on each Raspberry Pi
@@ -11,7 +11,7 @@ OUTPUT_FILE="test_output.csv"
 
 # The directory on your local machine to store the results
 #LOCAL_DIR="/Users/sloks/Public/"
-LOCAL_DIR="/home/gvetters/APD-WeatherStation/data_folder"
+LOCAL_DIR="/home/daq2-admin/APD-WeatherStation/data_folder"
 
 # Ensure the local directory exists
 # mkdir -p "$LOCAL_DIR""
@@ -22,12 +22,12 @@ process_pi() {
     echo "Running script on $pi_address"
     # Run the remote script and output to a file
     #ssh pi@$pi_address "/bin/bash collect_sensor_data.sh"
-    parallel ssh pi@{} 'PYTHONPATH=/usr/local/lib/python3.7/dist-packages python3 '/home/pi/test_sensor_data.py ::: $PI_ADDRESSES
+    parallel ssh pi@{} 'PYTHONPATH=/home/daq2-admin/root/lib python3 '/home/pi/test_sensor_data.py ::: $PI_ADDRESSES
     echo $pi_address
     # SCP the output file back to the original machine
     echo "$LOCAL_DIR"
     #scp pi@$pi_address:/home/pi/test_output.csv "/Users/sloks/Public/$pi_address-output.csv"
-    scp pi@$pi_address:/home/pi/test_output.csv "/home/gvetters/APD-WeatherStation/data_folder/$pi_address-output.csv"
+    scp pi@$pi_address:/home/pi/test_output.csv "/home/daq2-admin/APD-WeatherStation/data_folder/$pi_address-output.csv"
     echo "sillygoose"
     # Optional: Clean up the output file on the Raspberry Pi after transfer
     # ssh pi@"$pi_address" "rm ~/$OUTPUT_FILE"
