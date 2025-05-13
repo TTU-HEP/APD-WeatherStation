@@ -1,3 +1,4 @@
+/home/daq2-admin/APD-WeatherStation/particle_counter
 from pymodbus.client import ModbusTcpClient
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.constants import Endian
@@ -18,7 +19,7 @@ REGISTER_rh = 9080
 REGISTER_bp = 9081
 
 # File to log the data
-LOG_FILE = "/home/daq2-admin/particle_counter/cron_job_particle_log.json"
+LOG_FILE = "/home/daq2-admin/APD-WeatherStation/particle_counter/cron_job_particle_log.json"
 
 def read_particle_data(client):
     #temp and rh info
@@ -133,6 +134,7 @@ def run_logging_loop():
                 continue
     
             print("Connected to Modbus device.")
+            time.sleep(2)
             while time.time() < end_time: 
                 try:
                     data = read_particle_data(client)
@@ -143,7 +145,7 @@ def run_logging_loop():
                 except (ConnectionResetError, ConnectionException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
                     client.close()
-                    time.sleep(5)
+                    time.sleep(2)
                     break  # Exit inner loop to reconnect
     
         except KeyboardInterrupt:

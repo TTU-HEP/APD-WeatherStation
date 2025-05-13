@@ -2,7 +2,7 @@
 export PATH=$PATH:"/home/daq2-admin/root/bin:/opt/oracle/instantclient:/home/daq2-admin/.local/bin:/home/daq2-admin/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin"
 export PYTHONPATH=$PYTHONPATH:"/home/daq2-admin/root/lib"
 # List of Raspberry Pi IP addresses (or hostnames)
-PI_ADDRESSES=("129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
+PI_ADDRESSES=("129.118.107.232" "129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
 # The remote script you want to run on each Raspberry Pi
 REMOTE_SCRIPT_PATH="collect_sensor_data.sh"
 
@@ -20,6 +20,7 @@ pwd
 process_pi() {
     local pi_address="$1"
     echo "Running script on $pi_address"
+    timestamp=$(date +"%Y%m%d%H")
     # Run the remote script and output to a file
     #ssh pi@$pi_address "/bin/bash collect_sensor_data.sh"
     parallel ssh pi@{} 'PYTHONPATH=/home/daq2-admin/root/lib python3 '/home/pi/test_sensor_data.py ::: $PI_ADDRESSES
@@ -27,7 +28,7 @@ process_pi() {
     # SCP the output file back to the original machine
     echo "$LOCAL_DIR"
     #scp pi@$pi_address:/home/pi/test_output.csv "/Users/sloks/Public/$pi_address-output.csv"
-    scp pi@$pi_address:/home/pi/test_output.csv "/home/daq2-admin/APD-WeatherStation/data_folder/$pi_address-output.csv"
+    scp pi@$pi_address:"/home/pi/test_output_${timestamp}.csv" "/home/daq2-admin/APD-WeatherStation/data_folder/${pi_address}-output_${timestamp}.csv"
     echo "sillygoose"
     # Optional: Clean up the output file on the Raspberry Pi after transfer
     # ssh pi@"$pi_address" "rm ~/$OUTPUT_FILE"

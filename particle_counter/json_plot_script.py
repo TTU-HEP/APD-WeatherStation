@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 # Define output directory for plots
-output_dir = "plots"
+output_dir = "/home/daq2-admin/APD-WeatherStation/particle_counter/plots"
 os.makedirs(output_dir, exist_ok=True)
 
 timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -14,7 +14,7 @@ filename_plot2 = f"particle_cts_combined_{timestamp_str}.png"
 
 
 # Load data from JSON file
-with open("particle_log_test1.json", "r") as file:
+with open("particle_log_test1.json", "r") as file: #Use cron_job_particle_log.json when data begins to populate the file
     lines = file.readlines()
     data = [json.loads(line) for line in lines]
 

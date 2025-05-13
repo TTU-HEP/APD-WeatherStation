@@ -701,3 +701,7 @@ See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html
 BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
 Please use "client.convert_from_registers()" or "client.convert_to_registers"
 See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+  File "/home/daq2-admin/APD-WeatherStation/particle_counter/Modbus_code_v3.py", line 1
+    /home/daq2-admin/APD-WeatherStation/particle_counter
+    ^
+SyntaxError: invalid syntax
