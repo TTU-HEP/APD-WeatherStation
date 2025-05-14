@@ -1,6 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
+from datetime import timedelta
 from datetime import datetime
 import os
 
@@ -53,6 +54,8 @@ BPs = [entry["BP"] for entry in filtered_data]
 avr_temp = sum(temps)/len(temps)
 avr_RH = sum(RHs)/len(RHs)
 avr_BP = sum(BPs)/len(BPs)
+
+
 
 # ---- Plot Temp and RH with dual y-axes ----
 fig, ax1 = plt.subplots()
