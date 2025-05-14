@@ -6449,3 +6449,1879 @@ Size: 10.00 um, Differential Count/m³: 0.0
 
 
 Loop closed. Have a nice day.
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+Connected to Modbus device.
+
+
+Timestamp: 2025-05-14 12:00:06
+Temperature: 22.0°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1767.0
+Size: 0.50 um, Differential Count/m³: 707.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:01:08
+Temperature: 22.0°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1056.0
+Size: 0.50 um, Differential Count/m³: 352.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:02:13
+Temperature: 22.1°C, RH: 27%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 1057.0
+Size: 0.50 um, Differential Count/m³: 352.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:03:18
+Temperature: 22.2°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1057.0
+Size: 0.50 um, Differential Count/m³: 1762.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+Connection lost: [Errno 104] Connection reset by peer. Attempting to reconnect...
+Loop closed. Have a nice day.
+Connected to Modbus device.
+
+
+Timestamp: 2025-05-14 12:04:25
+Temperature: 22.4°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1839.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:05:27
+Temperature: 22.5°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 3509.0
+Size: 0.50 um, Differential Count/m³: 438.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:06:30
+Temperature: 22.7°C, RH: 27%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 842.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:07:32
+Temperature: 22.7°C, RH: 26%, Barometric Pressure: 88.75
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 807.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:08:35
+Temperature: 22.7°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 2338.0
+Size: 0.50 um, Differential Count/m³: 389.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:09:37
+Temperature: 22.6°C, RH: 26%, Barometric Pressure: 88.75
+Size: 0.30 um, Differential Count/m³: 7135.0
+Size: 0.50 um, Differential Count/m³: 5633.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:10:40
+Temperature: 22.5°C, RH: 26%, Barometric Pressure: 88.75
+Size: 0.30 um, Differential Count/m³: 2541.0
+Size: 0.50 um, Differential Count/m³: 3267.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:11:42
+Temperature: 22.4°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 3520.0
+Size: 0.50 um, Differential Count/m³: 3520.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:12:44
+Temperature: 22.3°C, RH: 26%, Barometric Pressure: 88.75
+Size: 0.30 um, Differential Count/m³: 3174.0
+Size: 0.50 um, Differential Count/m³: 1058.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:13:47
+Temperature: 22.2°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 3901.0
+Size: 0.50 um, Differential Count/m³: 1418.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:14:49
+Temperature: 22.2°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 704.0
+Size: 0.50 um, Differential Count/m³: 352.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 12:15:52
+Temperature: 22.0°C, RH: 27%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1056.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+Loop closed. Have a nice day.
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+Connected to Modbus device.
+
+
+Timestamp: 2025-05-14 13:00:06
+Temperature: 22.2°C, RH: 26%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 7395.0
+Size: 0.50 um, Differential Count/m³: 3169.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 1056.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:01:08
+Temperature: 22.2°C, RH: 26%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 4599.0
+Size: 0.50 um, Differential Count/m³: 2122.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:02:11
+Temperature: 22.3°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 1768.0
+Size: 0.50 um, Differential Count/m³: 1060.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:03:13
+Temperature: 22.4°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 2131.0
+Size: 0.50 um, Differential Count/m³: 355.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:04:16
+Temperature: 22.5°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 706.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:05:18
+Temperature: 22.6°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 352.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:06:21
+Temperature: 22.5°C, RH: 26%, Barometric Pressure: 88.75
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:07:23
+Temperature: 22.5°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:08:26
+Temperature: 22.4°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:09:28
+Temperature: 22.3°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:10:31
+Temperature: 22.2°C, RH: 26%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 0.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:11:33
+Temperature: 22.0°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 2114.0
+Size: 0.50 um, Differential Count/m³: 704.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:12:36
+Temperature: 21.9°C, RH: 26%, Barometric Pressure: 88.6875
+Size: 0.30 um, Differential Count/m³: 7051.0
+Size: 0.50 um, Differential Count/m³: 0.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:13:39
+Temperature: 22.0°C, RH: 27%, Barometric Pressure: 88.625
+Size: 0.30 um, Differential Count/m³: 5678.0
+Size: 0.50 um, Differential Count/m³: 3548.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+Connection lost: [Errno 104] Connection reset by peer. Attempting to reconnect...
+Loop closed. Have a nice day.
+Connected to Modbus device.
+
+
+Timestamp: 2025-05-14 13:14:45
+Temperature: 22.0°C, RH: 27%, Barometric Pressure: 88.5625
+Size: 0.30 um, Differential Count/m³: 3124.0
+Size: 0.50 um, Differential Count/m³: 4462.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+
+
+Timestamp: 2025-05-14 13:15:48
+Temperature: 22.1°C, RH: 27%, Barometric Pressure: 88.8125
+Size: 0.30 um, Differential Count/m³: 2519.0
+Size: 0.50 um, Differential Count/m³: 5458.0
+Size: 1.00 um, Differential Count/m³: 0.0
+Size: 2.50 um, Differential Count/m³: 0.0
+Size: 5.00 um, Differential Count/m³: 0.0
+Size: 10.00 um, Differential Count/m³: 0.0
+
+
+Loop closed. Have a nice day.
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
+BinaryPayloadDecoder is deprecated and will be removed in v3.9.0 !
+Please use "client.convert_from_registers()" or "client.convert_to_registers"
+See documentation: "https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.mixin.ModbusClientMixin.convert_from_registers"
