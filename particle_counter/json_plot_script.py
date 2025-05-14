@@ -76,6 +76,7 @@ ax1.text(0.01, 0.95, text_str,
 
 plt.title("Temperature and Relative Humidity Over Time")
 fig.autofmt_xdate(rotation=45)
+plt.tight_layout()
 plt.savefig(os.path.join(output_dir + '/rh_temp', filename_plot1))
 plt.show()
 
@@ -93,7 +94,6 @@ ax.text(0.01, 0.95, text_str1, transform=ax1.transAxes,
 
 plt.title("Abs Barometric Pressure Over Time")
 fig.autofmt_xdate(rotation=45)
-plt.tight_layout()
 plt.savefig(os.path.join(output_dir + '/BP', filename_plot2))
 plt.show()
 
