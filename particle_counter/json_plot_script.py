@@ -14,7 +14,7 @@ filename_plot2 = f"particle_cts_combined_{timestamp_str}.png"
 
 
 # Load data from JSON file
-with open("particle_log_test1.json", "r") as file: #Use cron_job_particle_log.json when data begins to populate the file
+with open("/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_job_particle_log.json", "r") as file:
     lines = file.readlines()
     data = [json.loads(line) for line in lines]
 

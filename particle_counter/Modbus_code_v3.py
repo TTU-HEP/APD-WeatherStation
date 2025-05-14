@@ -1,4 +1,3 @@
-/home/daq2-admin/APD-WeatherStation/particle_counter
 from pymodbus.client import ModbusTcpClient
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.constants import Endian
@@ -19,7 +18,7 @@ REGISTER_rh = 9080
 REGISTER_bp = 9081
 
 # File to log the data
-LOG_FILE = "/home/daq2-admin/APD-WeatherStation/particle_counter/cron_job_particle_log.json"
+LOG_FILE = "/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_job_particle_log.json"
 
 def read_particle_data(client):
     #temp and rh info
@@ -39,7 +38,6 @@ def read_particle_data(client):
         print(f"Error reading registers at {REGISTER_bp}: {result}")
         return None
 
-
     # Read the raw values for temperature and RH
     temp_raw = result_temp.registers[0]
     rh_raw = result_rh.registers[0]
@@ -56,47 +54,51 @@ def read_particle_data(client):
 
     bp  = decoder_bp.decode_32bit_float()
 
-
    # Particle size and count info
     CHANNEL_SIZE_BASE = 10100
     DIFF_COUNT_BASE = 10700
 
     REGISTERS_PER_CHANNEL = 2
     NUM_CHANNELS = 6
-
+    
     diff_data = {}
-
+    
     for i in range(NUM_CHANNELS):
         size_addr = CHANNEL_SIZE_BASE + (i * REGISTERS_PER_CHANNEL)
         diff_addr = DIFF_COUNT_BASE + (i * REGISTERS_PER_CHANNEL)
-
+    
         result_size = client.read_holding_registers(address=size_addr, count=REGISTERS_PER_CHANNEL)
         time.sleep(0.2)
-
+    
         result_diff = client.read_holding_registers(address=diff_addr, count=REGISTERS_PER_CHANNEL)
         time.sleep(0.2)
-
+        
         if result_size.isError() or result_diff.isError():
             print(f"Error reading particle channel {i}")
             continue
-
+        
         decoder_size = BinaryPayloadDecoder.fromRegisters(
             result_size.registers,
             byteorder=Endian.BIG,
             wordorder=Endian.LITTLE
         )
-
+        
         decoder_diff = BinaryPayloadDecoder.fromRegisters(
             result_diff.registers,
             byteorder=Endian.BIG,
             wordorder=Endian.LITTLE
         )
-
+        
         size_um = decoder_size.decode_32bit_float()
         diff_m3 = decoder_diff.decode_32bit_float()
-
+        
         # Store in dictionary with formatted key
         diff_data[f"{size_um:.2f} um"] = diff_m3
+        
+    # Verify all 6 channels are present before final dict is made.
+    if len(diff_data) < NUM_CHANNELS:
+        print("Incomplete data read. Skipping this cycle.")
+        return None
 
     # Final data dictionary
     data = {
@@ -122,7 +124,7 @@ def log_data_to_file(data):
 
 def run_logging_loop():
     start_time = time.time()
-    duration = 15 * 60 #adjust as necessary.
+    duration = 16 * 60 #adjust as necessary.
     end_time = start_time + duration
  
     while time.time() < end_time:

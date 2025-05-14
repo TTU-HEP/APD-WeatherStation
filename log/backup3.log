@@ -104,3 +104,1194 @@ sillygoose
 ssh: connect to host 129.118.107.233 port 22: No route to host
 Connection closed
 All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051313.csv" not found.
+Failed to download '/home/pi/test_output_2025051313.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051313.csv" not found.
+Failed to download '/home/pi/test_output_2025051313.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051313.csv" not found.
+Failed to download '/home/pi/test_output_2025051313.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051314.csv" not found.
+Failed to download '/home/pi/test_output_2025051314.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051314.csv" not found.
+Failed to download '/home/pi/test_output_2025051314.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051315.csv" not found.
+Failed to download '/home/pi/test_output_2025051315.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051315.csv" not found.
+Failed to download '/home/pi/test_output_2025051315.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051315.csv" not found.
+Failed to download '/home/pi/test_output_2025051315.csv'
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051316.csv" not found.
+Failed to download '/home/pi/test_output_2025051316.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051316.csv" not found.
+Failed to download '/home/pi/test_output_2025051316.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051316.csv" not found.
+Failed to download '/home/pi/test_output_2025051316.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051317.csv" not found.
+Failed to download '/home/pi/test_output_2025051317.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051317.csv" not found.
+Failed to download '/home/pi/test_output_2025051317.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051317.csv" not found.
+Failed to download '/home/pi/test_output_2025051317.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051318.csv" not found.
+Failed to download '/home/pi/test_output_2025051318.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051318.csv" not found.
+Failed to download '/home/pi/test_output_2025051318.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051318.csv" not found.
+Failed to download '/home/pi/test_output_2025051318.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051319.csv" not found.
+Failed to download '/home/pi/test_output_2025051319.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051319.csv" not found.
+Failed to download '/home/pi/test_output_2025051319.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051319.csv" not found.
+Failed to download '/home/pi/test_output_2025051319.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051319.csv" not found.
+Failed to download '/home/pi/test_output_2025051319.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051320.csv" not found.
+Failed to download '/home/pi/test_output_2025051320.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051320.csv" not found.
+Failed to download '/home/pi/test_output_2025051320.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051320.csv" not found.
+Failed to download '/home/pi/test_output_2025051320.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051320.csv" not found.
+Failed to download '/home/pi/test_output_2025051320.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051320.csv" not found.
+Failed to download '/home/pi/test_output_2025051320.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051321.csv" not found.
+Failed to download '/home/pi/test_output_2025051321.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051321.csv" not found.
+Failed to download '/home/pi/test_output_2025051321.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051321.csv" not found.
+Failed to download '/home/pi/test_output_2025051321.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051321.csv" not found.
+Failed to download '/home/pi/test_output_2025051321.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051322.csv" not found.
+Failed to download '/home/pi/test_output_2025051322.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051322.csv" not found.
+Failed to download '/home/pi/test_output_2025051322.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051322.csv" not found.
+Failed to download '/home/pi/test_output_2025051322.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051322.csv" not found.
+Failed to download '/home/pi/test_output_2025051322.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051323.csv" not found.
+Failed to download '/home/pi/test_output_2025051323.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051323.csv" not found.
+Failed to download '/home/pi/test_output_2025051323.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051323.csv" not found.
+Failed to download '/home/pi/test_output_2025051323.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051323.csv" not found.
+Failed to download '/home/pi/test_output_2025051323.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051323.csv" not found.
+Failed to download '/home/pi/test_output_2025051323.csv'
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051400.csv" not found.
+Failed to download '/home/pi/test_output_2025051400.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051400.csv" not found.
+Failed to download '/home/pi/test_output_2025051400.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051400.csv" not found.
+Failed to download '/home/pi/test_output_2025051400.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051402.csv" not found.
+Failed to download '/home/pi/test_output_2025051402.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051403.csv" not found.
+Failed to download '/home/pi/test_output_2025051403.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051403.csv" not found.
+Failed to download '/home/pi/test_output_2025051403.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051403.csv" not found.
+Failed to download '/home/pi/test_output_2025051403.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051403.csv" not found.
+Failed to download '/home/pi/test_output_2025051403.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: Connection refused
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051404.csv" not found.
+Failed to download '/home/pi/test_output_2025051404.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051405.csv" not found.
+Failed to download '/home/pi/test_output_2025051405.csv'
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051406.csv" not found.
+Failed to download '/home/pi/test_output_2025051406.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051406.csv" not found.
+Failed to download '/home/pi/test_output_2025051406.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051406.csv" not found.
+Failed to download '/home/pi/test_output_2025051406.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+File "/home/pi/test_output_2025051407.csv" not found.
+Failed to download '/home/pi/test_output_2025051407.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051407.csv" not found.
+Failed to download '/home/pi/test_output_2025051407.csv'
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051407.csv" not found.
+Failed to download '/home/pi/test_output_2025051407.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051408.csv" not found.
+Failed to download '/home/pi/test_output_2025051408.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051408.csv" not found.
+Failed to download '/home/pi/test_output_2025051408.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051408.csv" not found.
+Failed to download '/home/pi/test_output_2025051408.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+ssh: connect to host 129.118.107.235 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051409.csv" not found.
+Failed to download '/home/pi/test_output_2025051409.csv'
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051409.csv" not found.
+Failed to download '/home/pi/test_output_2025051409.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+ssh: connect to host 129.118.107.234 port 22: No route to host
+Connection closed
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+ssh: connect to host 129.118.107.232 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051410.csv" not found.
+Failed to download '/home/pi/test_output_2025051410.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051410.csv" not found.
+Failed to download '/home/pi/test_output_2025051410.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051410.csv" not found.
+Failed to download '/home/pi/test_output_2025051410.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+ssh: connect to host 129.118.107.205 port 22: No route to host
+Connection closed
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+ssh: connect to host 129.118.107.233 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
+/home/daq2-admin
+process_pi 129.118.107.205
+Running script on 129.118.107.205
+129.118.107.205
+
+sillygoose
+File "/home/pi/test_output_2025051411.csv" not found.
+Failed to download '/home/pi/test_output_2025051411.csv'
+process_pi 129.118.107.235
+Running script on 129.118.107.235
+129.118.107.235
+
+sillygoose
+Permission denied, please try again.
+Permission denied, please try again.
+pi@129.118.107.235: Permission denied (publickey,password).
+Connection closed
+process_pi 129.118.107.234
+Running script on 129.118.107.234
+129.118.107.234
+
+sillygoose
+File "/home/pi/test_output_2025051411.csv" not found.
+Failed to download '/home/pi/test_output_2025051411.csv'
+process_pi 129.118.107.233
+Running script on 129.118.107.233
+129.118.107.233
+
+sillygoose
+File "/home/pi/test_output_2025051411.csv" not found.
+Failed to download '/home/pi/test_output_2025051411.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051411.csv" not found.
+Failed to download '/home/pi/test_output_2025051411.csv'
+process_pi 129.118.107.232
+Running script on 129.118.107.232
+129.118.107.232
+
+sillygoose
+File "/home/pi/test_output_2025051411.csv" not found.
+Failed to download '/home/pi/test_output_2025051411.csv'
+process_pi 129.118.107.204
+Running script on 129.118.107.204
+129.118.107.204
+
+sillygoose
+ssh: connect to host 129.118.107.204 port 22: No route to host
+Connection closed
+All tasks are complete. Output files have been saved to /home/daq2-admin/APD-WeatherStation/data_folder
