@@ -55,14 +55,30 @@ avr_temp = sum(temps)/len(temps)
 avr_RH = sum(RHs)/len(RHs)
 avr_BP = sum(BPs)/len(BPs)
 
-
+def segment_data(timestamps, values, max_gap=timedelta(hours=1)):
+    """Split data into segments where time difference between points is <= max_gap."""
+    segments = []
+    seg_times = [timestamps[0]]
+    seg_values = [values[0]]
+    for i in range(1, len(timestamps)):
+        if timestamps[i] - timestamps[i - 1] > max_gap:
+            segments.append((seg_times, seg_values))
+            seg_times = []
+            seg_values = []
+        seg_times.append(timestamps[i])
+        seg_values.append(values[i])
+    if seg_times:
+        segments.append((seg_times, seg_values))
+    return segments
 
 # ---- Plot Temp and RH with dual y-axes ----
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
 
-ax1.plot(timestamps, temps, color='b', marker='o', ms=3.0, label='Temperature (°C)')
-ax2.plot(timestamps, RHs, color='r', marker='o', ms=3.0, label='RH (%)')
+for seg_times, seg_vals in segment_data(timestamps, temps):
+    ax1.plot(seg_times, seg_vals, color='b', marker='o', ms=3.0)
+for seg_times, seg_vals in segment_data(timestamps, RHs):
+    ax2.plot(seg_times, seg_vals, color='r', marker='o', ms=3.0)
 
 ax1.set_xlabel('Time')
 ax1.set_ylabel('Temperature (°C)')
@@ -86,7 +102,9 @@ plt.show()
 # ---- Plot barometric pressure wrt time ----
 fig, ax = plt.subplots()
 
-ax.plot(timestamps, BPs, color='g', marker='o', ms=3.0, label='Abs Barometric Pressure (kPa)')
+for seg_times, seg_vals in segment_data(timestamps, BPs):
+    ax.plot(seg_times, seg_vals, color='g', marker='o', ms=3.0)
+
 ax.set_xlabel('Time')
 ax.set_ylabel('Abs Barometric Pressure (kPa)')
 ax.xaxis.set_major_formatter(date_format)
@@ -123,7 +141,10 @@ expected_channels = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.
 #for i, (channel, data_dict) in enumerate(channel_data.items()):
 for i, channel in enumerate(expected_channels):
     if channel in channel_data:
-        axs[i].plot(channel_data[channel]["timestamps"], channel_data[channel]["diff_counts_m3"], marker='o', ms=3.0, label=channel)
+        ts = channel_data[channel]["timestamps"]
+        vals = channel_data[channel]["diff_counts_m3"]
+        for seg_times, seg_vals in segment_data(ts, vals):
+            axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0, label=channel)
         axs[i].set_title(channel)
         axs[i].set_xlabel("time")
         axs[i].set_ylabel("count/m3")
