@@ -127,7 +127,7 @@ async def connect_to_db():
     conn = await asyncpg.connect(
         host=config["db_hostname"],
         database=config["dbname"],
-        #user=replace, I need to get this info from Valdis
+        #user=replace, --I need to get this info from Valdis
         #password=replace,
         port=config["port"]
     )
