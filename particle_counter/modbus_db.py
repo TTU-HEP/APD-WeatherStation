@@ -73,11 +73,8 @@ def read_particle_data(client):
             diff_addr = DIFF_COUNT_BASE + (i * REGISTERS_PER_CHANNEL)
         
             result_size = client.read_holding_registers(address=size_addr, count=REGISTERS_PER_CHANNEL)
-            time.sleep(0.2)
-        
             result_diff = client.read_holding_registers(address=diff_addr, count=REGISTERS_PER_CHANNEL)
-            time.sleep(0.2)
-            
+
             if result_size.isError() or result_diff.isError():
                 print(f"Error reading particle channel {i}")
                 continue
@@ -133,7 +130,8 @@ async def connect_to_db():
     )
     return conn
 
-# Async function to listen for database updates
+config = load_db_config("/home/HGC_DB_postgres/dbase_info/conn1.yaml")
+
 async def listen_to_notifications():
     conn = await asyncpg.connect(
         host=config["db_hostname"],
@@ -142,30 +140,34 @@ async def listen_to_notifications():
         password=config["password"],
         port=config["port"]
     )
-    
     await conn.add_listener('new_test_data', handle_notification)
     print("Listening for PostgreSQL notifications...")
-
     try:
         while True:
-            await asyncio.sleep(60)  # Keep alive
+            await asyncio.sleep(60)
     finally:
         await conn.close()
 
 # When notified, take a measurement and insert into another table
 async def handle_notification(conn, pid, channel, payload):
-    print(f"Received trigger: {payload}")
-    data = read_particle_data()
-    if data is None:
-        print("Measurement failed or incomplete.")
-        return
+    try:
+        print(f"Received trigger: {payload}")
+        
+        loop = asyncio.get_running_loop()
+        data = await loop.run_in_executor(None, read_particle_data)
 
-    await conn.execute('''
-        INSERT INTO counter_info(data)
-        VALUES($1)
-    ''', json.dumps(data))
+        if data is None:
+            print("Measurement failed or incomplete.")
+            return
 
-    print("Logged full measurement dictionary to DB.")
+        await conn.execute('''
+            INSERT INTO counter_info(data)
+            VALUES($1)
+        ''', json.dumps(data))
+
+        print("Logged full measurement dictionary to DB.")
+    except Exception as e:
+        print(f"Error in handle_notification: {e}")
 
 if __name__ == "__main__":
     asyncio.run(listen_to_notifications())
