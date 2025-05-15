@@ -61,10 +61,7 @@ def read_particle_counts():
 
          # Final data dictionary
     data = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "diff_counts_m3": diff_data
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "diff_counts_m3": diff_data
     }
-
-
 
     return data
