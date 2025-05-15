@@ -21,17 +21,15 @@ process_pi() {
     local pi_address="$1"
     echo "Running script on $pi_address"
     timestamp=$(date +"%Y%m%d%H")
-    # Run the remote script and output to a file
-    #ssh pi@$pi_address "/bin/bash collect_sensor_data.sh"
-    parallel ssh pi@{} 'PYTHONPATH=/usr/local/lib/python3.7/dist-packages python3'/home/pi/test_sensor_data.py ::: $PI_ADDRESSES
-    echo $pi_address
-    # SCP the output file back to the original machine
-    echo "$LOCAL_DIR"
-    #scp pi@$pi_address:/home/pi/test_output.csv "/Users/sloks/Public/$pi_address-output.csv"
-    scp pi@$pi_address:"/home/pi/test_output_${timestamp}.csv" "/home/daq2-admin/APD-WeatherStation/data_folder/${pi_address}-output_${timestamp}.csv"
-    echo "sillygoose"
-    # Optional: Clean up the output file on the Raspberry Pi after transfer
-    # ssh pi@"$pi_address" "rm ~/$OUTPUT_FILE"
+
+    # Proper SSH call per Pi
+    ssh pi@"$pi_address" 'PYTHONPATH=/usr/local/lib/python3.7/dist-packages python3 /home/pi/test_sensor_data.py'
+
+    echo "Fetching output from $pi_address..."
+    scp pi@"$pi_address":"/home/pi/test_output_${timestamp}.csv" \
+        "/home/daq2-admin/APD-WeatherStation/data_folder/${pi_address}-output_${timestamp}.csv"
+
+    echo "Finished with $pi_address"
 }
 
 export -f process_pi  # Export the function to be used by parallel
