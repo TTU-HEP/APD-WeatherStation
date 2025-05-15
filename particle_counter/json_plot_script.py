@@ -55,7 +55,7 @@ avr_temp = sum(temps)/len(temps)
 avr_RH = sum(RHs)/len(RHs)
 avr_BP = sum(BPs)/len(BPs)
 
-def segment_data(timestamps, values, max_gap=timedelta(hours=1)):
+def segment_data(timestamps, values, max_gap=timedelta(hours=(44/60))):
     """Split data into segments where time difference between points is <= max_gap."""
     segments = []
     seg_times = [timestamps[0]]
@@ -72,13 +72,23 @@ def segment_data(timestamps, values, max_gap=timedelta(hours=1)):
     return segments
 
 # ---- Plot Temp and RH with dual y-axes ----
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(12,6))
 ax2 = ax1.twinx()
 
+temp_line = None
+rh_line = None
+
 for seg_times, seg_vals in segment_data(timestamps, temps):
-    ax1.plot(seg_times, seg_vals, color='b', marker='o', ms=3.0)
+    temp_line, = ax1.plot(seg_times, seg_vals, color='b', marker='o', ms=3.0)
 for seg_times, seg_vals in segment_data(timestamps, RHs):
-    ax2.plot(seg_times, seg_vals, color='r', marker='o', ms=3.0)
+    rh_line, = ax2.plot(seg_times, seg_vals, color='r', marker='o', ms=3.0)
+
+label1 = f"Temperature (Average: {avr_temp:.2f}°C)"
+label2 = f"RH (Average: {avr_RH:.2f}%)"
+
+lines = [temp_line, rh_line]
+labels = [label1, label2]
+fig.legend(lines, labels, loc="upper right", frameon=True, framealpha=0.9 )
 
 ax1.set_xlabel('Time')
 ax1.set_ylabel('Temperature (°C)')
@@ -88,11 +98,6 @@ ax2.set_ylabel('Relative Humidity (%)')
 date_format = DateFormatter("%Y-%m-%d %H:%M:%S")
 ax1.xaxis.set_major_formatter(date_format)
 
-text_str = f"Average temp: {avr_temp:.2f}°C Average RH: {avr_RH:.2f}%"
-ax1.text(0.01, 0.95, text_str,
-        fontsize=10, verticalalignment='top',
-        bbox=dict(facecolor='white', alpha=0.6, edgecolor='gray'))
-
 plt.title("Temperature and Relative Humidity Over Time")
 fig.autofmt_xdate(rotation=45)
 plt.tight_layout()
@@ -100,18 +105,18 @@ plt.savefig(os.path.join(output_dir + '/rh_temp', filename_plot1))
 plt.show()
 
 # ---- Plot barometric pressure wrt time ----
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(12,6))
 
 for seg_times, seg_vals in segment_data(timestamps, BPs):
-    ax.plot(seg_times, seg_vals, color='g', marker='o', ms=3.0)
+    bp_line, = ax.plot(seg_times, seg_vals, color='g', marker='o', ms=3.0)
+
+label = f"Average BP: {avr_BP:.2f}°C"
+
+fig.legend([bp_line], [label], loc="upper right", frameon=True, framealpha=0.9 )
 
 ax.set_xlabel('Time')
 ax.set_ylabel('Abs Barometric Pressure (kPa)')
 ax.xaxis.set_major_formatter(date_format)
-text_str1 = f"Average BP: {avr_BP:.2f}°C"
-ax.text(0.01, 0.95, text_str1, transform=ax1.transAxes,
-        fontsize=10, verticalalignment='top',
-        bbox=dict(facecolor='white', alpha=0.6, edgecolor='gray'))
 
 plt.title("Abs Barometric Pressure Over Time")
 fig.autofmt_xdate(rotation=45)
