@@ -19,7 +19,9 @@ pressures = []
 # Duration and interval for data collection
 duration = 3480 # Collect data for 58 min (3480 seconds) (adjust as needed)
 interval = 15   # Collect data every 15 seconds
-csv_file = "test_output.csv"
+now = datetime.now()
+date_hour_str = now.strftime("%Y%m%d%H")
+csv_file = "test_output_"+date_hour_str+".csv"
 start_time = time.time()
 print("Collecting data...")
 
