@@ -117,18 +117,18 @@ def read_particle_data(client):
     finally:
         client.close()
 
-def load_db_config(path="/home/HGC_DB_postgres/dbase_info/conn.yaml"):
+def load_db_config(path):
     with open(path, "r") as f:
         config = yaml.safe_load(f)
     return config["postgres"]
 
 async def connect_to_db():
-    config = load_db_config("/home/HGC_DB_postgres/dbase_info/conn.yaml")
+    config = load_db_config("/home/HGC_DB_postgres/dbase_info/conn1.yaml")
     conn = await asyncpg.connect(
         host=config["db_hostname"],
         database=config["dbname"],
-        #user=replace, --I need to get this info from Valdis
-        #password=replace,
+        user=config["username"],
+        password=config["password"],
         port=config["port"]
     )
     return conn
@@ -138,8 +138,8 @@ async def listen_to_notifications():
     conn = await asyncpg.connect(
         host=config["db_hostname"],
         database=config["dbname"],
-        #user=replace,
-        #password=replace,
+        user=config["username"],
+        password=config["password"],
         port=config["port"]
     )
     
