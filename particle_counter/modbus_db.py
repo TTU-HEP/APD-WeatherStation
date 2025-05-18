@@ -18,6 +18,7 @@ DEVICE_PORT = 502
 
 def read_particle_data():
     client = ModbusTcpClient(DEVICE_IP, port=DEVICE_PORT)
+
     if not client.connect():
         print("Could not connect to device.")
         return None
@@ -96,12 +97,12 @@ def read_particle_data():
             
             # Store in dictionary with formatted key
             diff_data[f"{size_um:.2f} um"] = diff_m3
-            
-        # Verify all 6 channels are present before final dict is made.
-        if len(diff_data) < NUM_CHANNELS:
-            print("Incomplete data read. Skipping this cycle.")
-            return None
 
+         # Sanity check: no nulls
+        if any(c is None for c in diff_counts) or temperature is None or humidity is None:
+            print("One or more sensor values were None.")
+            return None
+            
         # Final data dictionary
         data = {
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -156,9 +157,32 @@ async def handle_notification(conn, pid, channel, payload):
         loop = asyncio.get_running_loop()
         data = await loop.run_in_executor(None, read_particle_data)
 
-        if data is None:
-            print("Measurement failed or incomplete.")
+        # Base check
+        if not data or not isinstance(data, dict):
+            print("Measurement failed or returned non-dict. Skipping insert.")
             return
+
+        # Ensure expected keys are present and non-null
+        required_keys = {"diff_counts_m3", "temp", "rh"}
+        if not required_keys.issubset(data.keys()):
+            print(f"Missing keys in data: {required_keys - data.keys()}")
+            return
+
+        # Check for nulls in values
+        if (
+            data["diff_counts_m3"] is None or
+            not isinstance(data["diff_counts_m3"], list) or
+            any(v is None for v in data["diff_counts_m3"]) or
+            data["temp"] is None or
+            data["rh"] is None or
+            data["BP"] is None
+        ):
+            print("One or more data fields are None. Skipping insert.")
+            return
+
+        # Debugging output
+        print("Prepared data for insert:")
+        print(json.dumps(data, indent=2))
 
         await conn.execute('''
             INSERT INTO counter_info(data)

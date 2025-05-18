@@ -1,8 +1,0 @@
-postgres:   
-  dbname: 'ttu_mac_local'
-  port: '5432'
-  db_hostname: '129.118.107.198' 
-  institution_abbr: 'TTU' ## update this: CMU, IHEP, NTU, TTU, TIFR, UCSB
-  cern_db: 'dev_db' ## dev_db vs prod_db
-  username: 'gantry_user'
-  password: 'mac'
