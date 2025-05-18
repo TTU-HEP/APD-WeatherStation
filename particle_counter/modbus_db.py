@@ -121,7 +121,7 @@ def load_db_config(path):
     return config["postgres"]
 
 async def connect_to_db():
-    config = load_db_config("/home/HGC_DB_postgres/dbase_info/conn1.yaml")
+    config = load_db_config("conn1.yaml")
     conn = await asyncpg.connect(
         host=config["db_hostname"],
         database=config["dbname"],
@@ -131,7 +131,7 @@ async def connect_to_db():
     )
     return conn
 
-config = load_db_config("/home/HGC_DB_postgres/dbase_info/conn1.yaml")
+config = load_db_config("conn1.yaml")
 
 async def listen_to_notifications():
     conn = await asyncpg.connect(
