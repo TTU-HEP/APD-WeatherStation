@@ -18,7 +18,11 @@ REGISTER_rh = 9080
 REGISTER_bp = 9081
 
 # File to log the data
-LOG_FILE = "/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_job_particle_log.json"
+#LOG_FILE = "/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_job_particle_log.json"
+LOG_DIR = "/home/daq2-admin/APD-WeatherStation/particle_counter/data_files"
+LOG_BASE_NAME = "counter_data_file"
+LOG_EXTENSION = ".json"
+MAX_ENTRIES_PER_FILE = 1000
 
 def read_particle_data(client):
     #temp and rh info
@@ -118,8 +122,36 @@ def read_particle_data(client):
 
     return data
 
+def get_latest_log_file():
+    files = [f for f in os.listdir(LOG_DIR) if f.startswith(LOG_BASE_NAME) and f.endswith(LOG_EXTENSION)]
+    
+    # Extract numeric part and sort
+    numbered_files = []
+    for fname in files:
+        match = re.match(rf"{LOG_BASE_NAME}(\d+){LOG_EXTENSION}", fname)
+        if match:
+            numbered_files.append((int(match.group(1)), fname))
+    
+    if not numbered_files:
+        return os.path.join(LOG_DIR, f"{LOG_BASE_NAME}1{LOG_EXTENSION}")
+
+    latest_num, latest_file = max(numbered_files)
+    latest_path = os.path.join(LOG_DIR, latest_file)
+    
+    # Check if it has reached the max entries
+    with open(latest_path, "r") as f:
+        lines = sum(1 for _ in f)
+
+    if lines >= MAX_ENTRIES_PER_FILE:
+        # Start a new file
+        new_num = latest_num + 1
+        return os.path.join(LOG_DIR, f"{LOG_BASE_NAME}{new_num}{LOG_EXTENSION}")
+    else:
+        return latest_path
+
 def log_data_to_file(data):
-    with open(LOG_FILE, "a") as f:
+    log_file = get_latest_log_file()
+    with open(log_file, "a") as f:
         f.write(json.dumps(data) + "\n")
 
 def run_logging_loop():

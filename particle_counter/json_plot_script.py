@@ -4,8 +4,10 @@ from matplotlib.dates import DateFormatter
 from datetime import timedelta
 from datetime import datetime
 import os
+import re
 
 # Define output directory for plots
+log_dir = "/home/daq2-admin/APD-WeatherStation/particle_counter/data_files"
 output_dir = "/home/daq2-admin/APD-WeatherStation/particle_counter/plots"
 os.makedirs(output_dir, exist_ok=True)
 
@@ -36,15 +38,27 @@ while True:
     except ValueError:
         print("End datetime is incorrect. Please try again.")
 
+# Helper to identify relevant log files
+def get_all_log_files(directory):
+    return sorted([
+        os.path.join(directory, f)
+        for f in os.listdir(directory)
+        if re.match(r'counter_data_file\d+\.json$', f)
+    ])
+
 # Extract timestamps, temp, and RH
 filtered_data = []
 
-for entry in data:
-    timestamp_str = entry["timestamp"]
-    if isinstance(timestamp_str, str):
-        entry_date = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").date()
-        if start_date <= entry_date <= end_date:
-            filtered_data.append(entry)
+for file_path in get_all_log_files(log_dir):
+    with open(file_path, "r") as file:
+        for line in file:
+            try:
+                entry = json.loads(line)
+                timestamp = datetime.strptime(entry["timestamp"], "%Y-%m-%d %H:%M:%S")
+                if start_datetime <= timestamp <= end_datetime:
+                    filtered_data.append(entry)
+            except (json.JSONDecodeError, KeyError, ValueError):
+                continue  # Skip malformed or incomplete lines
 
 timestamps = [datetime.strptime(entry["timestamp"], "%Y-%m-%d %H:%M:%S") for entry in filtered_data]
 temps = [entry["temp"] for entry in filtered_data]
