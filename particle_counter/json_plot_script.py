@@ -25,7 +25,7 @@ with open("/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_
 while True:
     start_str = input("Enter start datetime in this format: (YYYY-MM-DD HH:MM:SS ): ")
     try:
-        start_date = datetime.strptime(start_str, '%Y-%m-%d %H:%M:%S').date()
+        start_date = datetime.strptime(start_str, '%Y-%m-%d %H:%M:%S')
         break
     except ValueError:
         print("start datetime is incorrect. Please try again.")
@@ -33,7 +33,7 @@ while True:
 while True:
     end_str = input("Enter end datetime in this format: (YYYY-MM-DD HH:MM:SS): ")
     try:
-        end_date = datetime.strptime(end_str, '%Y-%m-%d %H:%M:%S').date()
+        end_date = datetime.strptime(end_str, '%Y-%m-%d %H:%M:%S')
         break
     except ValueError:
         print("End datetime is incorrect. Please try again.")
@@ -55,7 +55,7 @@ for file_path in get_all_log_files(log_dir):
             try:
                 entry = json.loads(line)
                 timestamp = datetime.strptime(entry["timestamp"], "%Y-%m-%d %H:%M:%S")
-                if start_datetime <= timestamp <= end_datetime:
+                if start_date <= timestamp <= end_date:
                     filtered_data.append(entry)
             except (json.JSONDecodeError, KeyError, ValueError):
                 continue  # Skip malformed or incomplete lines
@@ -152,6 +152,7 @@ for entry in filtered_data:
 
 
 # ---- Plot all particle channels as subplots in one figure ----
+max_vals = [102000, 35200, 8320, 8320, 293, 293]
 fig, axs = plt.subplots(3, 2, figsize=(15, 8), sharex=True)
 axs = axs.flatten()
 
@@ -163,7 +164,14 @@ for i, channel in enumerate(expected_channels):
         ts = channel_data[channel]["timestamps"]
         vals = channel_data[channel]["diff_counts_m3"]
         for seg_times, seg_vals in segment_data(ts, vals):
-            axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0, label=channel)
+            axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0) # label=channel
+        axs[i].axhline(y=max_vals[i], color='r', linestyle='--')
+        axs[i].text(
+            ts[0],                          # x-coordinate (start of time axis)
+            max_vals[i] * 0.9,              # y-coordinate (just above the line)
+            f"ISO 6 max: {max_vals[i]} ct/m3 ",
+            color='r', fontsize=8
+            )
         axs[i].set_title(channel)
         axs[i].set_xlabel("time")
         axs[i].set_ylabel("count/m3")
