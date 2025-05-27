@@ -8,6 +8,8 @@ import struct
 from datetime import datetime
 import json
 import time
+import os
+import re
 
 # Connection settings
 DEVICE_IP = "129.118.107.203"
@@ -156,7 +158,7 @@ def log_data_to_file(data):
 
 def run_logging_loop():
     start_time = time.time()
-    duration = 60 * 60 #adjust as necessary.
+    duration = 59 * 60 #adjust as necessary.
     end_time = start_time + duration
 
     # Timing parameters
@@ -165,6 +167,7 @@ def run_logging_loop():
     current_interval = normal_interval
 
    # ISO 6 max values per channel (counts/m³)
+    channel_keys = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.00 um"]
     max_vals = [102000, 35200, 8320, 8320, 293, 293]
 
     # Thresholds for switching to alert mode (50% of ISO max)
@@ -188,7 +191,7 @@ def run_logging_loop():
                     data = read_particle_data(client)
                     if data:
                         diff_counts = data["diff_counts_m3"]
-                        monitored_counts = diff_counts[:6]
+                        monitored_counts = [diff_counts.get(key, 0) for key in channel_keys]
 
                         # Check for alert condition
                         exceeds_threshold = any(
