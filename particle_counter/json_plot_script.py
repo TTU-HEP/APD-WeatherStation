@@ -124,7 +124,7 @@ fig, ax = plt.subplots(figsize=(12,6))
 for seg_times, seg_vals in segment_data(timestamps, BPs):
     bp_line, = ax.plot(seg_times, seg_vals, color='g', marker='o', ms=3.0)
 
-label = f"Average BP: {avr_BP:.2f}°C"
+label = f"Average BP: {avr_BP:.2f} kPa"
 
 fig.legend([bp_line], [label], loc="upper right", frameon=True, framealpha=0.9 )
 

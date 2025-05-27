@@ -156,8 +156,21 @@ def log_data_to_file(data):
 
 def run_logging_loop():
     start_time = time.time()
-    duration = 16 * 60 #adjust as necessary.
+    duration = 60 * 60 #adjust as necessary.
     end_time = start_time + duration
+
+    # Timing parameters
+    normal_interval = 600  # 10 minutes
+    alert_interval = 60    # 1 minute
+    current_interval = normal_interval
+
+   # ISO 6 max values per channel (counts/m³)
+    max_vals = [102000, 35200, 8320, 8320, 293, 293]
+
+    # Thresholds for switching to alert mode (50% of ISO max)
+    alert_thresholds = [0.5 * val for val in max_vals]
+
+    in_alert_mode = False
  
     while time.time() < end_time:
         try:
@@ -169,12 +182,42 @@ def run_logging_loop():
     
             print("Connected to Modbus device.")
             time.sleep(2)
-            while time.time() < end_time: 
+
+            while time.time() < end_time:
                 try:
                     data = read_particle_data(client)
                     if data:
+                        diff_counts = data["diff_counts_m3"]
+                        monitored_counts = diff_counts[:6]
+
+                        # Check for alert condition
+                        exceeds_threshold = any(
+                            count >= threshold
+                            for count, threshold in zip(monitored_counts, alert_thresholds)
+                        )
+
+                        if not in_alert_mode and exceeds_threshold:
+                            print("Threshold exceeded! Entering alert mode (1-minute logging).")
+                            current_interval = alert_interval
+                            in_alert_mode = True
+
+                        elif in_alert_mode and all(
+                            count < threshold
+                            for count, threshold in zip(monitored_counts, alert_thresholds)
+                        ):
+                            print("All channels below threshold. Returning to normal mode (10-minute logging).")
+                            current_interval = normal_interval
+                            in_alert_mode = False
+
                         log_data_to_file(data)
-                    time.sleep(60)
+
+                    time.sleep(current_interval)
+
+                except (ConnectionResetError, ConnectionException) as e:
+                    print(f"Connection lost: {e}. Attempting to reconnect...")
+                    client.close()
+                    time.sleep(2)
+                    break  # Exit inner loop to reconnect
 
                 except (ConnectionResetError, ConnectionException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
