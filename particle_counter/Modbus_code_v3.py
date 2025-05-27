@@ -2,6 +2,7 @@ from pymodbus.client import ModbusTcpClient
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.constants import Endian
 from pymodbus.exceptions import ConnectionException
+from pymodbus.exceptions import ModbusIOException
 
 import pymodbus
 import struct
@@ -158,7 +159,7 @@ def log_data_to_file(data):
 
 def run_logging_loop():
     start_time = time.time()
-    duration = 59 * 60 #adjust as necessary.
+    duration = 59 * 60  # run for 59 minutes
     end_time = start_time + duration
 
     # Timing parameters
@@ -166,15 +167,14 @@ def run_logging_loop():
     alert_interval = 60    # 1 minute
     current_interval = normal_interval
 
-   # ISO 6 max values per channel (counts/m³)
+    # ISO 6 max values per channel (counts/m³)
     channel_keys = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.00 um"]
     max_vals = [102000, 35200, 8320, 8320, 293, 293]
 
     # Thresholds for switching to alert mode (50% of ISO max)
     alert_thresholds = [0.5 * val for val in max_vals]
-
     in_alert_mode = False
- 
+
     while time.time() < end_time:
         try:
             client = ModbusTcpClient(DEVICE_IP, port=DEVICE_PORT)
@@ -182,12 +182,15 @@ def run_logging_loop():
                 print("Initial connection failed. Retrying in 5 seconds...")
                 time.sleep(5)
                 continue
-    
+
             print("Connected to Modbus device.")
             time.sleep(2)
 
             while time.time() < end_time:
                 try:
+                    now = time.time()
+                    time_left = end_time - now
+
                     data = read_particle_data(client)
                     if data:
                         diff_counts = data["diff_counts_m3"]
@@ -214,31 +217,34 @@ def run_logging_loop():
 
                         log_data_to_file(data)
 
-                    time.sleep(current_interval)
+                    # Sleep logic based on remaining time
+                    if time_left >= current_interval:
+                        time.sleep(current_interval)
+                    elif time_left >= alert_interval:
+                        print(f"Less than {current_interval} seconds remaining, switching to 1-minute interval.")
+                        time.sleep(alert_interval)
+                    else:
+                        print("Less than 1 minute remaining — exiting early to avoid overlap.")
+                        break
 
-                except (ConnectionResetError, ConnectionException) as e:
+                except (ConnectionResetError, ConnectionException, ModbusIOException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
                     client.close()
                     time.sleep(2)
                     break  # Exit inner loop to reconnect
 
-                except (ConnectionResetError, ConnectionException) as e:
-                    print(f"Connection lost: {e}. Attempting to reconnect...")
-                    client.close()
-                    time.sleep(2)
-                    break  # Exit inner loop to reconnect
-    
         except KeyboardInterrupt:
             print("Logging stopped by user.")
             try:
                 client.close()
             except:
                 pass
-            break  # Exit the outer loop cleanly
-        finally:
-            print("Loop closed. Have a nice day.")
-            client.close()
+            break
 
+        finally:
+            if client:
+                print("Loop closed. Have a nice day.")
+                client.close()
 
 if __name__ == "__main__":
     run_logging_loop()
