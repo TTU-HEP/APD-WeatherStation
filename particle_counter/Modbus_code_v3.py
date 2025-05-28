@@ -168,8 +168,10 @@ def run_logging_loop():
     current_interval = normal_interval
     should_exit = False
 
-    # ISO 6 max values per channel (counts/m³)
+    # Channel sizes
     channel_keys = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.00 um"]
+
+    # ISO 6 max values per channel (counts/m³)
     max_vals = [102000, 35200, 8320, 8320, 293, 293]
 
     # Thresholds for switching to alert mode (50% of ISO max)
@@ -177,11 +179,12 @@ def run_logging_loop():
     in_alert_mode = False
 
     while time.time() < end_time and not should_exit:
+        client = None
         try:
-            client = ModbusTcpClient(DEVICE_IP, port=DEVICE_PORT)
+            client = ModbusTcpClient(DEVICE_IP, port=DEVICE_PORT, timeout=5)
             if not client.connect():
-                print("Initial connection failed. Retrying in 5 seconds...")
-                time.sleep(5)
+                print("Initial connection failed. Retrying in 10 seconds...")
+                time.sleep(10)
                 continue
 
             print("Connected to Modbus device.")
@@ -231,22 +234,24 @@ def run_logging_loop():
                 
                 except (ConnectionResetError, ConnectionException, ModbusIOException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
-                    client.close()
-                    time.sleep(2)
                     break  # Exit inner loop to reconnect
 
         except KeyboardInterrupt:
             print("Logging stopped by user.")
-            try:
-                client.close()
-            except:
-                pass
             break
 
+        except Exception as e:
+            print(f'Unexpected error while connecting: {e}')
+            time.sleep(5)
+            continue
+
         finally:
-            if client:
-                print("Loop closed. Have a nice day.")
-                client.close()
+            if client is not None:
+                try:
+                    print("Loop closed. Have a nice day.")
+                    client.close()
+                except:
+                    pass
             if should_exit:
                 print("Exitting outer loop cleanly.")
                 break
