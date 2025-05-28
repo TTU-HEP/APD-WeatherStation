@@ -166,6 +166,7 @@ def run_logging_loop():
     normal_interval = 600  # 10 minutes
     alert_interval = 60    # 1 minute
     current_interval = normal_interval
+    should_exit = False
 
     # ISO 6 max values per channel (counts/m³)
     channel_keys = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.00 um"]
@@ -175,7 +176,7 @@ def run_logging_loop():
     alert_thresholds = [0.5 * val for val in max_vals]
     in_alert_mode = False
 
-    while time.time() < end_time:
+    while time.time() < end_time and not should_exit:
         try:
             client = ModbusTcpClient(DEVICE_IP, port=DEVICE_PORT)
             if not client.connect():
@@ -225,8 +226,9 @@ def run_logging_loop():
                         time.sleep(alert_interval)
                     else:
                         print("Less than 1 minute remaining — exiting early to avoid overlap.")
+                        should_exit = True  # signal outer loop to stop
                         break
-
+                
                 except (ConnectionResetError, ConnectionException, ModbusIOException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
                     client.close()
@@ -245,6 +247,9 @@ def run_logging_loop():
             if client:
                 print("Loop closed. Have a nice day.")
                 client.close()
+            if should_exit:
+                print("Exitting outer loop cleanly.")
+                break
 
 if __name__ == "__main__":
     run_logging_loop()
