@@ -8,9 +8,10 @@ from email.mime.multipart import MIMEMultipart
 
 # === Config ===
 CSV_DIR = 'data_folder'
+JSON_DIR = 'particle_counter/data_files'
 
 # Map each file prefix to a label (friendly name for output)
-PREFIX_LABELS = {
+PREFIX_LABELS_CSV = {
     "p129.118.107.232_output": "Lobby",
     "p129.118.107.233_output": "Room A",
     "p129.118.107.234_output": "Room B",
@@ -19,11 +20,27 @@ PREFIX_LABELS = {
     "p129.118.107.205_output": "Room D"
 }
 
+PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
+
 # Per-column thresholds
-LIMITS = {
+LIMITS_CSV = {
     'Temperature': 26,
     'Pressure': 905,
     'Humidity': 50
+}
+
+LIMITS_JSON = {
+    'Temperature': 26,
+    'Pressure': 90.5,
+    'Humidity': 50,
+    'Differential counts/m3': {
+        "0.30 um": 204000,
+        "0.50 um": 70400,
+        "1.00 um": 16640,
+        "2.50 um": 16640,
+        "5.00 um": 586,
+        "10.00 um": 586
+    }
 }
 
 credentials = {}
@@ -45,7 +62,7 @@ EMAIL_SUBJECT = '⚠️ APD Lab Weather Threshold Violations Detected'
 # === Collect all violations across all groups ===
 all_violations = []
 
-for prefix, label in PREFIX_LABELS.items():
+for prefix, label in PREFIX_LABELS_CSV.items():
     # Find newest file for the prefix
     pattern = os.path.join(CSV_DIR, f"{prefix}*.csv")
     matching_files = glob.glob(pattern)
@@ -64,7 +81,7 @@ for prefix, label in PREFIX_LABELS.items():
         continue
 
     # Check thresholds
-    for col, limit in LIMITS.items():
+    for col, limit in LIMITS_CSV.items():
         if col in df.columns:
             exceeded = df[df[col] > limit]
             for _, row in exceeded.iterrows():
@@ -73,6 +90,32 @@ for prefix, label in PREFIX_LABELS.items():
                 all_violations.append(
                     f"[{label}] At {time}: {col} = {value} exceeded threshold of {limit}"
                 )
+
+# Code to handle particle counter json files
+for prefix, label in PREFIX_LABELS_JSON.items():
+    pattern = os.path.join(JSON_DIR, f"{prefix}*.json")
+    matching_files = glob.glob(pattern)
+    if not matching_files:
+        continue
+    latest_file = max(matching_files, key=os.path.getmtime)
+    try:
+        with open(latest_file, 'r') as f:
+            data = json.load(f)
+
+            for key in ['Temperature', 'Pressure', 'Humidity']:
+                if key in data and data[key] > LIMITS_JSON[key]:
+                    all_violations.append(f"{key} exceeds limit! Measured: {data[key]}, Limit: {LIMITS_JSON[key]}")
+
+            # Check differential counts
+            diff_counts = data.get('Differential counts/m3', {})
+            for size, limit in LIMITS_JSON['Differential counts/m3'].items():
+                measured = diff_counts.get(size, 0)
+                if measured > limit:
+                    all_violations.append(f"Particle count {size} exceeds limit! Measured: {measured}, Limit: {limit}")
+
+    except Exception as e:
+        all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
+        continue
 
 # === If there are violations, send a summary email ===
 if all_violations:

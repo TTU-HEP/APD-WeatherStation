@@ -16,12 +16,6 @@ filename_plot1 = f"temp_rh_{timestamp_str}.png"
 filename_plot2 = f"bp_{timestamp_str}.png"
 filename_plot3 = f"particle_cts_combined_{timestamp_str}.png"
 
-
-# Load data from JSON file
-with open("/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/cron_job_particle_log.json", "r") as file:
-    lines = file.readlines()
-    data = [json.loads(line) for line in lines]
-    
 while True:
     start_str = input("Enter start datetime in this format: (YYYY-MM-DD HH:MM:SS ): ")
     try:
