@@ -2,13 +2,14 @@ import pandas as pd
 import smtplib
 import pandas as pd
 import os
+import json
 import glob
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # === Config ===
-CSV_DIR = 'data_folder'
-JSON_DIR = 'particle_counter/data_files'
+CSV_DIR = '/home/daq2-admin/APD-WeatherStation/data_folder'
+JSON_DIR = '/home/daq2-admin/APD-WeatherStation/particle_counter/data_files'
 
 # Map each file prefix to a label (friendly name for output)
 PREFIX_LABELS_CSV = {
@@ -44,7 +45,7 @@ LIMITS_JSON = {
 }
 
 credentials = {}
-with open("email_credentials.txt") as f:
+with open("/home/daq2-admin/APD-WeatherStation/email_credentials.txt") as f:
     for line in f:
         if '=' in line:
             key, value = line.strip().split('=', 1)
@@ -54,7 +55,7 @@ EMAIL_PASSWORD = credentials.get("EMAIL_PASSWORD")
 # Email configuration
 EMAIL_FROM = 'apd.weatherstation.alarm@gmail.com'
 # === Load recipient emails from a text file ===
-with open("recipients.txt", "r") as f:
+with open("/home/daq2-admin/APD-WeatherStation/recipients.txt", "r") as f:
     recipient_emails = [line.strip() for line in f if line.strip()]
 
 EMAIL_SUBJECT = '⚠️ APD Lab Weather Threshold Violations Detected'
