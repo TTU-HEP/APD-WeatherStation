@@ -26,6 +26,14 @@ LIMITS = {
     'Humidity': 50
 }
 
+credentials = {}
+with open("email_credentials.txt") as f:
+    for line in f:
+        if '=' in line:
+            key, value = line.strip().split('=', 1)
+            credentials[key] = value
+
+EMAIL_PASSWORD = credentials.get("EMAIL_PASSWORD")
 # Email configuration
 EMAIL_FROM = 'apd.weatherstation.alarm@gmail.com'
 # === Load recipient emails from a text file ===
@@ -82,7 +90,7 @@ if all_violations:
     try:
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
-            server.login(EMAIL_FROM, "XXXXXXX")
+            server.login(EMAIL_FROM, EMAIL_PASSWORD)
             server.sendmail(EMAIL_FROM, recipient_emails, message.as_string())
         print("✅ Alert email sent.")
     except Exception as e:
