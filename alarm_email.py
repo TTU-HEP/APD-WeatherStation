@@ -31,10 +31,10 @@ LIMITS_CSV = {
 }
 
 LIMITS_JSON = {
-    'Temperature': 26,
-    'Pressure': 90.5,
-    'Humidity': 60,
-    'Differential counts/m3': {
+    "temp": 26,
+    "RH": 60,
+    "BP": 90.5,
+    "diff_counts_m3": {
         "0.30 um": 204000,
         "0.50 um": 70400,
         "1.00 um": 16640,
@@ -106,17 +106,23 @@ for prefix, label in PREFIX_LABELS_JSON.items():
                 continue
             last_line = lines[-1].strip()
             data = json.loads(last_line)
+            timestamp = data.get("timestamp", "Unknown time")
 
-            for key in ['Temperature', 'Pressure', 'Humidity']:
+            # Environmental alerts
+            for key in ["temp", "RH", "BP"]:
                 if key in data and data[key] > LIMITS_JSON[key]:
-                    all_violations.append(f"{key} exceeds limit! Measured: {data[key]:.3f}, Limit: {LIMITS_JSON[key]}")
+                    all_violations.append(
+                        f"[{label}] At {timestamp}: {key} = {data[key]:.3f} exceeded threshold of {LIMITS_JSON[key]}"
+                    )
 
-            # Check differential counts
-            diff_counts = data.get('Differential counts/m3', {})
-            for size, limit in LIMITS_JSON['Differential counts/m3'].items():
+            # Particle count alerts
+            diff_counts = data.get("diff_counts_m3", {})
+            for size, limit in LIMITS_JSON["diff_counts_m3"].items():
                 measured = diff_counts.get(size, 0)
                 if measured > limit:
-                    all_violations.append(f"Particle count {size} exceeds limit! Measured: {measured:.3f}, Limit: {limit}")
+                    all_violations.append(
+                        f"[{label}] At {timestamp}: Particle count {size} = {measured:.3f} exceeded threshold of {limit}"
+                    )
 
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
