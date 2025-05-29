@@ -32,7 +32,7 @@ LIMITS_CSV = {
 
 LIMITS_JSON = {
     "temp": 26,
-    "RH": 60,
+    "RH": 50,
     "BP": 90.5,
     "diff_counts_m3": {
         "0.30 um": 204000,
@@ -89,7 +89,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 time = row['Time']
                 value = row[col]
                 all_violations.append(
-                        f"[{label}] At {time}: {col} = {value:.3f} exceeded threshold of {limit}"
+                        f"[{label}] At {time}: {col} = {value:.2f} exceeded threshold of {limit}"
                 )
 
 # Code to handle particle counter json files
@@ -101,18 +101,17 @@ for prefix, label in PREFIX_LABELS_JSON.items():
     latest_file = max(matching_files, key=os.path.getmtime)
     try:
         with open(latest_file, 'r') as f:
-            lines=f.readlines()
-            if not lines:
-                continue
-            last_line = lines[-1].strip()
-            data = json.loads(last_line)
-            timestamp = data.get("timestamp", "Unknown time")
+            lines=f.readlines()[-5] # Look at last 5 lines in json file due to slower data taking.
+            for line in lines:
+                try:
+                    data = json.loads(line.strip())
+                    timestamp = data.get("timestamp", "Unknown time")
 
             # Environmental alerts
             for key in ["temp", "RH", "BP"]:
                 if key in data and data[key] > LIMITS_JSON[key]:
                     all_violations.append(
-                        f"[{label}] At {timestamp}: {key} = {data[key]:.3f} exceeded threshold of {LIMITS_JSON[key]}"
+                        f"[{label}] At {timestamp}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
                     )
 
             # Particle count alerts
@@ -121,7 +120,7 @@ for prefix, label in PREFIX_LABELS_JSON.items():
                 measured = diff_counts.get(size, 0)
                 if measured > limit:
                     all_violations.append(
-                        f"[{label}] At {timestamp}: Particle count {size} = {measured:.3f} exceeded threshold of {limit}"
+                        f"[{label}] At {timestamp}: Particle count {size} = {measured:.2f} exceeded threshold of {limit}"
                     )
 
     except Exception as e:
