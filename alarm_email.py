@@ -27,13 +27,13 @@ PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
 LIMITS_CSV = {
     'Temperature': 26,
     'Pressure': 905,
-    'Humidity': 50
+    'Humidity': 60
 }
 
 LIMITS_JSON = {
     'Temperature': 26,
     'Pressure': 90.5,
-    'Humidity': 50,
+    'Humidity': 60,
     'Differential counts/m3': {
         "0.30 um": 204000,
         "0.50 um": 70400,
@@ -89,7 +89,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 time = row['Time']
                 value = row[col]
                 all_violations.append(
-                    f"[{label}] At {time}: {col} = {value} exceeded threshold of {limit}"
+                        f"[{label}] At {time}: {col} = {value:.3f} exceeded threshold of {limit}"
                 )
 
 # Code to handle particle counter json files
@@ -101,18 +101,22 @@ for prefix, label in PREFIX_LABELS_JSON.items():
     latest_file = max(matching_files, key=os.path.getmtime)
     try:
         with open(latest_file, 'r') as f:
-            data = json.load(f)
+            lines=f.readlines()
+            if not lines:
+                continue
+            last_line = lines[-1].strip()
+            data = json.loads(last_line)
 
             for key in ['Temperature', 'Pressure', 'Humidity']:
                 if key in data and data[key] > LIMITS_JSON[key]:
-                    all_violations.append(f"{key} exceeds limit! Measured: {data[key]}, Limit: {LIMITS_JSON[key]}")
+                    all_violations.append(f"{key} exceeds limit! Measured: {data[key]:.3f}, Limit: {LIMITS_JSON[key]}")
 
             # Check differential counts
             diff_counts = data.get('Differential counts/m3', {})
             for size, limit in LIMITS_JSON['Differential counts/m3'].items():
                 measured = diff_counts.get(size, 0)
                 if measured > limit:
-                    all_violations.append(f"Particle count {size} exceeds limit! Measured: {measured}, Limit: {limit}")
+                    all_violations.append(f"Particle count {size} exceeds limit! Measured: {measured:.3f}, Limit: {limit}")
 
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
