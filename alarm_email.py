@@ -99,13 +99,13 @@ for prefix, label in PREFIX_LABELS_JSON.items():
     if not matching_files:
         continue
     latest_file = max(matching_files, key=os.path.getmtime)
+    N = 10
     try:
         with open(latest_file, 'r') as f:
-            lines=f.readlines()[-5] # Look at last 5 lines in json file due to slower data taking.
+            lines=f.readlines()[-N] # Look at last N lines in json file due to slower data taking.
             for line in lines:
-                try:
-                    data = json.loads(line.strip())
-                    timestamp = data.get("timestamp", "Unknown time")
+                data = json.loads(line.strip())
+                timestamp = data.get("timestamp", "Unknown time")
 
             # Environmental alerts
             for key in ["temp", "RH", "BP"]:
