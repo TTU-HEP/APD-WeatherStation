@@ -6,6 +6,7 @@ import json
 import glob
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from datetime import datetime, timedelta
 
 # === Config ===
 CSV_DIR = '/home/daq2-admin/APD-WeatherStation/data_folder'
@@ -99,29 +100,33 @@ for prefix, label in PREFIX_LABELS_JSON.items():
     if not matching_files:
         continue
     latest_file = max(matching_files, key=os.path.getmtime)
-    N = 10
     try:
         with open(latest_file, 'r') as f:
-            lines=f.readlines()[-N] # Look at last N lines in json file due to slower data taking.
+            lines=f.readlines()
+            cutoff = datetime.now() - timedelta(minutes=60)
             for line in lines:
                 data = json.loads(line.strip())
-                timestamp = data.get("timestamp", "Unknown time")
+                timestamp_str = data.get("timestamp")
+                if not timestamp_str:
+                    continue
+                
+                timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")        
+                if timestamp >= cutoff:
+                    # Environmental alerts
+                    for key in ["temp", "RH", "BP"]:
+                        if key in data and data[key] > LIMITS_JSON[key]:
+                            all_violations.append(
+                                f"[{label}] At {timestamp_str}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
+                            )
 
-            # Environmental alerts
-            for key in ["temp", "RH", "BP"]:
-                if key in data and data[key] > LIMITS_JSON[key]:
-                    all_violations.append(
-                        f"[{label}] At {timestamp}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
-                    )
-
-            # Particle count alerts
-            diff_counts = data.get("diff_counts_m3", {})
-            for size, limit in LIMITS_JSON["diff_counts_m3"].items():
-                measured = diff_counts.get(size, 0)
-                if measured > limit:
-                    all_violations.append(
-                        f"[{label}] At {timestamp}: Particle count {size} = {measured:.2f} exceeded threshold of {limit}"
-                    )
+                    # Particle count alerts
+                    diff_counts = data.get("diff_counts_m3", {})
+                    for size, limit in LIMITS_JSON["diff_counts_m3"].items():
+                        measured = diff_counts.get(size, 0)
+                        if measured > limit:
+                            all_violations.append(
+                                f"[{label}] At {timestamp_str}: Particle count {size} = {measured:.2f} exceeded threshold of {limit}"
+                            )
 
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
