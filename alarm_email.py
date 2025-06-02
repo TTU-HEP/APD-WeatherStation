@@ -113,12 +113,12 @@ for prefix, label in PREFIX_LABELS_JSON.items():
                 timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")        
                 if timestamp >= cutoff:
                     # Environmental alerts
-                    for key in ["temp", "RH", "BP"]:
-                        if key in data and data[key] > LIMITS_JSON[key]:
-                            all_violations.append(
-                                f"[{label}] At {timestamp_str}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
-                            )
-
+                    # for key in ["temp", "RH", "BP"]:
+                    #    if key in data and data[key] > LIMITS_JSON[key]:
+                    #        all_violations.append(
+                    #            f"[{label}] At {timestamp_str}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
+                    #        )
+                    
                     # Particle count alerts
                     diff_counts = data.get("diff_counts_m3", {})
                     for size, limit in LIMITS_JSON["diff_counts_m3"].items():
