@@ -28,7 +28,8 @@ PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
 LIMITS_CSV = {
     'Temperature': 26,
     'Pressure': 905,
-    'Humidity': 60
+    #'Humidity': 60,
+    'dew_point': 18
 }
 
 LIMITS_JSON = {
@@ -82,17 +83,23 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Time' column.")
         continue
 
-    # Check thresholds
-    for col, limit in LIMITS_CSV.items():
-        if col in df.columns:
-            exceeded = df[df[col] > limit]
-            for _, row in exceeded.iterrows():
-                time = row['Time']
-                value = row[col]
+    # Check all normal limits
+        for col, limit in LIMITS_CSV.items():
+            if col in row and row[col] > limit:
                 all_violations.append(
-                        f"[{label}] At {time}: {col} = {value:.2f} exceeded threshold of {limit}"
+                    f"[{label}] At {time}: {col} = {row[col]:.2f} exceeded threshold of {limit}"
                 )
 
+        # Calculate dew point and check threshold
+        if 'Temperature' in row and 'Humidity' in row:
+            t = row['Temperature']
+            rh = row['Humidity']
+            dew_point = t - ((100 - rh) / 5)
+
+            if dew_point > LIMITS_CSV['dew_point']:
+                all_violations.append(
+                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                )
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
     pattern = os.path.join(JSON_DIR, f"{prefix}*.json")
