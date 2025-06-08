@@ -162,9 +162,9 @@ for i, channel in enumerate(expected_channels):
         axs[i].axhline(y=max_vals[i], color='r', linestyle='--')
         axs[i].text(
             ts[0],                          # x-coordinate (start of time axis)
-            max_vals[i] * 0.9,              # y-coordinate (just above the line)
+            max_vals[i] * 1.0,              # y-coordinate (just above the line)
             f"ISO 6 max: {max_vals[i]} ct/m3 ",
-            color='r', fontsize=8
+            color='white', fontsize=10, bbox=dict(boxstyle="round", facecolor="black", alpha=0.5) 
             )
         axs[i].set_title(channel)
         axs[i].set_xlabel("time")
