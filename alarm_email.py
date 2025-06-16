@@ -7,7 +7,7 @@ import glob
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
-
+import re
 # === Config ===
 CSV_DIR = '/home/daq2-admin/APD-WeatherStation/data_folder'
 JSON_DIR = '/home/daq2-admin/APD-WeatherStation/particle_counter/data_files'
@@ -73,6 +73,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         continue
 
     latest_file = max(matching_files, key=os.path.getmtime)
+    print(latest_file)
     try:
         df = pd.read_csv(latest_file)
     except Exception as e:
@@ -82,24 +83,41 @@ for prefix, label in PREFIX_LABELS_CSV.items():
     if 'Time' not in df.columns:
         all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Time' column.")
         continue
+    for idx, row in df.iterrows():
+        time = row.get('Time', 'Unknown Time')
 
-    # Check all normal limits
         for col, limit in LIMITS_CSV.items():
-            if col in row and row[col] > limit:
+            if col in row and pd.notna(row[col]) and float(row[col]) > limit:
                 all_violations.append(
                     f"[{label}] At {time}: {col} = {row[col]:.2f} exceeded threshold of {limit}"
                 )
 
-        # Calculate dew point and check threshold
-        if 'Temperature' in row and 'Humidity' in row:
-            t = row['Temperature']
-            rh = row['Humidity']
+        # Dew point check
+        if pd.notna(row.get('Temperature')) and pd.notna(row.get('Humidity')):
+            t = float(row['Temperature'])
+            rh = float(row['Humidity'])
             dew_point = t - ((100 - rh) / 5)
-
             if dew_point > LIMITS_CSV['dew_point']:
                 all_violations.append(
-                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                    f"[{label}] At {time}: Dew Point = {dew_point:.2f} exceeded threshold of {LIMITS_CSV['dew_point']}"
                 )
+    '''# Check all normal limits
+    for col, limit in LIMITS_CSV.items():
+        if col in row and row[col] > limit:
+            all_violations.append(
+               f"[{label}] At {time}: {col} = {row[col]:.2f} exceeded threshold of {limit}"
+                )
+
+        # Calculate dew point and check threshold
+    if 'Temperature' in row and 'Humidity' in row:
+        t = row['Temperature']
+        rh = row['Humidity']
+        dew_point = t - ((100 - rh) / 5)
+
+        if dew_point > LIMITS_CSV['dew_point']:
+           all_violations.append(
+               f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+            )'''
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
     pattern = os.path.join(JSON_DIR, f"{prefix}*.json")
@@ -139,8 +157,75 @@ for prefix, label in PREFIX_LABELS_JSON.items():
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
         continue
 
+
+violation_pattern = re.compile(
+    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): (?P<type>[^\s=]+) = [\d\.]+ exceeded threshold"
+)
+
+# To include Dew Point line (which is phrased differently):
+# [Room A] At 2025-06-15 12:02:33: Dew Point = 27.00°C exceeded threshold of 18°C
+dew_point_pattern = re.compile(
+    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): Dew Point = [\d\.]+°C exceeded threshold"
+)
+
+most_recent_per_room_type = {}
+
+
+for violation in all_violations:
+    m = violation_pattern.search(violation)
+    if m:
+        room = m.group("room")
+        vtype = m.group("type")
+        time_str = m.group("time")
+    else:
+        m = dew_point_pattern.search(violation)
+        if m:
+            room = m.group("room")
+            vtype = "Dew Point"
+            time_str = m.group("time")
+        else:
+            # Could not parse, skip from email filtering
+            continue
+
+    try:
+        time_obj = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        continue
+
+    key = (room, vtype)
+    # Keep only the most recent violation of each type per room
+    if key not in most_recent_per_room_type or time_obj > most_recent_per_room_type[key][0]:
+        most_recent_per_room_type[key] = (time_obj, violation)
+
+# Build reduced list to email
+summary_for_email = [v[1] for v in most_recent_per_room_type.values()]
+
+# --- Send the email with filtered summary ---
+
+if summary_for_email:
+    message = MIMEMultipart()
+    message['From'] = EMAIL_FROM
+    message['To'] = ", ".join(recipient_emails)
+    message['Subject'] = EMAIL_SUBJECT
+
+    body = "⚠️ Most recent threshold violations per type and location:\n\n"
+    body += "\n".join(sorted(summary_for_email))
+
+    message.attach(MIMEText(body, 'plain'))
+
+    try:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login(EMAIL_FROM, EMAIL_PASSWORD)
+            server.sendmail(EMAIL_FROM, recipient_emails, message.as_string())
+        print("✅ Alert email sent.")
+    except Exception as e:
+        print(f"❌ Error sending email: {e}")
+else:
+    print("No threshold violations detected. Have a nice day.")
+
 # === If there are violations, send a summary email ===
-if all_violations:
+'''if all_violations:
     message = MIMEMultipart()
     message['From'] = EMAIL_FROM
     message['To'] = ", ".join(recipient_emails)
@@ -161,4 +246,5 @@ if all_violations:
     except Exception as e:
         print(f"❌ Error sending email: {e}")
 else:
-    print("yep working.")
+    print("No threshold violations detected. Have a nice day.")
+'''
