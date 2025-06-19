@@ -213,6 +213,10 @@ dew_point_pattern = re.compile(
 particle_count_pattern = re.compile(
     r"\[(?P<label>.+?)\].* At (?P<timestamp_str>[\d\-: ]+): Particle count [\d\.]+ um = [\d\.]+ exceeded threshold of [\d\.]+"
 )
+pressure_pattern = re.compile(
+   r"\[(?P<label>.+?)\].* At (?P<time>[\d\-: ]+): Negative pressure difference ΔP = [\d\.]+ Pa (Chase < Lobby)"
+)
+
 most_recent_per_room_type = {}
 
 for violation in all_violations:
@@ -221,18 +225,28 @@ for violation in all_violations:
         room = m.group("room")
         vtype = m.group("type")
         time_str = m.group("time")
+        print("test temp")
     elif dew_point_pattern.search(violation):
         m = dew_point_pattern.search(violation)
         if m:
             room = m.group("room")
             vtype = m.group("Dew Point")
             time_str = m.group("time")
+            print("test dew")
+    elif pressure_pattern.search(violation):
+        m = pressure_pattern.search(violation)
+        if m:
+            room = m.group("room")
+            vtype = m.group("Pressure diff")
+            time_str = m.group("time")
+            print("test pressure")
     else:
         m = particle_count_pattern.search(violation)
         if m:
             room=m.group("label")
             vtype=m.group("label")
             time_str=m.group("timestamp_str")
+            print("test particle")
         else:
             # Could not parse, skip from email filtering
             continue
