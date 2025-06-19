@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import json
 import glob
+import csv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
@@ -27,7 +28,7 @@ PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
 # Per-column thresholds
 LIMITS_CSV = {
     'Temperature': 26.5,
-    'Pressure': 905,
+    #'Pressure': 905,
     #'Humidity': 60,
     'dew_point': 18
 }
@@ -65,59 +66,97 @@ EMAIL_SUBJECT = '⚠️ APD Lab Weather Threshold Violations Detected'
 # === Collect all violations across all groups ===
 all_violations = []
 
+# Find the lobby and chase area prefixes from the labels dictionary
+lobby_prefix = next((k for k, v in PREFIX_LABELS_CSV.items() if v.lower() == "lobby"), None)
+chase_prefix = next((k for k, v in PREFIX_LABELS_CSV.items() if v.lower() == "chase area"), None)
+
+if not lobby_prefix or not chase_prefix:
+    raise ValueError("Lobby or Chase prefix not found in PREFIX_LABELS_CSV")
+
+# Load the latest lobby and chase files
+lobby_files = glob.glob(os.path.join(CSV_DIR, f"{lobby_prefix}*.csv"))
+chase_files = glob.glob(os.path.join(CSV_DIR, f"{chase_prefix}*.csv"))
+
+if not lobby_files:
+    raise RuntimeError("Lobby Pi data file not found!")
+if not chase_files:
+    raise RuntimeError("Chase Pi data file not found!")
+
+lobby_file = max(lobby_files, key=os.path.getmtime)
+chase_file = max(chase_files, key=os.path.getmtime)
+
+lobby_df = pd.read_csv(lobby_file)
+chase_df = pd.read_csv(chase_file)
+
+# Compare cleanroom Pis to chase
 for prefix, label in PREFIX_LABELS_CSV.items():
-    # Find newest file for the prefix
-    pattern = os.path.join(CSV_DIR, f"{prefix}*.csv")
-    matching_files = glob.glob(pattern)
+    if prefix in (lobby_prefix, chase_prefix):
+        continue  # Skip lobby and chase themselves
+
+    # Load the latest file for this cleanroom Pi
+    matching_files = glob.glob(os.path.join(CSV_DIR, f"{prefix}*.csv"))
     if not matching_files:
         continue
 
     latest_file = max(matching_files, key=os.path.getmtime)
     print(latest_file)
+
     try:
         df = pd.read_csv(latest_file)
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
         continue
 
-    if 'Time' not in df.columns:
-        all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Time' column.")
+    if 'Pressure' not in df.columns:
+        all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Pressure' column.")
         continue
-    for idx, row in df.iterrows():
-        time = row.get('Time', 'Unknown Time')
 
+    # Truncate to the shortest matching length
+    min_len = min(len(df), len(chase_df))
+    df = df.iloc[:min_len].reset_index(drop=True)
+    chase_trunc = chase_df.iloc[:min_len].reset_index(drop=True)
+
+    for idx, (row_room, row_chase) in enumerate(zip(df.itertuples(), chase_trunc.itertuples())):
+        # General threshold checks
         for col, limit in LIMITS_CSV.items():
-            if col in row and pd.notna(row[col]) and float(row[col]) > limit:
+            if hasattr(row_room, col) and pd.notna(getattr(row_room, col)) and float(getattr(row_room, col)) > limit:
                 all_violations.append(
-                    f"[{label}] At {time}: {col} = {row[col]:.2f} exceeded threshold of {limit}"
+                    f"[{label}] At row {idx}: {col} = {getattr(row_room, col):.2f} exceeded threshold of {limit}"
                 )
 
-        # Dew point check
-        if pd.notna(row.get('Temperature')) and pd.notna(row.get('Humidity')):
-            t = float(row['Temperature'])
-            rh = float(row['Humidity'])
-            dew_point = t - ((100 - rh) / 5)
-            if dew_point > LIMITS_CSV['dew_point']:
+        # Pressure comparison: Room vs. Chase
+        if pd.notna(row_room.Pressure) and pd.notna(row_chase.Pressure):
+            delta_p = float(row_room.Pressure) - float(row_chase.Pressure)
+            if delta_p < 0:
                 all_violations.append(
-                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                    f"[{label}] At row {idx}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
                 )
-    '''# Check all normal limits
-    for col, limit in LIMITS_CSV.items():
-        if col in row and row[col] > limit:
+
+        # Dew point check (optional — if Temperature & Humidity present)
+        if hasattr(row_room, 'Temperature') and hasattr(row_room, 'Humidity'):
+            if pd.notna(row_room.Temperature) and pd.notna(row_room.Humidity):
+                t = float(row_room.Temperature)
+                rh = float(row_room.Humidity)
+                dew_point = t - ((100 - rh) / 5)
+                if dew_point > LIMITS_CSV['dew_point']:
+                    all_violations.append(
+                        f"[{label}] At row {idx}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                    )
+
+# Compare Chase to Lobby
+min_len_chase_lobby = min(len(chase_df), len(lobby_df))
+chase_trunc = chase_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
+lobby_trunc = lobby_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
+
+for idx, (row_chase, row_lobby) in enumerate(zip(chase_trunc.itertuples(), lobby_trunc.itertuples())):
+    if pd.notna(row_chase.Pressure) and pd.notna(row_lobby.Pressure):
+        delta_p2 = float(row_chase.Pressure) - float(row_lobby.Pressure)
+        if delta_p2 < 0:
             all_violations.append(
-               f"[{label}] At {time}: {col} = {row[col]:.2f} exceeded threshold of {limit}"
-                )
+                f"[Chase Area] At row {idx}: Negative pressure difference ΔP = {delta_p2:.2f} Pa (Chase < Lobby)"
+            )
 
-        # Calculate dew point and check threshold
-    if 'Temperature' in row and 'Humidity' in row:
-        t = row['Temperature']
-        rh = row['Humidity']
-        dew_point = t - ((100 - rh) / 5)
 
-        if dew_point > LIMITS_CSV['dew_point']:
-           all_violations.append(
-               f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
-            )'''
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
     pattern = os.path.join(JSON_DIR, f"{prefix}*.json")
@@ -172,7 +211,6 @@ particle_count_pattern = re.compile(
     r"\[(?P<label>.+?)\].* At (?P<timestamp_str>[\d\-: ]+): Particle count [\d\.]+ um = [\d\.]+ exceeded threshold of [\d\.]+"
 )
 most_recent_per_room_type = {}
-
 
 for violation in all_violations:
     m = violation_pattern.search(violation)
@@ -232,28 +270,3 @@ if summary_for_email:
         print(f"❌ Error sending email: {e}")
 else:
     print("No threshold violations detected. Have a nice day.")
-
-# === If there are violations, send a summary email ===
-'''if all_violations:
-    message = MIMEMultipart()
-    message['From'] = EMAIL_FROM
-    message['To'] = ", ".join(recipient_emails)
-    message['Subject'] = EMAIL_SUBJECT
-
-    body = "⚠️ Threshold violations detected across monitored locations:\n\n"
-    body += "\n".join(all_violations)
-
-    message.attach(MIMEText(body, 'plain'))
-
-    # === Send email (SMTP setup assumed) ===
-    try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls()
-            server.login(EMAIL_FROM, EMAIL_PASSWORD)
-            server.sendmail(EMAIL_FROM, recipient_emails, message.as_string())
-        print("✅ Alert email sent.")
-    except Exception as e:
-        print(f"❌ Error sending email: {e}")
-else:
-    print("No threshold violations detected. Have a nice day.")
-'''
