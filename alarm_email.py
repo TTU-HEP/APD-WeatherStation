@@ -26,14 +26,14 @@ PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
 
 # Per-column thresholds
 LIMITS_CSV = {
-    'Temperature': 26,
+    'Temperature': 26.5,
     'Pressure': 905,
     #'Humidity': 60,
     'dew_point': 18
 }
 
 LIMITS_JSON = {
-    "temp": 26,
+    "temp": 26.5,
     "RH": 50,
     "BP": 90.5,
     "diff_counts_m3": {
@@ -99,7 +99,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             dew_point = t - ((100 - rh) / 5)
             if dew_point > LIMITS_CSV['dew_point']:
                 all_violations.append(
-                    f"[{label}] At {time}: Dew Point = {dew_point:.2f} exceeded threshold of {LIMITS_CSV['dew_point']}"
+                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
                 )
     '''# Check all normal limits
     for col, limit in LIMITS_CSV.items():
@@ -165,9 +165,12 @@ violation_pattern = re.compile(
 # To include Dew Point line (which is phrased differently):
 # [Room A] At 2025-06-15 12:02:33: Dew Point = 27.00°C exceeded threshold of 18°C
 dew_point_pattern = re.compile(
-    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): Dew Point = [\d\.]+°C exceeded threshold"
+    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): Dew Point = [\d\.]+ exceeded threshold"
 )
 
+particle_count_pattern = re.compile(
+    r"\[(?P<label>.+?)\].* At (?P<timestamp_str>[\d\-: ]+): Particle count [\d\.]+ um = [\d\.]+ exceeded threshold of [\d\.]+"
+)
 most_recent_per_room_type = {}
 
 
@@ -177,16 +180,22 @@ for violation in all_violations:
         room = m.group("room")
         vtype = m.group("type")
         time_str = m.group("time")
-    else:
+    elif dew_point_pattern.search(violation):
         m = dew_point_pattern.search(violation)
         if m:
             room = m.group("room")
-            vtype = "Dew Point"
+            vtype = m.group("Dew Point")
             time_str = m.group("time")
+    else:
+        m = particle_count_pattern.search(violation)
+        if m:
+            room=m.group("label")
+            vtype=m.group("label")
+            time_str=m.group("timestamp_str")
         else:
             # Could not parse, skip from email filtering
             continue
-
+    
     try:
         time_obj = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
     except Exception:
