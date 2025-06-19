@@ -117,11 +117,14 @@ for prefix, label in PREFIX_LABELS_CSV.items():
     chase_trunc = chase_df.iloc[:min_len].reset_index(drop=True)
 
     for idx, (row_room, row_chase) in enumerate(zip(df.itertuples(), chase_trunc.itertuples())):
+        # Get timestamp, fallback to row index if missing
+        time = getattr(row_room, 'Time', f"row {idx}")
+
         # General threshold checks
         for col, limit in LIMITS_CSV.items():
             if hasattr(row_room, col) and pd.notna(getattr(row_room, col)) and float(getattr(row_room, col)) > limit:
                 all_violations.append(
-                    f"[{label}] At row {idx}: {col} = {getattr(row_room, col):.2f} exceeded threshold of {limit}"
+                    f"[{label}] At {time}: {col} = {getattr(row_room, col):.2f} exceeded threshold of {limit}"
                 )
 
         # Pressure comparison: Room vs. Chase
@@ -129,7 +132,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             delta_p = float(row_room.Pressure) - float(row_chase.Pressure)
             if delta_p < 0:
                 all_violations.append(
-                    f"[{label}] At row {idx}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
+                    f"[{label}] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
                 )
 
         # Dew point check (optional — if Temperature & Humidity present)
@@ -140,7 +143,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 dew_point = t - ((100 - rh) / 5)
                 if dew_point > LIMITS_CSV['dew_point']:
                     all_violations.append(
-                        f"[{label}] At row {idx}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                        f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
                     )
 
 # Compare Chase to Lobby
@@ -149,13 +152,13 @@ chase_trunc = chase_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
 lobby_trunc = lobby_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
 
 for idx, (row_chase, row_lobby) in enumerate(zip(chase_trunc.itertuples(), lobby_trunc.itertuples())):
+    time = getattr(row_chase, 'Time', f"row {idx}")
     if pd.notna(row_chase.Pressure) and pd.notna(row_lobby.Pressure):
         delta_p2 = float(row_chase.Pressure) - float(row_lobby.Pressure)
         if delta_p2 < 0:
             all_violations.append(
-                f"[Chase Area] At row {idx}: Negative pressure difference ΔP = {delta_p2:.2f} Pa (Chase < Lobby)"
+                f"[Chase Area] At {time}: Negative pressure difference ΔP = {delta_p2:.2f} Pa (Chase < Lobby)"
             )
-
 
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
