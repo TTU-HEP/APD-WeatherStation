@@ -2,7 +2,7 @@
 export PATH=$PATH:"/home/daq2-admin/root/bin:/opt/oracle/instantclient:/home/daq2-admin/.local/bin:/home/daq2-admin/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin"
 export PYTHONPATH=$PYTHONPATH:"/home/daq2-admin/root/lib"
 # List of Raspberry Pi IP addresses (or hostnames)
-PI_ADDRESSES=("129.118.107.232" " 129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
+PI_ADDRESSES=("129.118.107.232" "129.118.107.205" "129.118.107.234" "129.118.107.204" "129.118.107.233" "129.118.107.235" "129.118.107.232")
 # The remote script you want to run on each Raspberry Pi
 REMOTE_SCRIPT_PATH="collect_sensor_data.sh"
 

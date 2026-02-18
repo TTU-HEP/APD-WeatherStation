@@ -1,1 +1,4 @@
-/home/daq2-admin/APD-WeatherStation/particle_counter/data_files/*.json
+/particle_counter/data_files/
+/particle_counter/cron_logs/
+/particle_counter/plots/
+/particle_counter/conn1.yaml
