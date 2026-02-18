@@ -6,6 +6,7 @@ import json
 import glob
 import csv
 from collections import defaultdict
+from collections import defaultdict
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
@@ -39,6 +40,12 @@ LIMITS_JSON = {
     "RH": 50,
     "BP": 90.5,
     "diff_counts_m3": {
+        "0.30 um": 1020000,
+        "0.50 um": 352000,
+        "1.00 um": 83200,
+        "2.50 um": 83200,
+        "5.00 um": 2930,
+        "10.00 um": 2930
         "0.30 um": 1020000,
         "0.50 um": 352000,
         "1.00 um": 83200,
@@ -119,12 +126,14 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         # Get timestamp, fallback to row index if missing
         time = getattr(row_room, 'Time', f"row {idx}")
     
+    
         # General threshold checks
         for col, limit in LIMITS_CSV.items():
             if hasattr(row_room, col) and pd.notna(getattr(row_room, col)) and float(getattr(row_room, col)) > limit:
                 all_violations.append(
                     f"[{label}] At {time}: {col} = {getattr(row_room, col):.2f} exceeded threshold of {limit}"
                 )
+    
     
         # Pressure comparison: Room vs. Chase
         if pd.notna(row_room.Pressure) and pd.notna(row_chase.Pressure):
@@ -133,6 +142,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 all_violations.append(
                     f"[{label}] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
                 )
+    
     
         # Dew point check (optional — if Temperature & Humidity present)
         if hasattr(row_room, 'Temperature') and hasattr(row_room, 'Humidity'):
@@ -144,6 +154,9 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                     all_violations.append(
                         f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
                     )
+
+    if prefix in (lobby_prefix, chase_prefix):
+        continue  # Skip lobby and chase themselves
 
     if prefix in (lobby_prefix, chase_prefix):
         continue  # Skip lobby and chase themselves
@@ -220,6 +233,7 @@ pressure_pattern = re.compile(
    r"\[(?P<label>.+?)\].* At (?P<time>[\d\-: ]+): Negative pressure difference ΔP = [\d\.]+ Pa (Chase < Lobby)"
 )
 
+#most_recent_per_room_type = {}
 most_recent_per_room_type = defaultdict(list)
 
 for violation in all_violations:
@@ -247,9 +261,13 @@ for violation in all_violations:
         vtype = violation.split(":")[1].strip() if ":" in violation else "General"
 
     key = (room, vtype)
-
+    
     most_recent_per_room_type[key].append((time_obj, violation))
+        
+    # Sort the list by time, most recent first
     most_recent_per_room_type[key].sort(reverse=True, key=lambda x: x[0])
+        
+    # Keep only the top 5
     most_recent_per_room_type[key] = most_recent_per_room_type[key][:5]
         
         #most_recent_per_room_type[key] = (time_obj, violation)
