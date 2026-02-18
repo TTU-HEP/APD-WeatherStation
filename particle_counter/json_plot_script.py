@@ -157,8 +157,16 @@ for i, channel in enumerate(expected_channels):
     if channel in channel_data:
         ts = channel_data[channel]["timestamps"]
         vals = channel_data[channel]["diff_counts_m3"]
+
+        # ---- Add grey box for 9–17 each day ----
+        unique_days = sorted({t.date() for t in ts})
+        for day in unique_days:
+            start = datetime.datetime.combine(day, datetime.time(9, 0))
+            end   = datetime.datetime.combine(day, datetime.time(17, 0))
+            axs[i].axvspan(start, end, color='grey', alpha=0.2)
+
         for seg_times, seg_vals in segment_data(ts, vals):
-            axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0) # label=channel
+            axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0)
         axs[i].axhline(y=max_vals[i], color='r', linestyle='--')
         axs[i].text(
             ts[0],                          # x-coordinate (start of time axis)
@@ -166,6 +174,11 @@ for i, channel in enumerate(expected_channels):
             f"ISO 6 max: {max_vals[i]} ct/m3 ",
             color='white', fontsize=10, bbox=dict(boxstyle="round", facecolor="black", alpha=0.5) 
             )
+        axs[i].text(
+            0.5, 1.02, "Work hours (09:00–17:00)",
+            transform=axs[i].transAxes,
+            ha='center', va='bottom', fontsize=8, color='gray'
+        )
         axs[i].set_title(channel)
         axs[i].set_xlabel("time")
         axs[i].set_ylabel("count/m3")
