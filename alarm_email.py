@@ -48,6 +48,12 @@ LIMITS_JSON = {
     }
 }
 
+# === Operational Safeguards ===
+TIME_TOLERANCE = pd.Timedelta("2min")
+STALE_LIMIT = pd.Timedelta("10min")   # absolute staleness check
+MAX_REASONABLE_PRESSURE = 200         # Pa absolute sanity bound
+MIN_REASONABLE_PRESSURE = -200
+
 credentials = {}
 with open("/home/daq2-admin/APD-WeatherStation/email_credentials.txt") as f:
     for line in f:
@@ -89,6 +95,18 @@ chase_file = max(chase_files, key=os.path.getmtime)
 lobby_df = pd.read_csv(lobby_file)
 chase_df = pd.read_csv(chase_file)
 
+# --- Absolute freshness check for lobby & chase ---
+for name, df_check in [("Lobby", lobby_df), ("Chase Area", chase_df)]:
+    if 'Time' in df_check.columns:
+        df_check['Time'] = pd.to_datetime(df_check['Time'], errors='coerce')
+        df_check = df_check.dropna(subset=['Time'])
+        if not df_check.empty:
+            latest_time = df_check['Time'].max()
+            if pd.Timestamp.now() - latest_time > STALE_LIMIT:
+                print(f"⚠️ {name} data is STALE. Last update: {latest_time}")
+        else:
+            print(f"⚠️ {name} has no valid timestamps!")
+
 # Compare cleanroom Pis to chase
 for prefix, label in PREFIX_LABELS_CSV.items():
 
@@ -124,58 +142,71 @@ for prefix, label in PREFIX_LABELS_CSV.items():
     df['Time'] = pd.to_datetime(df['Time'], errors='coerce')
     chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
 
-    # Drop bad timestamps
-    df = df.dropna(subset=['Time'])
-    chase_df = chase_df.dropna(subset=['Time'])
+    df = df.dropna(subset=['Time']).sort_values('Time')
+    chase_df = chase_df.dropna(subset=['Time']).sort_values('Time')
 
-    # Sort (required for merge_asof)
-    df = df.sort_values('Time')
-    chase_df = chase_df.sort_values('Time')
+    if df.empty or chase_df.empty:
+        print(f"⚠️ Skipping {label} comparison — empty dataframe after timestamp cleaning.")
+        continue
 
-    # Merge on nearest timestamp within 2 minutes
     merged = pd.merge_asof(
-        df.sort_values('Time'),
-        chase_df.sort_values('Time'),
-        on='Time',
+        df,
+        chase_df.rename(columns={"Time": "Time_chase"}),
+        left_on='Time',
+        right_on='Time_chase',
         direction='nearest',
-        tolerance=pd.Timedelta("2min"),
+        tolerance=TIME_TOLERANCE,
         suffixes=('_room', '_chase')
     )
 
+    if merged['Pressure_chase'].isna().all():
+        print(f"⚠️ No valid Chase data within tolerance window for {label}")
+
     for row in merged.itertuples():
-        time = row.Time
-        time_room = getattr(row, 'Time_room', None)
+
+        time_room = getattr(row, 'Time', None)
         time_chase = getattr(row, 'Time_chase', None)
+
         p_room = getattr(row, 'Pressure_room', None)
         p_chase = getattr(row, 'Pressure_chase', None)
 
+        # ---- Timestamp mismatch warning ----
+        if time_room and time_chase:
+            delta_time = abs(time_room - time_chase)
+            if delta_time > TIME_TOLERANCE:
+                print(f"⚠️ {label}–Chase timestamp mismatch: {delta_time}")
 
-        # General threshold checks (room values)
+        # ---- Physical sanity check ----
+        if p_room is not None and pd.notna(p_room):
+            if not (MIN_REASONABLE_PRESSURE <= p_room <= MAX_REASONABLE_PRESSURE):
+                print(f"⚠️ Unphysical room pressure detected: {p_room}")
+
+        if p_chase is not None and pd.notna(p_chase):
+            if not (MIN_REASONABLE_PRESSURE <= p_chase <= MAX_REASONABLE_PRESSURE):
+                print(f"⚠️ Unphysical chase pressure detected: {p_chase}")
+
+        # ---- Threshold checks ----
         for col, limit in LIMITS_CSV.items():
             value = getattr(row, f"{col}_room", None)
             if value is not None and pd.notna(value) and float(value) > limit:
                 all_violations.append(
-                    f"[{label}] At {time}: {col} = {value:.2f} exceeded threshold of {limit}"
+                    f"[{label}] At {time_room}: {col} = {value:.2f} exceeded threshold of {limit}"
                 )
 
-        # Check for large timestamp differences
-        if time_room is not None and time_chase is not None:
-            delta_time = abs(time_room - time_chase)
-            if delta_time > pd.Timedelta("2min"):
-                print(f"⚠️ Time difference between {label} and Chase exceeds 2 min: {delta_time}")
+        # ---- Pressure difference ----
+        if pd.notna(p_room) and pd.notna(p_chase):
+            delta_p = float(p_room) - float(p_chase)
 
-        # Pressure comparison
-        if (
-            pd.notna(row.Pressure_room) and
-            pd.notna(row.Pressure_chase)
-        ):
-            delta_p = float(row.Pressure_room) - float(row.Pressure_chase)
+            # sanity bound on delta
+            if abs(delta_p) > 500:
+                print(f"⚠️ Implausible ΔP detected ({label} vs Chase): {delta_p}")
+
             if delta_p < 0:
                 all_violations.append(
-                    f"[{label}] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
+                    f"[{label}] At {time_room}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
                 )
-    
-        # Dew point check (optional — if Temperature & Humidity present)
+
+        # ---- Dew point ----
         temp = getattr(row, 'Temperature_room', None)
         hum = getattr(row, 'Humidity_room', None)
 
@@ -185,47 +216,54 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             dew_point = t - ((100 - rh) / 5)
             if dew_point > LIMITS_CSV['dew_point']:
                 all_violations.append(
-                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                    f"[{label}] At {time_room}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
                 )
 
     if prefix in (lobby_prefix, chase_prefix):
         continue  # Skip lobby and chase themselves
 
 # Compare Chase to Lobby
-# --- Convert Time columns to datetime ---
 chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
 lobby_df['Time'] = pd.to_datetime(lobby_df['Time'], errors='coerce')
 
-# Drop rows with bad timestamps
-chase_df = chase_df.dropna(subset=['Time'])
-lobby_df = lobby_df.dropna(subset=['Time'])
+chase_df = chase_df.dropna(subset=['Time']).sort_values('Time')
+lobby_df = lobby_df.dropna(subset=['Time']).sort_values('Time')
 
-# Merge on nearest timestamp within 2 minutes
 merged_chase_lobby = pd.merge_asof(
-    chase_df.sort_values('Time'),
-    lobby_df.sort_values('Time'),
-    on='Time',
+    chase_df,
+    lobby_df.rename(columns={"Time": "Time_lobby"}),
+    left_on='Time',
+    right_on='Time_lobby',
     direction='nearest',
-    tolerance=pd.Timedelta("2min"),
+    tolerance=TIME_TOLERANCE,
     suffixes=('_chase', '_lobby')
 )
 
+if merged_chase_lobby['Pressure_lobby'].isna().all():
+    print("⚠️ No valid Lobby data within tolerance window for Chase comparison")
+
 for row in merged_chase_lobby.itertuples():
-    time = row.Time
+
+    time_chase = getattr(row, 'Time', None)
+    time_lobby = getattr(row, 'Time_lobby', None)
+
     p_chase = getattr(row, 'Pressure_chase', None)
     p_lobby = getattr(row, 'Pressure_lobby', None)
-    
-    # Compute actual time difference (if lobby time column exists)
-    if hasattr(row, 'Time_lobby') and time_chase is not None and time_lobby is not None:
+
+    if time_chase and time_lobby:
         delta_time = abs(time_chase - time_lobby)
-        if delta_time > pd.Timedelta("2min"):
-            print(f"⚠️ Time difference between Chase and Lobby exceeds 2 min: {delta_time}")
+        if delta_time > TIME_TOLERANCE:
+            print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
+
+        if abs(delta_p) > 500:
+            print(f"⚠️ Implausible Chase–Lobby ΔP detected: {delta_p}")
+
         if delta_p < 0:
             all_violations.append(
-                f"[Chase Area] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Chase < Lobby)"
+                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Chase < Lobby)"
             )
 
 # Code to handle particle counter json files
