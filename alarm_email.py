@@ -122,16 +122,20 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
     # rely on timestamps, not length for comparing info between chase and lobby
     df['Time'] = pd.to_datetime(df['Time'], errors='coerce')
-    chase_trunc['Time'] = pd.to_datetime(chase_trunc['Time'], errors='coerce')
+    chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
 
     # Drop bad timestamps
     df = df.dropna(subset=['Time'])
-    chase_trunc = chase_trunc.dropna(subset=['Time'])
+    chase_df = chase_df.dropna(subset=['Time'])
+
+    # Sort (required for merge_asof)
+    df = df.sort_values('Time')
+    chase_df = chase_df.sort_values('Time')
 
     # Merge on nearest timestamp within 2 minutes
     merged = pd.merge_asof(
         df.sort_values('Time'),
-        chase_trunc.sort_values('Time'),
+        chase_df.sort_values('Time'),
         on='Time',
         direction='nearest',
         tolerance=pd.Timedelta("2min"),
@@ -140,6 +144,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
     for row in merged.itertuples():
         time = row.Time
+        time_room = getattr(row, 'Time_room', None)
+        time_chase = getattr(row, 'Time_chase', None)
+        p_room = getattr(row, 'Pressure_room', None)
+        p_chase = getattr(row, 'Pressure_chase', None)
+
 
         # General threshold checks (room values)
         for col, limit in LIMITS_CSV.items():
@@ -148,6 +157,12 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 all_violations.append(
                     f"[{label}] At {time}: {col} = {value:.2f} exceeded threshold of {limit}"
                 )
+
+        # Check for large timestamp differences
+        if time_room is not None and time_chase is not None:
+            delta_time = abs(time_room - time_chase)
+            if delta_time > pd.Timedelta("2min"):
+                print(f"⚠️ Time difference between {label} and Chase exceeds 2 min: {delta_time}")
 
         # Pressure comparison
         if (
@@ -161,31 +176,56 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 )
     
         # Dew point check (optional — if Temperature & Humidity present)
-        if hasattr(row_room, 'Temperature') and hasattr(row_room, 'Humidity'):
-            if pd.notna(row_room.Temperature) and pd.notna(row_room.Humidity):
-                t = float(row_room.Temperature)
-                rh = float(row_room.Humidity)
-                dew_point = t - ((100 - rh) / 5)
-                if dew_point > LIMITS_CSV['dew_point']:
-                    all_violations.append(
-                        f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
-                    )
+        temp = getattr(row, 'Temperature_room', None)
+        hum = getattr(row, 'Humidity_room', None)
+
+        if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
+            t = float(temp)
+            rh = float(hum)
+            dew_point = t - ((100 - rh) / 5)
+            if dew_point > LIMITS_CSV['dew_point']:
+                all_violations.append(
+                    f"[{label}] At {time}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                )
 
     if prefix in (lobby_prefix, chase_prefix):
         continue  # Skip lobby and chase themselves
 
 # Compare Chase to Lobby
-min_len_chase_lobby = min(len(chase_df), len(lobby_df))
-chase_trunc = chase_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
-lobby_trunc = lobby_df.iloc[:min_len_chase_lobby].reset_index(drop=True)
+# --- Convert Time columns to datetime ---
+chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
+lobby_df['Time'] = pd.to_datetime(lobby_df['Time'], errors='coerce')
 
-for idx, (row_chase, row_lobby) in enumerate(zip(chase_trunc.itertuples(), lobby_trunc.itertuples())):
-    time = getattr(row_chase, 'Time', f"row {idx}")
-    if pd.notna(row_chase.Pressure) and pd.notna(row_lobby.Pressure):
-        delta_p2 = float(row_chase.Pressure) - float(row_lobby.Pressure)
-        if delta_p2 < 0:
+# Drop rows with bad timestamps
+chase_df = chase_df.dropna(subset=['Time'])
+lobby_df = lobby_df.dropna(subset=['Time'])
+
+# Merge on nearest timestamp within 2 minutes
+merged_chase_lobby = pd.merge_asof(
+    chase_df.sort_values('Time'),
+    lobby_df.sort_values('Time'),
+    on='Time',
+    direction='nearest',
+    tolerance=pd.Timedelta("2min"),
+    suffixes=('_chase', '_lobby')
+)
+
+for row in merged_chase_lobby.itertuples():
+    time = row.Time
+    p_chase = getattr(row, 'Pressure_chase', None)
+    p_lobby = getattr(row, 'Pressure_lobby', None)
+    
+    # Compute actual time difference (if lobby time column exists)
+    if hasattr(row, 'Time_lobby') and time_chase is not None and time_lobby is not None:
+        delta_time = abs(time_chase - time_lobby)
+        if delta_time > pd.Timedelta("2min"):
+            print(f"⚠️ Time difference between Chase and Lobby exceeds 2 min: {delta_time}")
+
+    if pd.notna(p_chase) and pd.notna(p_lobby):
+        delta_p = float(p_chase) - float(p_lobby)
+        if delta_p < 0:
             all_violations.append(
-                f"[Chase Area] At {time}: Negative pressure difference ΔP = {delta_p2:.2f} Pa (Chase < Lobby)"
+                f"[Chase Area] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Chase < Lobby)"
             )
 
 # Code to handle particle counter json files
