@@ -120,25 +120,41 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Pressure' column.")
         continue
 
-    # Truncate to the shortest matching length
-    min_len = min(len(df), len(chase_df))
-    df = df.iloc[:min_len].reset_index(drop=True)
-    chase_trunc = chase_df.iloc[:min_len].reset_index(drop=True)
+    # rely on timestamps, not length for comparing info between chase and lobby
+    df['Time'] = pd.to_datetime(df['Time'], errors='coerce')
+    chase_trunc['Time'] = pd.to_datetime(chase_trunc['Time'], errors='coerce')
 
-    for idx, (row_room, row_chase) in enumerate(zip(df.itertuples(), chase_trunc.itertuples())):
-        # Get timestamp, fallback to row index if missing
-        time = getattr(row_room, 'Time', f"row {idx}")
-    
-        # General threshold checks
+    # Drop bad timestamps
+    df = df.dropna(subset=['Time'])
+    chase_trunc = chase_trunc.dropna(subset=['Time'])
+
+    # Merge on nearest timestamp within 2 minutes
+    merged = pd.merge_asof(
+        df.sort_values('Time'),
+        chase_trunc.sort_values('Time'),
+        on='Time',
+        direction='nearest',
+        tolerance=pd.Timedelta("2min"),
+        suffixes=('_room', '_chase')
+    )
+
+    for row in merged.itertuples():
+        time = row.Time
+
+        # General threshold checks (room values)
         for col, limit in LIMITS_CSV.items():
-            if hasattr(row_room, col) and pd.notna(getattr(row_room, col)) and float(getattr(row_room, col)) > limit:
+            value = getattr(row, f"{col}_room", None)
+            if value is not None and pd.notna(value) and float(value) > limit:
                 all_violations.append(
-                    f"[{label}] At {time}: {col} = {getattr(row_room, col):.2f} exceeded threshold of {limit}"
+                    f"[{label}] At {time}: {col} = {value:.2f} exceeded threshold of {limit}"
                 )
-    
-        # Pressure comparison: Room vs. Chase
-        if pd.notna(row_room.Pressure) and pd.notna(row_chase.Pressure):
-            delta_p = float(row_room.Pressure) - float(row_chase.Pressure)
+
+        # Pressure comparison
+        if (
+            pd.notna(row.Pressure_room) and
+            pd.notna(row.Pressure_chase)
+        ):
+            delta_p = float(row.Pressure_room) - float(row.Pressure_chase)
             if delta_p < 0:
                 all_violations.append(
                     f"[{label}] At {time}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
