@@ -105,6 +105,16 @@ for prefix, label in PREFIX_LABELS_CSV.items():
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
         continue
+    
+    # --- Freshness check ---
+    if 'Time' in df.columns:
+        try:
+            latest_timestamp = datetime.strptime(df['Time'].iloc[-1], "%Y-%m-%d %H:%M:%S")
+            if latest_timestamp < datetime.now() - timedelta(hours=1):
+                print(f"⚠️ Skipping {label} — no data in the last hour.")
+                continue
+        except Exception:
+            print(f"⚠️ Could not parse timestamps for {label}. Skipping freshness check.")
 
     if 'Pressure' not in df.columns:
         all_violations.append(f"⚠️ File '{latest_file}' ({label}) is missing a 'Pressure' column.")
