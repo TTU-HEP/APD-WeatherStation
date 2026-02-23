@@ -173,10 +173,10 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         p_chase = getattr(row, 'Pressure_chase', None)
 
         # ---- Timestamp mismatch warning ----
-        if time_room and time_chase:
-            delta_time = abs(time_room - time_chase)
+        if pd.notna(time_chase) and pd.notna(time_lobby):
+            delta_time = abs(time_chase - time_lobby)
             if delta_time > TIME_TOLERANCE:
-                print(f"⚠️ {label}–Chase timestamp mismatch: {delta_time}")
+                print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
         # ---- Physical sanity check ----
         if p_room is not None and pd.notna(p_room):
@@ -252,7 +252,7 @@ for row in merged_chase_lobby.itertuples():
     p_chase = getattr(row, 'Pressure_chase', None)
     p_lobby = getattr(row, 'Pressure_lobby', None)
 
-    if time_chase and time_lobby:
+    if pd.notna(time_chase) and pd.notna(time_lobby):
         delta_time = abs(time_chase - time_lobby)
         if delta_time > TIME_TOLERANCE:
             print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
