@@ -360,11 +360,14 @@ for violation in all_violations:
     room = room_match.group(1) if room_match else "Unknown"
 
     # --- Extract violation type safely ---
-    if "=" in violation:
+    if "Particle count" in violation:
+        vtype = "Particle count"
+    elif "Negative pressure difference" in violation:
+        vtype = "Pressure difference"
+    elif "=" in violation:
         vtype = violation.split(":")[1].split("=")[0].strip()
     else:
-        # For pressure difference messages etc.
-        vtype = violation.split(":")[1].strip() if ":" in violation else "General"
+        vtype = "General"
 
     key = (room, vtype)
     
@@ -374,7 +377,7 @@ for violation in all_violations:
     most_recent_per_room_type[key].sort(reverse=True, key=lambda x: x[0])
         
     # Keep only the top 5
-    most_recent_per_room_type[key] = most_recent_per_room_type[key][:5]
+    most_recent_per_room_type[key] = most_recent_per_room_type[key][:1]
         
         #most_recent_per_room_type[key] = (time_obj, violation)
 
