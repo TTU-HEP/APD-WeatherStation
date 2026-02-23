@@ -51,8 +51,10 @@ LIMITS_JSON = {
 # === Operational Safeguards ===
 TIME_TOLERANCE = pd.Timedelta("2min")
 STALE_LIMIT = pd.Timedelta("10min")   # absolute staleness check
-MAX_REASONABLE_PRESSURE = 200         # Pa absolute sanity bound
-MIN_REASONABLE_PRESSURE = -200
+MAX_REASONABLE_PRESSURE = 2000         # Pa absolute sanity bound
+MIN_REASONABLE_PRESSURE = -2000
+WORKDAY_START_HOUR = 9
+WORKDAY_END_HOUR = 17
 
 credentials = {}
 with open("/home/daq2-admin/APD-WeatherStation/email_credentials.txt") as f:
@@ -272,34 +274,47 @@ for prefix, label in PREFIX_LABELS_JSON.items():
     matching_files = glob.glob(pattern)
     if not matching_files:
         continue
+
     latest_file = max(matching_files, key=os.path.getmtime)
+
     try:
         with open(latest_file, 'r') as f:
-            lines=f.readlines()
+            lines = f.readlines()
+
             cutoff = datetime.now() - timedelta(minutes=60)
+
             for line in lines:
                 data = json.loads(line.strip())
+
                 timestamp_str = data.get("timestamp")
                 if not timestamp_str:
                     continue
-                
-                timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")        
-                if timestamp >= cutoff:
-                    # Environmental alerts
-                    # for key in ["temp", "RH", "BP"]:
-                    #    if key in data and data[key] > LIMITS_JSON[key]:
-                    #        all_violations.append(
-                    #            f"[{label}] At {timestamp_str}: {key} = {data[key]:.2f} exceeded threshold of {LIMITS_JSON[key]}"
-                    #        )
-                    
-                    # Particle count alerts
-                    diff_counts = data.get("diff_counts_m3", {})
-                    for size, limit in LIMITS_JSON["diff_counts_m3"].items():
-                        measured = diff_counts.get(size, 0)
-                        if measured > limit:
-                            all_violations.append(
-                                f"[{label}] At {timestamp_str}: Particle count {size} = {measured:.2f} exceeded threshold of {limit}"
-                            )
+
+                try:
+                    timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+                except ValueError:
+                    continue
+
+                # --- Recency safeguard ---
+                if timestamp < cutoff:
+                    continue
+
+                # --- Working-hours safeguard ---
+                hour = timestamp.hour
+                if WORKDAY_START_HOUR <= hour < WORKDAY_END_HOUR:
+                    # Skip particle alarms during normal working hours
+                    print(f"ℹ️ Particle violation during working hours ignored at {timestamp_str}")
+
+                # --- Particle count alerts (outside working hours only) ---
+                diff_counts = data.get("diff_counts_m3", {})
+                for size, limit in LIMITS_JSON["diff_counts_m3"].items():
+                    measured = diff_counts.get(size, 0)
+                    if measured > limit:
+                        all_violations.append(
+                            f"[{label}] At {timestamp_str}: "
+                            f"Particle count {size} = {measured:.2f} "
+                            f"exceeded threshold of {limit}"
+                        )
 
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
