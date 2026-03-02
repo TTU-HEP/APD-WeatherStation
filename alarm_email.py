@@ -49,9 +49,9 @@ LIMITS_JSON = {
 
 # === Operational Safeguards ===
 TIME_TOLERANCE = pd.Timedelta("2min")
-STALE_LIMIT = pd.Timedelta("10min")   # absolute staleness check
-MAX_REASONABLE_PRESSURE = 8.038585         # Pa absolute sanity bound
-MIN_REASONABLE_PRESSURE = -8.038585
+STALE_LIMIT = pd.Timedelta("2hr")   # absolute staleness check
+MAX_REASONABLE_PRESSURE = 803.8585         # inH2O absolute sanity bound
+MIN_REASONABLE_PRESSURE = -803.8585
 WORKDAY_START_HOUR = 9
 WORKDAY_END_HOUR = 17
 
@@ -171,8 +171,8 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         p_room1 = getattr(row, 'Pressure_room', None)
         p_chase1 = getattr(row, 'Pressure_chase', None)
 
-        p_room = p_room1/248.8
-        p_chase = p_chase1/248.8
+        p_room = (p_room1*100)/248.8
+        p_chase = (p_chase1*100)/248.8
 
         # ---- Timestamp mismatch warning ----
         if pd.notna(time_chase) and pd.notna(time_lobby):
@@ -202,7 +202,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             delta_p = float(p_room) - float(p_chase)
 
             # sanity bound on delta
-            if abs(delta_p) > 4.019293:
+            if abs(delta_p) > 401.9293:
                 print(f"⚠️ Implausible ΔP detected ({label} vs Chase): {delta_p} inH2O")
 
             if delta_p < 0:
@@ -254,8 +254,8 @@ for row in merged_chase_lobby.itertuples():
     p_chase1 = getattr(row, 'Pressure_chase', None)
     p_lobby1 = getattr(row, 'Pressure_lobby', None)
 
-    p_chase = p_chase1/248.8
-    p_lobby = p_lobby1/248.8
+    p_chase = (p_chase1*100)/248.8
+    p_lobby = (p_lobby1*100)/248.8
 
     if pd.notna(time_chase) and pd.notna(time_lobby):
         delta_time = abs(time_chase - time_lobby)
@@ -265,7 +265,7 @@ for row in merged_chase_lobby.itertuples():
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
 
-        if abs(delta_p) > 4.019293:
+        if abs(delta_p) > 401.9293:
             print(f"⚠️ Implausible Chase–Lobby ΔP detected: {delta_p} inH2O")
 
         if delta_p < 0:
