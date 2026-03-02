@@ -24,7 +24,7 @@ PREFIX_LABELS_CSV = {
     "p129.118.107.205_output": "Room D"
 }
 
-PREFIX_LABELS_JSON = {"counter_data_file": "Particle Counter (Room B)"}
+PREFIX_LABELS_JSON = {"counter_data_file": "Room B"}
 
 # Per-column thresholds
 LIMITS_CSV = {
@@ -33,7 +33,6 @@ LIMITS_CSV = {
     #'Humidity': 60,
     'dew_point': 18
 }
-
 LIMITS_JSON = {
     "temp": 26.5,
     "RH": 50,
@@ -51,8 +50,8 @@ LIMITS_JSON = {
 # === Operational Safeguards ===
 TIME_TOLERANCE = pd.Timedelta("2min")
 STALE_LIMIT = pd.Timedelta("10min")   # absolute staleness check
-MAX_REASONABLE_PRESSURE = 2000         # Pa absolute sanity bound
-MIN_REASONABLE_PRESSURE = -2000
+MAX_REASONABLE_PRESSURE = 8.038585         # Pa absolute sanity bound
+MIN_REASONABLE_PRESSURE = -8.038585
 WORKDAY_START_HOUR = 9
 WORKDAY_END_HOUR = 17
 
@@ -169,8 +168,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         time_room = getattr(row, 'Time', None)
         time_chase = getattr(row, 'Time_chase', None)
 
-        p_room = getattr(row, 'Pressure_room', None)
-        p_chase = getattr(row, 'Pressure_chase', None)
+        p_room1 = getattr(row, 'Pressure_room', None)
+        p_chase1 = getattr(row, 'Pressure_chase', None)
+
+        p_room = p_room1/248.8
+        p_chase = p_chase1/248.8
 
         # ---- Timestamp mismatch warning ----
         if pd.notna(time_chase) and pd.notna(time_lobby):
@@ -200,12 +202,12 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             delta_p = float(p_room) - float(p_chase)
 
             # sanity bound on delta
-            if abs(delta_p) > 500:
-                print(f"⚠️ Implausible ΔP detected ({label} vs Chase): {delta_p}")
+            if abs(delta_p) > 4.019293:
+                print(f"⚠️ Implausible ΔP detected ({label} vs Chase): {delta_p} inH2O")
 
             if delta_p < 0:
                 all_violations.append(
-                    f"[{label}] At {time_room}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Room < Chase)"
+                    f"[{label}] At {time_room}: Negative pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
                 )
 
         # ---- Dew point ----
@@ -249,8 +251,11 @@ for row in merged_chase_lobby.itertuples():
     time_chase = getattr(row, 'Time', None)
     time_lobby = getattr(row, 'Time_lobby', None)
 
-    p_chase = getattr(row, 'Pressure_chase', None)
-    p_lobby = getattr(row, 'Pressure_lobby', None)
+    p_chase1 = getattr(row, 'Pressure_chase', None)
+    p_lobby1 = getattr(row, 'Pressure_lobby', None)
+
+    p_chase = p_chase1/248.8
+    p_lobby = p_lobby1/248.8
 
     if pd.notna(time_chase) and pd.notna(time_lobby):
         delta_time = abs(time_chase - time_lobby)
@@ -260,12 +265,12 @@ for row in merged_chase_lobby.itertuples():
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
 
-        if abs(delta_p) > 500:
-            print(f"⚠️ Implausible Chase–Lobby ΔP detected: {delta_p}")
+        if abs(delta_p) > 4.019293:
+            print(f"⚠️ Implausible Chase–Lobby ΔP detected: {delta_p} inH2O")
 
         if delta_p < 0:
             all_violations.append(
-                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p:.2f} Pa (Chase < Lobby)"
+                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p:.2f} inH2O (Chase < Lobby)"
             )
 
 # Code to handle particle counter json files
@@ -361,13 +366,17 @@ for violation in all_violations:
 
     # --- Extract violation type safely ---
     if "Particle count" in violation:
-        vtype = "Particle count"
+        vtype = "particle_count"
     elif "Negative pressure difference" in violation:
-        vtype = "Pressure difference"
-    elif "=" in violation:
-        vtype = violation.split(":")[1].split("=")[0].strip()
+        vtype = "pressure_difference"
+    elif "Temperature" in violation:
+        vtype = "temperature"
+    elif "Humidity" in violation:
+        vtype = "humidity"
+    elif "Dew Point" in violation:
+        vtype = "dew_point"
     else:
-        vtype = "General"
+        vtype = "general"
 
     key = (room, vtype)
     
@@ -377,7 +386,7 @@ for violation in all_violations:
     most_recent_per_room_type[key].sort(reverse=True, key=lambda x: x[0])
         
     # Keep only the top 5
-    most_recent_per_room_type[key] = most_recent_per_room_type[key][:1]
+    most_recent_per_room_type[key] = most_recent_per_room_type[key][:5]
         
         #most_recent_per_room_type[key] = (time_obj, violation)
 

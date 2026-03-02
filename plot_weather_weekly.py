@@ -107,7 +107,7 @@ def whats_the_weather(start_date, end_date):
         time = df["Time"].to_numpy()
         humidity = df["Humidity"].to_numpy()
         temperature = df["Temperature"].to_numpy()
-        pressure = df["Pressure"].to_numpy()
+        pressure = (df["Pressure"].to_numpy()) / 248.8 #conversion from pascals to inches of water
 
         fig, axs = plt.subplots(1, 3, figsize=(15, 5))
 
@@ -126,10 +126,11 @@ def whats_the_weather(start_date, end_date):
         axs[1].set_title(label)
 
         # ---- Pressure ----
-        mask = (pressure >= 890) & (pressure <= 910)
+        #mask = (pressure >= 890) & (pressure <= 910)
+        mask = (pressure >= 3.5) & (pressure <= 4.0)
         axs[2].plot(time[mask], pressure[mask], 'bo', ms=3)
         axs[2].set_xlabel("Time")
-        axs[2].set_ylabel("Pressure")
+        axs[2].set_ylabel("Pressure [inH20]")
         axs[2].set_title(label)
 
         # ---- Axis formatting ----
