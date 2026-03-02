@@ -47,6 +47,33 @@ LIMITS_JSON = {
     }
 }
 
+EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
+
+def ensure_header(filepath):
+    if not os.path.exists(filepath):
+        return
+
+    with open(filepath, 'r') as f:
+        first_line = f.readline()
+
+    # If file is empty
+    if first_line == "":
+        with open(filepath, 'w') as f:
+            f.write(EXPECTED_HEADER)
+        return
+
+    # If header already correct
+    if first_line.startswith("Time,"):
+        return
+
+    # Otherwise prepend header
+    with open(filepath, 'r') as f:
+        contents = f.read()
+
+    with open(filepath, 'w') as f:
+        f.write(EXPECTED_HEADER)
+        f.write(contents)
+
 # === Operational Safeguards ===
 TIME_TOLERANCE = pd.Timedelta("2min")
 STALE_LIMIT = pd.Timedelta("2hr")   # absolute staleness check
@@ -93,7 +120,10 @@ if not chase_files:
 lobby_file = max(lobby_files, key=os.path.getmtime)
 chase_file = max(chase_files, key=os.path.getmtime)
 
+ensure_header(lobby_file)
 lobby_df = pd.read_csv(lobby_file)
+
+ensure_header(chase_file)
 chase_df = pd.read_csv(chase_file)
 
 # --- Absolute freshness check for lobby & chase ---
@@ -175,8 +205,8 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         p_chase = (p_chase1*100)/248.8
 
         # ---- Timestamp mismatch warning ----
-        if pd.notna(time_chase) and pd.notna(time_lobby):
-            delta_time = abs(time_chase - time_lobby)
+        if pd.notna(time_chase) and pd.notna(time_room):
+            delta_time = abs(time_chase - time_room)
             if delta_time > TIME_TOLERANCE:
                 print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
