@@ -140,6 +140,8 @@ for name, df_check in [("Lobby", lobby_df), ("Chase Area", chase_df)]:
 
 # Compare cleanroom Pis to chase
 for prefix, label in PREFIX_LABELS_CSV.items():
+    if prefix == lobby_prefix:
+        continue
 
     # Load the latest file for this cleanroom Pi
     matching_files = glob.glob(os.path.join(CSV_DIR, f"{prefix}*.csv"))
@@ -231,13 +233,9 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         if pd.notna(p_room) and pd.notna(p_chase):
             delta_p = float(p_room) - float(p_chase)
 
-            # sanity bound on delta
-            if abs(delta_p) > 401.9293:
-                print(f"⚠️ Implausible ΔP detected ({label} vs Chase): {delta_p} inH2O")
-
-            if delta_p < 0:
+            if delta_p > 0:
                 all_violations.append(
-                    f"[{label}] At {time_room}: Negative pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
+                    f"[{label}] At {time_room}: positive pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
                 )
 
         # ---- Dew point ----
@@ -252,9 +250,6 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 all_violations.append(
                     f"[{label}] At {time_room}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
                 )
-
-    if prefix in (lobby_prefix, chase_prefix):
-        continue  # Skip lobby and chase themselves
 
 # Compare Chase to Lobby
 chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
@@ -294,9 +289,6 @@ for row in merged_chase_lobby.itertuples():
 
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
-
-        if abs(delta_p) > 401.9293:
-            print(f"⚠️ Implausible Chase–Lobby ΔP detected: {delta_p} inH2O")
 
         if delta_p < 0:
             all_violations.append(
@@ -355,24 +347,8 @@ for prefix, label in PREFIX_LABELS_JSON.items():
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
         continue
 
-
-violation_pattern = re.compile(
-    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): (?P<type>[^\s=]+) = [\d\.]+ exceeded threshold"
-)
-
 # To include Dew Point line (which is phrased differently):
 # [Room A] At 2025-06-15 12:02:33: Dew Point = 27.00°C exceeded threshold of 18°C
-dew_point_pattern = re.compile(
-    r"\[(?P<room>.+?)\].*At (?P<time>[\d\-: ]+): Dew Point = [\d\.]+ exceeded threshold"
-)
-
-particle_count_pattern = re.compile(
-    r"\[(?P<label>.+?)\]\s+At\s+(?P<timestamp_str>[\d\-: ]+):\s+Particle count (?P<size>[\d\.]+\s+um)\s+=\s+(?P<value>[\d\.]+)\s+exceeded threshold of\s+(?P<limit>[\d\.]+)"
-)
-
-pressure_pattern = re.compile(
-   r"\[(?P<label>.+?)\].* At (?P<time>[\d\-: ]+): Negative pressure difference ΔP = [\d\.]+ Pa (Chase < Lobby)"
-)
 
 #most_recent_per_room_type = {}
 most_recent_per_room_type = defaultdict(list)
