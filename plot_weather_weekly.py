@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from matplotlib.ticker import MaxNLocator
+import matplotlib.dates as mdates
 from collections import defaultdict
 from datetime import datetime
 
@@ -103,6 +104,11 @@ def whats_the_weather(start_date, end_date):
             continue
 
         df = pd.concat(dfs, ignore_index=True)
+        df = df.sort_values("Time")
+
+        t_min = df["Time"].min()
+        t_max = df["Time"].max()
+        time_span = t_max - t_min
 
         time = df["Time"].to_numpy()
         humidity = df["Humidity"].to_numpy()
@@ -110,7 +116,7 @@ def whats_the_weather(start_date, end_date):
         pressure = ((df["Pressure"].to_numpy()) * 100) / 248.8 #conversion from hectopascals to inches of water
 
         fig, axs = plt.subplots(1, 3, figsize=(15, 5))
-
+        
         # ---- Humidity ----
         mask = (humidity >= 5) & (humidity <= 60)
         axs[0].plot(time[mask], humidity[mask], 'go', ms=3)
@@ -134,10 +140,20 @@ def whats_the_weather(start_date, end_date):
         axs[2].set_ylabel("Pressure [inH20]")
         axs[2].set_title(label)
 
-        # ---- Axis formatting ----
+        if time_span <= pd.Timedelta(days=1):
+            formatter = mdates.DateFormatter("%m-%d-%Y %H")
+        else:
+            formatter = mdates.DateFormatter("%m-%d-%Y")
+
         for ax in axs:
-            ax.xaxis.set_major_locator(MaxNLocator(nbins=7))
-            ax.tick_params(axis='x', rotation=30)
+            ax.xaxis.set_major_locator(locator)
+            ax.xaxis.set_major_formatter(formatter)
+            ax.tick_params(axis='x', rotation=45)
+
+        if time_span <= pd.Timedelta(days=1):
+            locator = mdates.HourLocator(interval=2)
+        else:
+            locator = mdates.DayLocator(interval=1)
 
         plt.tight_layout()
         plt.subplots_adjust(bottom=0.2)
