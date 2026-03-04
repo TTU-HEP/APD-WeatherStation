@@ -110,26 +110,35 @@ def whats_the_weather(start_date, end_date):
         t_max = df["Time"].max()
         time_span = t_max - t_min
 
+        if time_span <= pd.Timedelta(days=1):
+            start_str = t_min.strftime("%m-%d-%Y %H:%M")
+            end_str   = t_max.strftime("%m-%d-%Y %H:%M")
+        else:
+            start_str = t_min.strftime("%m-%d-%Y")
+            end_str   = t_max.strftime("%m-%d-%Y")
+
+        title_str = f"{label}\nFrom {start_str} to {end_str}"
+
         time = df["Time"].to_numpy()
         humidity = df["Humidity"].to_numpy()
         temperature = df["Temperature"].to_numpy()
         pressure = ((df["Pressure"].to_numpy()) * 100) / 248.8 #conversion from hectopascals to inches of water
 
         fig, axs = plt.subplots(1, 3, figsize=(15, 5))
-        
+
         # ---- Humidity ----
         mask = (humidity >= 5) & (humidity <= 60)
         axs[0].plot(time[mask], humidity[mask], 'go', ms=3)
         axs[0].set_xlabel("Time")
         axs[0].set_ylabel("Humidity [%]")
-        axs[0].set_title(label)
+        axs[0].set_title(title_str)
 
         # ---- Temperature ----
         mask = (temperature >= 0) & (temperature <= 40)
         axs[1].plot(time[mask], temperature[mask], 'ro', ms=3)
         axs[1].set_xlabel("Time")
         axs[1].set_ylabel("Temperature [C]")
-        axs[1].set_title(label)
+        axs[1].set_title(title_str)
         axs[1].set_ylim(20, 40)
 
         # ---- Pressure ----
@@ -138,22 +147,19 @@ def whats_the_weather(start_date, end_date):
         axs[2].plot(time[mask], pressure[mask], 'bo', ms=3)
         axs[2].set_xlabel("Time")
         axs[2].set_ylabel("Pressure [inH20]")
-        axs[2].set_title(label)
+        axs[2].set_title(title_str)
 
         if time_span <= pd.Timedelta(days=1):
-            formatter = mdates.DateFormatter("%m-%d-%Y %H")
-        else:
-            formatter = mdates.DateFormatter("%m-%d-%Y")
-
-        for ax in axs:
-            ax.xaxis.set_major_locator(locator)
-            ax.xaxis.set_major_formatter(formatter)
-            ax.tick_params(axis='x', rotation=45)
-
-        if time_span <= pd.Timedelta(days=1):
+            formatter = mdates.DateFormatter("%d %H:%M")
             locator = mdates.HourLocator(interval=2)
         else:
+            formatter = mdates.DateFormatter("%m-%d-%Y")
             locator = mdates.DayLocator(interval=1)
+
+        for ax in axs:
+            ax.xaxis.set_major_formatter(formatter)
+            ax.xaxis.set_major_locator(locator)
+            ax.tick_params(axis='x', rotation=45)
 
         plt.tight_layout()
         plt.subplots_adjust(bottom=0.2)
