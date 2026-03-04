@@ -233,9 +233,9 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         if pd.notna(p_room) and pd.notna(p_chase):
             delta_p = float(p_room) - float(p_chase)
 
-            if delta_p > 0:
+            if delta_p < 0:
                 all_violations.append(
-                    f"[{label}] At {time_room}: positive pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
+                    f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
                 )
 
         # ---- Dew point ----
@@ -391,8 +391,8 @@ for violation in all_violations:
     # Sort the list by time, most recent first
     most_recent_per_room_type[key].sort(reverse=True, key=lambda x: x[0])
         
-    # Keep only the top 5
-    most_recent_per_room_type[key] = most_recent_per_room_type[key][:5]
+    # Keep only the most recent violations
+    most_recent_per_room_type[key] = most_recent_per_room_type[key][:1]
         
         #most_recent_per_room_type[key] = (time_obj, violation)
 

@@ -124,6 +124,7 @@ def whats_the_weather(start_date, end_date):
         axs[1].set_xlabel("Time")
         axs[1].set_ylabel("Temperature [C]")
         axs[1].set_title(label)
+        axs[1].set_ylim(20, 40)
 
         # ---- Pressure ----
         #mask = (pressure >= 890) & (pressure <= 910)
