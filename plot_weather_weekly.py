@@ -12,6 +12,33 @@ from datetime import datetime
 OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
+
+def ensure_header(filepath):
+    if not os.path.exists(filepath):
+        return
+
+    with open(filepath, 'r') as f:
+        first_line = f.readline()
+
+    # If file is empty
+    if first_line == "":
+        with open(filepath, 'w') as f:
+            f.write(EXPECTED_HEADER)
+        return
+
+    # If header already correct
+    if first_line.startswith("Time,"):
+        return
+
+    # Otherwise prepend header
+    with open(filepath, 'r') as f:
+        contents = f.read()
+
+    with open(filepath, 'w') as f:
+        f.write(EXPECTED_HEADER)
+        f.write(contents)
+
 def extract_datetime_from_filename(filename):
     """
     p129.118.107.233_output_2025121215.csv → 2025-12-12 15:00
@@ -47,10 +74,10 @@ while True:
 def whats_the_weather(start_date, end_date):
     directory = "/home/daq2-admin/APD-WeatherStation/data_folder/"
     prefixes = {
-        "p129.118.107.205": "Room D",
+        "p129.118.107.233": "Room A",
         "p129.118.107.234": "Room B",
         "p129.118.107.204": "Room C",
-        "p129.118.107.233": "Room A",
+        "p129.118.107.205": "Room D",
         "p129.118.107.235": "Chase area",
         "p129.118.107.232": "Lobby"
     }
@@ -92,6 +119,7 @@ def whats_the_weather(start_date, end_date):
 
         dfs = []
         for file_path in sorted(files):
+            ensure_header(file_path)
             df = pd.read_csv(file_path)
 
             # Convert Time column properly
