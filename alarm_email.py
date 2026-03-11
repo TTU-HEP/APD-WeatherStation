@@ -47,6 +47,16 @@ LIMITS_JSON = {
     }
 }
 
+
+# Offsets measured relative to Chase sensor during colocated calibration.
+# no violaions have been seen between the chase and the lobby, but offsets will be added/updated as needed.
+DELTA_P_OFFSETS = {
+    "Room A": -0.11,
+    "Room B": -0.12,
+    "Room C": -0.02,
+    "Room D": -0.14
+}
+
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
 
 def ensure_header(filepath):
@@ -231,11 +241,15 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
         # ---- Pressure difference ----
         if pd.notna(p_room) and pd.notna(p_chase):
+
             delta_p = float(p_room) - float(p_chase)
 
-            if delta_p < 0:
+            offset = DELTA_P_OFFSETS.get(label, 0)
+            delta_p_corrected = delta_p - offset
+
+            if delta_p_corrected < 0:
                 all_violations.append(
-                    f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p:.2f} inH2O (Room < Chase)"
+                    f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
                 )
 
         # ---- Dew point ----
