@@ -47,17 +47,23 @@ LIMITS_JSON = {
     }
 }
 
-def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=7):
-    delta_p_data = defaultdict(list)
-
+def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3):
+    """
+    Compute robust rolling ΔP offsets relative to Chase over the past week.
+    Returns a dict: {room_label: median_offset}
+    """
+    # Gather all CSV files
     all_files = glob.glob(os.path.join(CSV_DIR, "*.csv"))
 
-    # Extract timestamps
+    # Extract timestamps from all filenames
     file_dates = []
+    file_map = {}  # map datetime -> list of files
     for f in all_files:
         try:
-            ts = os.path.basename(f).split("_")[-1].replace(".csv", "")
-            file_dates.append(datetime.strptime(ts, "%Y%m%d%H"))
+            ts_str = os.path.basename(f).split("_")[-1].replace(".csv", "")
+            ts = datetime.strptime(ts_str, "%Y%m%d%H")
+            file_dates.append(ts)
+            file_map.setdefault(ts, []).append(f)
         except ValueError:
             continue
 
@@ -68,55 +74,70 @@ def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=7)
     end_time = max(file_dates)
     start_time = end_time - timedelta(days=window_days)
 
-    # Process each file
-    for file_path in all_files:
-        filename = os.path.basename(file_path)
-        try:
-            ts = filename.split("_")[-1].replace(".csv", "")
-            file_dt = datetime.strptime(ts, "%Y%m%d%H")
-        except ValueError:
+    # Storage for ΔP values per room per hour
+    delta_p_data = defaultdict(list)
+
+    # Loop over each hour in the window
+    for ts in file_dates:
+        if not (start_time <= ts <= end_time):
             continue
 
-        if not (start_time <= file_dt <= end_time):
-            continue
-
-        # Determine room
-        room_label = None
-        for prefix, label in PREFIX_LABELS_CSV.items():
-            if filename.startswith(prefix):
-                room_label = label
-                break
-        if room_label is None or room_label == reference_label:
-            continue
-
-        # Load room CSV
-        try:
-            df = pd.read_csv(file_path)
-            df["Time"] = pd.to_datetime(df["Time"], errors="coerce")
-            df = df.dropna(subset=["Time", "Pressure"])
-        except Exception:
-            continue
-
-        # Find matching Chase file
+        # Find Chase file for this hour
         chase_file = next(
-            (f for f in all_files if os.path.basename(f).startswith("p129.118.107.235_output") and f.endswith(f"{ts}.csv")),
+            (f for f in file_map.get(ts, []) if os.path.basename(f).startswith("p129.118.107.235_output")),
             None
         )
         if not chase_file:
             continue
 
-        df_chase = pd.read_csv(chase_file)
-        df_chase["Time"] = pd.to_datetime(df_chase["Time"], errors="coerce")
-        df_chase = df_chase.dropna(subset=["Time", "Pressure"])
+        try:
+            df_chase = pd.read_csv(chase_file)
+            df_chase["Time"] = pd.to_datetime(df_chase["Time"], errors="coerce")
+            df_chase = df_chase.dropna(subset=["Time", "Pressure"])
+            p_chase = df_chase["Pressure"].median()
+        except Exception:
+            continue
 
-        # Compute median ΔP
-        p_room = df["Pressure"].median()
-        p_chase = df_chase["Pressure"].median()
-        delta_p_data[room_label].append(p_room - p_chase)
+        # Process other rooms for this hour
+        for f in file_map.get(ts, []):
+            room_label = None
+            for prefix, label in PREFIX_LABELS_CSV.items():
+                if os.path.basename(f).startswith(prefix):
+                    room_label = label
+                    break
+            if room_label is None or room_label == reference_label:
+                continue
 
-    # Compute final median offset per room
-    delta_p_offsets = {room: round(pd.Series(values).median(), 2) if values else 0.0
-                       for room, values in delta_p_data.items()}
+            try:
+                df_room = pd.read_csv(f)
+                df_room["Time"] = pd.to_datetime(df_room["Time"], errors="coerce")
+                df_room = df_room.dropna(subset=["Time", "Pressure"])
+                p_room = df_room["Pressure"].median()
+            except Exception:
+                continue
+
+            delta_p_hour = p_room - p_chase
+            delta_p_data[room_label].append(delta_p_hour)
+
+    # Remove outliers and compute final weekly offset
+    delta_p_offsets = {}
+    for room, values in delta_p_data.items():
+        if not values:
+            delta_p_offsets[room] = 0.0
+            continue
+
+        # Convert to pandas series for convenience
+        series = pd.Series(values)
+        Q1 = series.quantile(0.25)
+        Q3 = series.quantile(0.75)
+        IQR = Q3 - Q1
+        # Keep only values within 1.5*IQR
+        filtered = series[(series >= Q1 - 1.5 * IQR) & (series <= Q3 + 1.5 * IQR)]
+
+        if filtered.empty:
+            delta_p_offsets[room] = round(series.median(), 2)
+        else:
+            delta_p_offsets[room] = round(filtered.median(), 2)
 
     return delta_p_offsets
 
