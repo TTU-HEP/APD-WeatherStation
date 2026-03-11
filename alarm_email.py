@@ -1,4 +1,3 @@
-import pandas as pd
 import smtplib
 import pandas as pd
 import os
@@ -10,6 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
 import re
+
 # === Config ===
 CSV_DIR = '/home/daq2-admin/APD-WeatherStation/data_folder'
 JSON_DIR = '/home/daq2-admin/APD-WeatherStation/particle_counter/data_files'
@@ -47,15 +47,81 @@ LIMITS_JSON = {
     }
 }
 
+def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=7):
+    """
+    Compute rolling ΔP offsets relative to Chase over the past week.
+    Returns a dict: {room_label: median_offset}
+    """
+    # Determine the start time for the rolling window
+    end_time = datetime.now()
+    start_time = end_time - timedelta(days=window_days)
 
-# Offsets measured relative to Chase sensor during colocated calibration.
-# no violaions have been seen between the chase and the lobby, but offsets will be added/updated as needed.
-DELTA_P_OFFSETS = {
-    "Room A": -0.11,
-    "Room B": -0.12,
-    "Room C": -0.02,
-    "Room D": -0.14
-}
+    # Prepare storage for ΔP per room
+    delta_p_data = defaultdict(list)
+
+    # Gather all CSV files in the data folder
+    all_files = glob.glob(os.path.join(CSV_DIR, "*.csv"))
+
+    # Load files in the window
+    for file_path in all_files:
+        filename = os.path.basename(file_path)
+        # Extract datetime from filename
+        try:
+            ts = filename.split("_")[-1].replace(".csv", "")
+            file_dt = datetime.strptime(ts, "%Y%m%d%H")
+        except ValueError:
+            continue
+
+        if not (start_time <= file_dt <= end_time):
+            continue
+
+        # Determine which room this file corresponds to
+        room_label = None
+        for prefix, label in PREFIX_LABELS_CSV.items():
+            if filename.startswith(prefix):
+                room_label = label
+                break
+        if room_label is None or room_label == reference_label:
+            continue  # Skip files that don't match or are the reference
+
+        # Load CSV
+        try:
+            df = pd.read_csv(file_path)
+            df["Time"] = pd.to_datetime(df["Time"], errors="coerce")
+            df = df.dropna(subset=["Time", "Pressure"])
+        except Exception:
+            continue
+
+        # Find matching Chase file for this hour
+        chase_file = next(
+            (f for f in all_files if f.startswith("p129.118.107.235_output") and f.endswith(f"{ts}.csv")),
+            None
+        )
+        if not chase_file:
+            continue
+        df_chase = pd.read_csv(chase_file)
+        df_chase["Time"] = pd.to_datetime(df_chase["Time"], errors="coerce")
+        df_chase = df_chase.dropna(subset=["Time", "Pressure"])
+
+        # Compute median pressure for this file
+        p_room = df["Pressure"].median()
+        p_chase = df_chase["Pressure"].median()
+
+        delta_p = p_room - p_chase
+        delta_p_data[room_label].append(delta_p)
+
+    # Compute final median offset per room
+    delta_p_offsets = {}
+    for room, values in delta_p_data.items():
+        if values:
+            delta_p_offsets[room] = round(pd.Series(values).median(), 2)
+        else:
+            delta_p_offsets[room] = 0.0  # default if no data
+
+    return delta_p_offsets
+
+DELTA_P_OFFSETS = compute_weekly_pressure_offsets()
+print(DELTA_P_OFFSETS)
 
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
 
