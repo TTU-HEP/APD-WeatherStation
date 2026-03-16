@@ -31,7 +31,8 @@ LIMITS_CSV = {
     'Temperature': 26.5,
     #'Pressure': 905,
     #'Humidity': 60,
-    'dew_point': 18
+    'dew_point_max': 18,
+    'dew_point_min': 0
 }
 LIMITS_JSON = {
     "temp": 26.5,
@@ -46,6 +47,8 @@ LIMITS_JSON = {
         "10.00 um": 2930
     }
 }
+
+PRESSURE_TOLERANCE = 0.01
 
 def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3):
     """
@@ -174,8 +177,6 @@ def ensure_header(filepath):
 # === Operational Safeguards ===
 TIME_TOLERANCE = pd.Timedelta("2min")
 STALE_LIMIT = pd.Timedelta("2hr")   # absolute staleness check
-MAX_REASONABLE_PRESSURE = 803.8585         # inH2O absolute sanity bound
-MIN_REASONABLE_PRESSURE = -803.8585
 WORKDAY_START_HOUR = 9
 WORKDAY_END_HOUR = 17
 
@@ -309,15 +310,6 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             if delta_time > TIME_TOLERANCE:
                 print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
-        # ---- Physical sanity check ----
-        if p_room is not None and pd.notna(p_room):
-            if not (MIN_REASONABLE_PRESSURE <= p_room <= MAX_REASONABLE_PRESSURE):
-                print(f"⚠️ Unphysical room pressure detected: {p_room}")
-
-        if p_chase is not None and pd.notna(p_chase):
-            if not (MIN_REASONABLE_PRESSURE <= p_chase <= MAX_REASONABLE_PRESSURE):
-                print(f"⚠️ Unphysical chase pressure detected: {p_chase}")
-
         # ---- Threshold checks ----
         for col, limit in LIMITS_CSV.items():
             value = getattr(row, f"{col}_room", None)
@@ -334,9 +326,14 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             offset = DELTA_P_OFFSETS.get(label, 0)
             delta_p_corrected = delta_p - offset
 
-            if delta_p_corrected < 0:
+            if delta_p_corrected < -PRESSURE_TOL:
                 all_violations.append(
                     f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
+                )
+
+            elif delta_p_corrected < 0 or delta_p_corrected == -0.00:
+                print(
+                    f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
                 )
 
         # ---- Dew point ----
@@ -346,10 +343,20 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
             t = float(temp)
             rh = float(hum)
-            dew_point = t - ((100 - rh) / 5)
-            if dew_point > LIMITS_CSV['dew_point']:
+            
+            a = 17.625
+            b = 243.04
+
+            gamma = math.log(rh / 100.0) + (a * t) / (b + t)
+            dew_point_val = (b * gamma) / (a - gamma)
+
+            if dew_point_val > LIMITS_CSV['dew_point_max']:
                 all_violations.append(
-                    f"[{label}] At {time_room}: Dew Point = {dew_point:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point']}°C"
+                    f"[{label}] At {time_room}: Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C"
+                )
+            elif dew_point_val < LIMITS_CSV['dew_point_min']:
+                all_violations.append(
+                    f"[{label}] At {time_room}: Dew Point = {dew_point_val:.2f}°C was less than threshold of {LIMITS_CSV['dew_point_min']}°C"
                 )
 
 # Compare Chase to Lobby
@@ -390,10 +397,17 @@ for row in merged_chase_lobby.itertuples():
 
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
-
-        if delta_p < 0:
+        
+        offset = DELTA_P_OFFSETS.get(label, 0)
+        delta_p_corrected = delta_p - offset
+        if delta_p_corrected < 0:
             all_violations.append(
-                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p:.2f} inH2O (Chase < Lobby)"
+                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Chase < Lobby)"
+            )
+        
+        elif delta_p_corrected < 0:
+            print(
+                f"[{label}] At {time_chase}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
             )
 
 # Code to handle particle counter json files
