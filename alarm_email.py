@@ -51,7 +51,7 @@ LIMITS_JSON = {
 
 PRESSURE_TOL = 0.01
 
-def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=3):
+def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=1):
     """
     Compute robust rolling offsets for a given variable (Pressure, Temperature, RH)
     relative to the reference sensor (default: Chase Area) over the past `window_days`.
@@ -147,7 +147,9 @@ DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
 TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
 RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
 
-print(DELTA_P_OFFSETS)
+print("delta p offsets = ", DELTA_P_OFFSETS)
+print("temperate offsets = ", TEMP_OFFSETS)
+print("RH offsets = ", RH_OFFSETS)
 
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
 
@@ -336,18 +338,18 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 all_violations.append(
                     f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
                 )
-
-            elif delta_p_corrected < 0 or delta_p_corrected == -0.00:
+            
+            elif -PRESSURE_TOL <= delta_p_corrected < 0:
                 print(
                     f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
-                )
-
+                    )
+            
         # ---- Dew point ----
         temp = getattr(row, 'Temperature_room', None)
         hum = getattr(row, 'Humidity_room', None)
 
-        temp_corrected = temp_measured - TEMP_OFFSETS.get(room_label, 0)
-        rh_corrected   = rh_measured - RH_OFFSETS.get(room_label, 0)
+        temp_corrected = temp - TEMP_OFFSETS.get(label, 0)
+        rh_corrected   = hum - RH_OFFSETS.get(label, 0)
 
         if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
             t = float(temp_corrected)
@@ -409,15 +411,15 @@ for row in merged_chase_lobby.itertuples():
         
         offset = DELTA_P_OFFSETS.get(label, 0)
         delta_p_corrected = delta_p - offset
-        if delta_p_corrected < 0:
+        if delta_p_corrected < -PRESSURE_TOL:
             all_violations.append(
                 f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Chase < Lobby)"
             )
         
-        elif delta_p_corrected < 0:
-            print(
-                f"[{label}] At {time_chase}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
-            )
+        elif -PRESSURE_TOL <= delta_p_corrected < 0:
+                print(
+                    f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
+                    )
 
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
