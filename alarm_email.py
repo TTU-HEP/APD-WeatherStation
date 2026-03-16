@@ -51,10 +51,11 @@ LIMITS_JSON = {
 
 PRESSURE_TOL = 0.01
 
-def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3):
+def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=3):
     """
-    Compute robust rolling ΔP offsets relative to Chase over the past week.
-    Returns a dict: {room_label: median_offset}
+    Compute robust rolling offsets for a given variable (Pressure, Temperature, RH)
+    relative to the reference sensor (default: Chase Area) over the past `window_days`.
+    Returns a dict: {room_label: median_offset}.
     """
     # Gather all CSV files
     all_files = glob.glob(os.path.join(CSV_DIR, "*.csv"))
@@ -78,27 +79,27 @@ def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3)
     end_time = max(file_dates)
     start_time = end_time - timedelta(days=window_days)
 
-    # Storage for ΔP values per room per hour
-    delta_p_data = defaultdict(list)
+    # Storage for variable differences per room per hour
+    delta_data = defaultdict(list)
 
     # Loop over each hour in the window
     for ts in file_dates:
         if not (start_time <= ts <= end_time):
             continue
 
-        # Find Chase file for this hour
-        chase_file = next(
+        # Find reference (Chase) file for this hour
+        ref_file = next(
             (f for f in file_map.get(ts, []) if os.path.basename(f).startswith("p129.118.107.235_output")),
             None
         )
-        if not chase_file:
+        if not ref_file:
             continue
 
         try:
-            df_chase = pd.read_csv(chase_file)
-            df_chase["Time"] = pd.to_datetime(df_chase["Time"], errors="coerce")
-            df_chase = df_chase.dropna(subset=["Time", "Pressure"])
-            p_chase = df_chase["Pressure"].median()
+            df_ref = pd.read_csv(ref_file)
+            df_ref["Time"] = pd.to_datetime(df_ref["Time"], errors="coerce")
+            df_ref = df_ref.dropna(subset=["Time", variable])
+            ref_val = df_ref[variable].median()
         except Exception:
             continue
 
@@ -115,37 +116,37 @@ def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3)
             try:
                 df_room = pd.read_csv(f)
                 df_room["Time"] = pd.to_datetime(df_room["Time"], errors="coerce")
-                df_room = df_room.dropna(subset=["Time", "Pressure"])
-                p_room = df_room["Pressure"].median()
+                df_room = df_room.dropna(subset=["Time", variable])
+                room_val = df_room[variable].median()
             except Exception:
                 continue
 
-            delta_p_hour = p_room - p_chase
-            delta_p_data[room_label].append(delta_p_hour)
+            delta_hour = room_val - ref_val
+            delta_data[room_label].append(delta_hour)
 
-    # Remove outliers and compute final weekly offset
-    delta_p_offsets = {}
-    for room, values in delta_p_data.items():
+    # Remove outliers and compute final offset
+    offsets = {}
+    for room, values in delta_data.items():
         if not values:
-            delta_p_offsets[room] = 0.0
+            offsets[room] = 0.0
             continue
 
-        # Convert to pandas series for convenience
         series = pd.Series(values)
-        Q1 = series.quantile(0.25)
-        Q3 = series.quantile(0.75)
+        Q1, Q3 = series.quantile([0.25, 0.75])
         IQR = Q3 - Q1
-        # Keep only values within 1.5*IQR
         filtered = series[(series >= Q1 - 1.5 * IQR) & (series <= Q3 + 1.5 * IQR)]
 
         if filtered.empty:
-            delta_p_offsets[room] = round(series.median(), 2)
+            offsets[room] = round(series.median(), 2)
         else:
-            delta_p_offsets[room] = round(filtered.median(), 2)
+            offsets[room] = round(filtered.median(), 2)
 
-    return delta_p_offsets
+    return offsets
 
-DELTA_P_OFFSETS = compute_weekly_pressure_offsets()
+DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
+TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
+RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
+
 print(DELTA_P_OFFSETS)
 
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
@@ -311,12 +312,16 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             if delta_time > TIME_TOLERANCE:
                 print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
-        # ---- Threshold checks ----
-        for col, limit in LIMITS_CSV.items():
-            value = getattr(row, f"{col}_room", None)
-            if value is not None and pd.notna(value) and float(value) > limit:
+        # ---- Threshold checks for temperature with offset ----
+        temp_offset = TEMP_OFFSETS.get(label, 0)  # similar to DELTA_P_OFFSETS
+        raw_temp = getattr(row, "Temperature_room", None)
+
+        if raw_temp is not None and pd.notna(raw_temp):
+            corrected_temp = float(raw_temp) - temp_offset  # apply offset
+
+            if corrected_temp > LIMITS_CSV['Temperature']:
                 all_violations.append(
-                    f"[{label}] At {time_room}: {col} = {value:.2f} exceeded threshold of {limit}"
+                    f"[{label}] At {time_room}: Temperature = {corrected_temp:.2f} exceeded threshold of {LIMITS_CSV['Temperature']}"
                 )
 
         # ---- Pressure difference ----
@@ -341,9 +346,12 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         temp = getattr(row, 'Temperature_room', None)
         hum = getattr(row, 'Humidity_room', None)
 
+        temp_corrected = temp_measured - TEMP_OFFSETS.get(room_label, 0)
+        rh_corrected   = rh_measured - RH_OFFSETS.get(room_label, 0)
+
         if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
-            t = float(temp)
-            rh = float(hum)
+            t = float(temp_corrected)
+            rh = float(rh_corrected)
             
             a = 17.625
             b = 243.04
@@ -446,7 +454,7 @@ for prefix, label in PREFIX_LABELS_JSON.items():
                 hour = timestamp.hour
                 if WORKDAY_START_HOUR <= hour < WORKDAY_END_HOUR:
                     # Skip particle alarms during normal working hours
-                    print(f"ℹ️ Particle violation during working hours ignored at {timestamp_str}")
+                    print(f"Particle violation during working hours ignored at {timestamp_str}")
 
                 # --- Particle count alerts (outside working hours only) ---
                 diff_counts = data.get("diff_counts_m3", {})
