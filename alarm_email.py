@@ -9,6 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
 import re
+import math
 
 # === Config ===
 CSV_DIR = '/home/daq2-admin/APD-WeatherStation/data_folder'
@@ -48,7 +49,7 @@ LIMITS_JSON = {
     }
 }
 
-PRESSURE_TOLERANCE = 0.01
+PRESSURE_TOL = 0.01
 
 def compute_weekly_pressure_offsets(reference_label="Chase Area", window_days=3):
     """
