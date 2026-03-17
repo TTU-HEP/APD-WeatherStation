@@ -178,31 +178,36 @@ def whats_the_weather(start_date, end_date):
         locator = mdates.DayLocator(interval=1)
 
 
-    # ---- Temperature + Dew Point plot ----
-    fig, ax = plt.subplots(figsize=(12,6))
-
+    # ---- Temperature + Dew Point plots (per room) ----
     for label, df in pi_data.items():
-        ax.plot(df["Time"], df["Temperature"], '.', ms=3, label=f"{label} Temp")
-        ax.plot(df["Time"], df["DewPoint"], '.', ms=3, label=f"{label} Dew")
 
-    ax.set_ylabel("Temperature / Dew Point (C)")
-    ax.set_title("Temperature and Dew Point")
-    ax.legend()
+        fig, ax = plt.subplots(figsize=(12,6))
 
-    ax.xaxis.set_major_formatter(formatter)
-    ax.xaxis.set_major_locator(locator)
-    ax.tick_params(axis='x', rotation=45)
+        ax.plot(df["Time"], df["Temperature"], 'r.', ms=3, label="Temperature")
+        ax.plot(df["Time"], df["DewPoint"], 'b.', ms=3, label="Dew Point")
 
-    plt.tight_layout()
-    plt.subplots_adjust(bottom=0.2)
+        ax.set_ylabel("Temperature / Dew Point (°C)")
+        ax.set_title(label)
+        ax.legend()
 
-    filename = make_plot_filename("Temperature_DewPoint", start_date, end_date)
-    save_path = os.path.join(OUTPUT_DIR, filename)
+        ax.xaxis.set_major_formatter(formatter)
+        ax.xaxis.set_major_locator(locator)
+        ax.tick_params(axis='x', rotation=45)
+        
+        ax.fill_between(df["Time"], df["DewPoint"], df["Temperature"],
+                where=(df["Temperature"]-df["DewPoint"] < 3),
+                color="orange", alpha=0.2)
 
-    fig.savefig(save_path, dpi=300)
-    print(f"Saved: {save_path}")
+        plt.tight_layout()
+        plt.subplots_adjust(bottom=0.2)
 
-    output_figs.append(fig)
+        filename = make_plot_filename(f"{label}_Temp_DewPoint", start_date, end_date)
+        save_path = os.path.join(OUTPUT_DIR, filename)
+
+        fig.savefig(save_path, dpi=300)
+        print(f"Saved: {save_path}")
+
+        output_figs.append(fig)
 
 
     # ---- Pressure difference plots ----
