@@ -50,7 +50,7 @@ LIMITS_JSON = {
 }
 
 PRESSURE_TOL = 0.01
-CHASE_OFFSET = 2.6
+CHASE_OFFSET = 2.3
 
 def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=1):
     """
@@ -229,6 +229,12 @@ lobby_df = pd.read_csv(lobby_file)
 ensure_header(chase_file)
 chase_df = pd.read_csv(chase_file)
 
+# Ensure numeric
+chase_df["Temperature"] = pd.to_numeric(chase_df["Temperature"], errors="coerce")
+
+# Apply chase-specific correction
+chase_df["Temperature"] = chase_df["Temperature"] - CHASE_OFFSET
+
 # --- Absolute freshness check for lobby & chase ---
 for name, df_check in [("Lobby", lobby_df), ("Chase Area", chase_df)]:
     if 'Time' in df_check.columns:
@@ -322,6 +328,9 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         if raw_temp is not None and pd.notna(raw_temp):
             corrected_temp = float(raw_temp) + temp_offset  # apply offset
 
+            if label == "Chase Area":
+                corrected_temp -= CHASE_OFFSET
+
             if corrected_temp > LIMITS_CSV['Temperature']:
                 all_violations.append(
                     f"[{label}] At {time_room}: Temperature = {corrected_temp:.2f} exceeded threshold of {LIMITS_CSV['Temperature']}"
@@ -364,11 +373,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
             if dew_point_val > LIMITS_CSV['dew_point_max']:
                 all_violations.append(
-                        f"[{label}] At {time_room}: HEIGHTEND CONDENSATION RISK: Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended periods of time."
+                        f"[{label}] At {time_room}: HEIGHTEND CONDENSATION RISK --> Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended periods of time."
                 )
             elif dew_point_val < LIMITS_CSV['dew_point_min']:
                 all_violations.append(
-                        f"[{label}] At {time_room}: HEIGHTEND ESD RISK: Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
+                        f"[{label}] At {time_room}: HEIGHTEND ESD RISK --> Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
                 )
 
 # Compare Chase to Lobby

@@ -11,11 +11,12 @@ FILE_PREFIX = "p129.118.107.234_output_"
 LAST_SENT_FILE = "last_sent_timestamp.txt"
 
 # --- DATABASE CONFIG (Will fill in when I get info) ---
-db_host = ""
-db_user = ""
-db_password = ""
-db_database = ""
-db_table = ""
+db_host = "129.118.107.198"
+db_user = "weatherman"
+db_password = "raspberrypi"
+db_database = "ttu_mac_local"
+db_port: "5432"
+db_table = "temp_humidity"
 
 LOCATION = "Gantry room"
 
