@@ -9,7 +9,7 @@ import matplotlib.dates as mdates
 from collections import defaultdict
 from datetime import datetime
 
-OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots/"
+OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots-set2/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
@@ -200,7 +200,8 @@ def whats_the_weather(start_date, end_date):
 
         plt.tight_layout()
         plt.subplots_adjust(bottom=0.2)
-
+        plt.title(f"{label} temperature and dew point plot")
+        
         filename = make_plot_filename(f"{label}_Temp_DewPoint", start_date, end_date)
         save_path = os.path.join(OUTPUT_DIR, filename)
 
@@ -241,6 +242,8 @@ def whats_the_weather(start_date, end_date):
 
         plt.tight_layout()
         plt.subplots_adjust(bottom=0.2)
+        
+        plt.title(f"{room} --> {ref} pressure difference")
 
         filename = make_plot_filename(f"{room}_to_{ref}_PressureDiff", start_date, end_date)
         save_path = os.path.join(OUTPUT_DIR, filename)
