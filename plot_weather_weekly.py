@@ -71,6 +71,27 @@ while True:
     except ValueError:
         print("Invalid end datetime.")
 
+def compute_dew_point(temp, rh):
+    a = 17.625
+    b = 243.04
+
+    gamma = (a * temp / (b + temp)) + np.log(rh / 100.0)
+    dew = (b * gamma) / (a - gamma)
+    return dew
+
+def pressure_diff(df1, df2):
+
+    merged = pd.merge(
+        df1[["Time","Pressure_inH2O"]],
+        df2[["Time","Pressure_inH2O"]],
+        on="Time",
+        suffixes=("_1","_2")
+    )
+
+    merged["DeltaP"] = merged["Pressure_inH2O_1"] - merged["Pressure_inH2O_2"]
+
+    return merged
+
 def whats_the_weather(start_date, end_date):
     directory = "/home/daq2-admin/APD-WeatherStation/data_folder/"
     prefixes = {
@@ -112,17 +133,18 @@ def whats_the_weather(start_date, end_date):
         else:
             print(f"{label}: {n_files} hourly files")
 
-    # ---- Process each PI ----
+  # ---- Process each PI ----
+    pi_data = {}
+
     for prefix, files in grouped_files.items():
-        label = prefixes.get(prefix, prefix)
-        print(f"\nProcessing {label}")
 
         dfs = []
+
         for file_path in sorted(files):
             ensure_header(file_path)
+
             df = pd.read_csv(file_path)
 
-            # Convert Time column properly
             df["Time"] = pd.to_datetime(df["Time"], errors="coerce")
             df = df.dropna(subset=["Time"])
 
@@ -134,65 +156,88 @@ def whats_the_weather(start_date, end_date):
         df = pd.concat(dfs, ignore_index=True)
         df = df.sort_values("Time")
 
-        t_min = df["Time"].min()
-        t_max = df["Time"].max()
-        time_span = t_max - t_min
+        df["Pressure_inH2O"] = (df["Pressure"] * 100) / 248.8
+        df["DewPoint"] = compute_dew_point(df["Temperature"], df["Humidity"])
 
-        if time_span <= pd.Timedelta(days=1):
-            start_str = t_min.strftime("%m-%d-%Y %H:%M")
-            end_str   = t_max.strftime("%m-%d-%Y %H:%M")
-        else:
-            start_str = t_min.strftime("%m-%d-%Y")
-            end_str   = t_max.strftime("%m-%d-%Y")
+        pi_data[prefixes[prefix]] = df
 
-        title_str = f"{label}\nFrom {start_str} to {end_str}"
 
-        time = df["Time"].to_numpy()
-        humidity = df["Humidity"].to_numpy()
-        temperature = df["Temperature"].to_numpy()
-        pressure = ((df["Pressure"].to_numpy()) * 100) / 248.8 #conversion from hectopascals to inches of water
+    # ---- Determine overall time span for formatting ----
+    all_times = pd.concat([df["Time"] for df in pi_data.values()])
+    t_min = all_times.min()
+    t_max = all_times.max()
+    time_span = t_max - t_min
 
-        fig, axs = plt.subplots(1, 3, figsize=(15, 5))
 
-        # ---- Humidity ----
-        mask = (humidity >= 5) & (humidity <= 60)
-        axs[0].plot(time[mask], humidity[mask], 'go', ms=3)
-        axs[0].set_xlabel("Time")
-        axs[0].set_ylabel("Humidity [%]")
-        axs[0].set_title(title_str)
+    # ---- Choose date formatter ----
+    if time_span <= pd.Timedelta(days=1):
+        formatter = mdates.DateFormatter("%d %H:%M")
+        locator = mdates.HourLocator(interval=2)
+    else:
+        formatter = mdates.DateFormatter("%m-%d-%Y")
+        locator = mdates.DayLocator(interval=1)
 
-        # ---- Temperature ----
-        mask = (temperature >= 0) & (temperature <= 40)
-        axs[1].plot(time[mask], temperature[mask], 'ro', ms=3)
-        axs[1].set_xlabel("Time")
-        axs[1].set_ylabel("Temperature [C]")
-        axs[1].set_title(title_str)
-        axs[1].set_ylim(20, 40)
 
-        # ---- Pressure ----
-        #mask = (pressure >= 890) & (pressure <= 910)
-        mask = (pressure >= 350) & (pressure <= 400)
-        axs[2].plot(time[mask], pressure[mask], 'bo', ms=3)
-        axs[2].set_xlabel("Time")
-        axs[2].set_ylabel("Pressure [inH20]")
-        axs[2].set_title(title_str)
+    # ---- Temperature + Dew Point plot ----
+    fig, ax = plt.subplots(figsize=(12,6))
 
-        if time_span <= pd.Timedelta(days=1):
-            formatter = mdates.DateFormatter("%d %H:%M")
-            locator = mdates.HourLocator(interval=2)
-        else:
-            formatter = mdates.DateFormatter("%m-%d-%Y")
-            locator = mdates.DayLocator(interval=1)
+    for label, df in pi_data.items():
+        ax.plot(df["Time"], df["Temperature"], '.', ms=3, label=f"{label} Temp")
+        ax.plot(df["Time"], df["DewPoint"], '.', ms=3, label=f"{label} Dew")
 
-        for ax in axs:
-            ax.xaxis.set_major_formatter(formatter)
-            ax.xaxis.set_major_locator(locator)
-            ax.tick_params(axis='x', rotation=45)
+    ax.set_ylabel("Temperature / Dew Point (C)")
+    ax.set_title("Temperature and Dew Point")
+    ax.legend()
+
+    ax.xaxis.set_major_formatter(formatter)
+    ax.xaxis.set_major_locator(locator)
+    ax.tick_params(axis='x', rotation=45)
+
+    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.2)
+
+    filename = make_plot_filename("Temperature_DewPoint", start_date, end_date)
+    save_path = os.path.join(OUTPUT_DIR, filename)
+
+    fig.savefig(save_path, dpi=300)
+    print(f"Saved: {save_path}")
+
+    output_figs.append(fig)
+
+
+    # ---- Pressure difference plots ----
+    pairs = [
+        ("Room A","Chase area"),
+        ("Room B","Chase area"),
+        ("Room C","Chase area"),
+        ("Room D","Chase area"),
+        ("Chase area","Lobby")
+    ]
+
+    for room, ref in pairs:
+
+        if room not in pi_data or ref not in pi_data:
+            continue
+
+        df_delta = pressure_diff(pi_data[room], pi_data[ref])
+
+        fig, ax = plt.subplots(figsize=(10,5))
+
+        ax.plot(df_delta["Time"], df_delta["DeltaP"], 'b.', ms=3)
+
+        ax.axhline(0, linestyle="--")
+
+        ax.set_ylabel("ΔP (inH2O)")
+        ax.set_title(f"{room} → {ref}")
+
+        ax.xaxis.set_major_formatter(formatter)
+        ax.xaxis.set_major_locator(locator)
+        ax.tick_params(axis='x', rotation=45)
 
         plt.tight_layout()
         plt.subplots_adjust(bottom=0.2)
 
-        filename = make_plot_filename(label, start_date, end_date)
+        filename = make_plot_filename(f"{room}_to_{ref}_PressureDiff", start_date, end_date)
         save_path = os.path.join(OUTPUT_DIR, filename)
 
         fig.savefig(save_path, dpi=300)
