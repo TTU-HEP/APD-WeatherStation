@@ -50,6 +50,7 @@ LIMITS_JSON = {
 }
 
 PRESSURE_TOL = 0.01
+CHASE_OFFSET = 2.6
 
 def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=1):
     """
@@ -319,7 +320,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         raw_temp = getattr(row, "Temperature_room", None)
 
         if raw_temp is not None and pd.notna(raw_temp):
-            corrected_temp = float(raw_temp) - temp_offset  # apply offset
+            corrected_temp = float(raw_temp) + temp_offset  # apply offset
 
             if corrected_temp > LIMITS_CSV['Temperature']:
                 all_violations.append(
@@ -363,11 +364,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
             if dew_point_val > LIMITS_CSV['dew_point_max']:
                 all_violations.append(
-                    f"[{label}] At {time_room}: Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C"
+                        f"[{label}] At {time_room}: HEIGHTEND CONDENSATION RISK: Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended periods of time."
                 )
             elif dew_point_val < LIMITS_CSV['dew_point_min']:
                 all_violations.append(
-                    f"[{label}] At {time_room}: Dew Point = {dew_point_val:.2f}°C was less than threshold of {LIMITS_CSV['dew_point_min']}°C"
+                        f"[{label}] At {time_room}: HEIGHTEND ESD RISK: Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
                 )
 
 # Compare Chase to Lobby
