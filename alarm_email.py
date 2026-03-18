@@ -144,9 +144,32 @@ def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", w
 
     return offsets
 
-DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
-TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
-RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
+#DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
+DELTA_P_OFFSET = {
+        'Room A': -0.35,
+        'Room B': -0.29,
+        'Room C': -0.18,
+        'Room D': -0.47,
+        'Lobby': -0.38
+        }
+
+#TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
+TEMP_OFFSETS = {
+        'Room A': -0.81,
+        'Room B': -0.56,
+        'Room C': -1.88,
+        'Room D': -1.49,
+        'Lobby': -1.55
+        }
+
+#RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
+RH_OFFSETS = {
+        'Room A': np.float64(0.0),
+        'Room B': np.float64(0.16),
+        'Room C': np.float64(0.05),
+        'Room D': np.float64(0.31),
+        'Lobby': np.float64(0.33),
+        }
 
 print("delta p offsets = ", DELTA_P_OFFSETS)
 print("temperate offsets = ", TEMP_OFFSETS)
