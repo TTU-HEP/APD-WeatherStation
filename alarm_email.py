@@ -144,9 +144,32 @@ def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", w
 
     return offsets
 
-DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
-TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
-RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
+#DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
+DELTA_P_OFFSETS = {
+        'Room A': -0.35,
+        'Room B': -0.29,
+        'Room C': -0.18,
+        'Room D': -0.47,
+        'Lobby': -0.38
+        }
+
+#TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
+TEMP_OFFSETS = {
+        'Room A': -0.81,
+        'Room B': -0.56,
+        'Room C': -1.88,
+        'Room D': -1.49,
+        'Lobby': -1.55
+        }
+
+#RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
+RH_OFFSETS = {
+        'Room A': 0.0,
+        'Room B': 0.16,
+        'Room C': 0.05,
+        'Room D': 0.31,
+        'Lobby': 0.33,
+        }
 
 print("delta p offsets = ", DELTA_P_OFFSETS)
 print("temperate offsets = ", TEMP_OFFSETS)
@@ -359,7 +382,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
         hum = getattr(row, 'Humidity_room', None)
 
         temp_corrected = temp - TEMP_OFFSETS.get(label, 0)
-        rh_corrected   = hum - RH_OFFSETS.get(label, 0)
+        rh_corrected   = hum + RH_OFFSETS.get(label, 0)
 
         if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
             t = float(temp_corrected)
