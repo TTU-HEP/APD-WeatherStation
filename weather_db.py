@@ -10,7 +10,7 @@ DATA_DIR = "/home/pi"
 FILE_PREFIX = "p129.118.107.234_output_"
 LAST_SENT_FILE = "last_sent_timestamp.txt"
 
-# --- DATABASE CONFIG (Will fill in when I get info) ---
+# --- DATABASE CONFIG ---
 db_host = "129.118.107.198"
 db_user = "weatherman"
 db_password = "raspberrypi"
@@ -103,19 +103,18 @@ def push_to_db(row):
 
         cur = conn.cursor()
 
+        timestamp = pd.to_datetime(row["Time"])
+        location = "Gantry Room"
+        device_name = "pi_B"
+        temp_c = float(row["Temperature"])
+        rel_hum = float(row["Humidity"])
+
         cur.execute(
-            f"""
-            INSERT INTO {db_table} (time, location, temperature, humidity, pressure)
+            """
+            INSERT INTO temp_humidity (log_timestamp, log_location, device_name, temp_c, rel_hum)
             VALUES (%s, %s, %s, %s, %s)
-            ON CONFLICT (time, location) DO NOTHING
             """,
-            (
-                row["Time"],
-                LOCATION,
-                float(row["Temperature"]),
-                float(row["Humidity"]),
-                float(row["Pressure"])
-            )
+            (timestamp, location, device_name, temp_c, rel_hum)
         )
 
         conn.commit()
