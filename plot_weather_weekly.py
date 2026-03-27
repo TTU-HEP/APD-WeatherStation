@@ -9,7 +9,7 @@ import matplotlib.dates as mdates
 from collections import defaultdict
 from datetime import datetime
 
-OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots/"
+OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots-set2/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 DELTA_P_OFFSETS = {
@@ -161,48 +161,36 @@ def whats_the_weather(start_date, end_date):
     pi_data = {}
 
     for prefix, files in grouped_files.items():
-
         dfs = []
-
         for file_path in sorted(files):
             ensure_header(file_path)
-
             df = pd.read_csv(file_path)
-
             df["Time"] = pd.to_datetime(df["Time"], errors="coerce")
             df = df.dropna(subset=["Time"])
-
             dfs.append(df)
 
         if not dfs:
             continue
 
+        # ✅ Concatenate all files for this sensor
+        df = pd.concat(dfs).sort_values("Time").reset_index(drop=True)
+
         label = prefixes[prefix]
 
-        # --- Apply offsets (ONLY if not Chase) ---
         if label != "Chase area":
-            p_offset = DELTA_P_OFFSETS.get(label, 0)
-            t_offset = TEMP_OFFSETS.get(label, 0)
+            p_offset  = DELTA_P_OFFSETS.get(label, 0)
+            t_offset  = TEMP_OFFSETS.get(label, 0)
             rh_offset = RH_OFFSETS.get(label, 0)
         else:
-            p_offset = 0
-            t_offset = 0
-            rh_offset = 0
+            p_offset = t_offset = rh_offset = 0
 
-        # Apply corrections
-        df["Pressure_corrected"] = df["Pressure"] + p_offset
+        df["Pressure_corrected"]    = df["Pressure"]    + p_offset
         df["Temperature_corrected"] = df["Temperature"] + t_offset
-        df["Humidity_corrected"] = df["Humidity"] + rh_offset
+        df["Humidity_corrected"]    = df["Humidity"]    + rh_offset
+        df["Pressure_inH2O"]        = (df["Pressure_corrected"] * 100) / 248.8
+        df["DewPoint"] = compute_dew_point(df["Temperature_corrected"], df["Humidity_corrected"])
 
-        # Convert pressure AFTER correction
-        df["Pressure_inH2O"] = (df["Pressure_corrected"] * 100) / 248.8
-
-        # Compute dew point from corrected values
-        df["DewPoint"] = compute_dew_point(
-            df["Temperature_corrected"],
-            df["Humidity_corrected"]
-        )
-        pi_data[prefixes[prefix]] = df
+        pi_data[label] = df
 
 
     # ---- Determine overall time span for formatting ----
@@ -226,7 +214,7 @@ def whats_the_weather(start_date, end_date):
 
         fig, ax = plt.subplots(figsize=(12,6))
 
-        ax.plot(df["Time"], df["Temperature"], 'r.', ms=3, label="Temperature")
+        ax.plot(df["Time"], df["Temperature_corrected"], 'r.', ms=3, label="Temperature")
         ax.plot(df["Time"], df["DewPoint"], 'b.', ms=3, label="Dew Point")
 
         ax.set_ylabel("Temperature / Dew Point (°C)")
