@@ -12,6 +12,30 @@ from datetime import datetime
 OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+DELTA_P_OFFSETS = {
+        'Room A': -0.35,
+        'Room B': -0.29,
+        'Room C': -0.18,
+        'Room D': -0.47,
+        'Lobby': -0.38
+        }
+
+TEMP_OFFSETS = {
+        'Room A': -0.81,
+        'Room B': -0.56,
+        'Room C': -1.88,
+        'Room D': -1.49,
+        'Lobby': -1.55
+        }
+        
+RH_OFFSETS = {
+        'Room A': 0.0,
+        'Room B': 0.16,
+        'Room C': 0.05,
+        'Room D': 0.31,
+        'Lobby': 0.33,
+        }
+
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
 
 def ensure_header(filepath):
@@ -153,12 +177,31 @@ def whats_the_weather(start_date, end_date):
         if not dfs:
             continue
 
-        df = pd.concat(dfs, ignore_index=True)
-        df = df.sort_values("Time")
+        label = prefixes[prefix]
 
-        df["Pressure_inH2O"] = (df["Pressure"] * 100) / 248.8
-        df["DewPoint"] = compute_dew_point(df["Temperature"], df["Humidity"])
+        # --- Apply offsets (ONLY if not Chase) ---
+        if label != "Chase area":
+            p_offset = DELTA_P_OFFSETS.get(label, 0)
+            t_offset = TEMP_OFFSETS.get(label, 0)
+            rh_offset = RH_OFFSETS.get(label, 0)
+        else:
+            p_offset = 0
+            t_offset = 0
+            rh_offset = 0
 
+        # Apply corrections
+        df["Pressure_corrected"] = df["Pressure"] + p_offset
+        df["Temperature_corrected"] = df["Temperature"] + t_offset
+        df["Humidity_corrected"] = df["Humidity"] + rh_offset
+
+        # Convert pressure AFTER correction
+        df["Pressure_inH2O"] = (df["Pressure_corrected"] * 100) / 248.8
+
+        # Compute dew point from corrected values
+        df["DewPoint"] = compute_dew_point(
+            df["Temperature_corrected"],
+            df["Humidity_corrected"]
+        )
         pi_data[prefixes[prefix]] = df
 
 
