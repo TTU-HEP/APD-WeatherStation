@@ -12,13 +12,15 @@ from datetime import datetime
 OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots-set2/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-DELTA_P_OFFSETS = {
-        'Room A': -0.35,
-        'Room B': -0.29,
-        'Room C': -0.18,
-        'Room D': -0.47,
-        'Lobby': -0.38
-        }
+DELTA_P_OFFSETS_hPa = {
+    'Room A': -0.35,
+    'Room B': -0.29,
+    'Room C': -0.18,
+    'Room D': -0.47,
+    'Lobby':  +0.38
+}
+
+DELTA_P_OFFSETS = {room: (val * 100) / 248.8 for room, val in DELTA_P_OFFSETS_hPa.items()}
 
 TEMP_OFFSETS = {
         'Room A': -0.81,
@@ -184,8 +186,8 @@ def whats_the_weather(start_date, end_date):
         else:
             p_offset = t_offset = rh_offset = 0
 
-        df["Temperature_corrected"] = df["Temperature"] + t_offset
-        df["Humidity_corrected"]    = df["Humidity"]    + rh_offset
+        df["Temperature_corrected"] = df["Temperature"] - t_offset
+        df["Humidity_corrected"]    = df["Humidity"]    - rh_offset
 
         # Convert first, THEN offset
         df["Pressure_inH2O"] = ((df["Pressure"] * 100) / 248.8) - p_offset
@@ -193,8 +195,6 @@ def whats_the_weather(start_date, end_date):
         df["DewPoint"] = compute_dew_point(df["Temperature_corrected"], df["Humidity_corrected"])
 
         pi_data[label] = df
-
-
 
     # ---- Determine overall time span for formatting ----
     all_times = pd.concat([df["Time"] for df in pi_data.values()])
