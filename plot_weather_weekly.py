@@ -184,13 +184,16 @@ def whats_the_weather(start_date, end_date):
         else:
             p_offset = t_offset = rh_offset = 0
 
-        df["Pressure_corrected"]    = df["Pressure"]    + p_offset
         df["Temperature_corrected"] = df["Temperature"] + t_offset
         df["Humidity_corrected"]    = df["Humidity"]    + rh_offset
-        df["Pressure_inH2O"]        = (df["Pressure_corrected"] * 100) / 248.8
+
+        # Convert first, THEN offset
+        df["Pressure_inH2O"] = ((df["Pressure"] * 100) / 248.8) - p_offset
+
         df["DewPoint"] = compute_dew_point(df["Temperature_corrected"], df["Humidity_corrected"])
 
         pi_data[label] = df
+
 
 
     # ---- Determine overall time span for formatting ----
