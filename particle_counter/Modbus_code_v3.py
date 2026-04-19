@@ -13,8 +13,9 @@ import os
 import re
 
 # Connection settings
-DEVICE_IP = "129.118.107.203"
+DEVICE_IP = "129.118.107.221"
 DEVICE_PORT = 502
+MODBUS_SLAVE_ID = 247
 
 REGISTER_temp = 9079
 REGISTER_rh = 9080
@@ -28,21 +29,36 @@ LOG_EXTENSION = ".json"
 MAX_ENTRIES_PER_FILE = 1000
 
 def read_particle_data(client):
+        
+    # IMPORTANT: Writing 0 to register 8002 triggers a data snapshot on the device.
+    # The Modbus registers (9000+) are NOT continuously updated — they only reflect
+    # live data after this snapshot is triggered. Without this, all reads return zero.
+    snapshot = client.write_registers(8002, [0, 0], slave=MODBUS_SLAVE_ID)
+    print(f"Snapshot trigger result: {snapshot}")
+    if snapshot.isError():
+        print(f"Error triggering snapshot: {snapshot}")
+        return None
+    time.sleep(0.5)
+
     #temp and rh info
-    result_temp = client.read_holding_registers(REGISTER_temp)
-    result_rh = client.read_holding_registers(REGISTER_rh)
-    result_bp = client.read_holding_registers(REGISTER_bp, count=2)
+    result_temp = client.read_holding_registers(REGISTER_temp, count=1, slave=MODBUS_SLAVE_ID)
+    result_rh = client.read_holding_registers(REGISTER_rh, count=1, slave=MODBUS_SLAVE_ID)
+    result_bp = client.read_holding_registers(REGISTER_bp, count=2, slave=MODBUS_SLAVE_ID)
+    
+    #result_temp = client.read_input_registers(REGISTER_temp, count=1, slave=MODBUS_SLAVE_ID)
+    #result_rh = client.read_input_registers(REGISTER_rh, count=1, slave=MODBUS_SLAVE_ID)
+    #result_bp = client.read_input_registers(REGISTER_bp, count=2, slave=MODBUS_SLAVE_ID)
 
     if result_temp.isError():
-        print(f"Error reading registers at {REGISTER_temp}: {result}")
+        print(f"Error reading registers at {REGISTER_temp}: {result_temp}")
         return None
 
     if result_rh.isError():
-        print(f"Error reading registers at {REGISTER_rh}: {result}")
+        print(f"Error reading registers at {REGISTER_rh}: {result_rh}")
         return None
 
     if result_bp.isError():
-        print(f"Error reading registers at {REGISTER_bp}: {result}")
+        print(f"Error reading registers at {REGISTER_bp}: {result_bp}")
         return None
 
     # Read the raw values for temperature and RH
@@ -73,38 +89,58 @@ def read_particle_data(client):
     for i in range(NUM_CHANNELS):
         size_addr = CHANNEL_SIZE_BASE + (i * REGISTERS_PER_CHANNEL)
         diff_addr = DIFF_COUNT_BASE + (i * REGISTERS_PER_CHANNEL)
-    
-        result_size = client.read_holding_registers(address=size_addr, count=REGISTERS_PER_CHANNEL)
+
+        # Read the registers with unit ID
+        result_size = client.read_holding_registers(address=size_addr, count=REGISTERS_PER_CHANNEL, slave=MODBUS_SLAVE_ID)
         time.sleep(0.2)
-    
-        result_diff = client.read_holding_registers(address=diff_addr, count=REGISTERS_PER_CHANNEL)
+        result_diff = client.read_holding_registers(address=diff_addr, count=REGISTERS_PER_CHANNEL, slave=MODBUS_SLAVE_ID)
         time.sleep(0.2)
-        
-        if result_size.isError() or result_diff.isError():
-            print(f"Error reading particle channel {i}")
+
+        #result_size = client.read_input_registers(address=size_addr, count=REGISTERS_PER_CHANNEL, slave=MODBUS_SLAVE_ID)
+        #time.sleep(0.2)
+        #result_diff = client.read_input_registers(address=diff_addr, count=REGISTERS_PER_CHANNEL, slave=MODBUS_SLAVE_ID)
+        #time.sleep(0.2)
+
+        # Check for read errors
+        if result_size.isError():
+            print(f"[Channel {i}] Error reading size registers: {result_size}")
             continue
-        
+        if result_diff.isError():
+            print(f"[Channel {i}] Error reading count registers: {result_diff}")
+            continue
+
+        # Debug: print raw registers
+        print(f"[Channel {i}] Raw size registers: {result_size.registers}")
+        print(f"[Channel {i}] Raw count registers: {result_diff.registers}")
+
+        # Decode
         decoder_size = BinaryPayloadDecoder.fromRegisters(
             result_size.registers,
             byteorder=Endian.BIG,
             wordorder=Endian.LITTLE
         )
-        
         decoder_diff = BinaryPayloadDecoder.fromRegisters(
             result_diff.registers,
             byteorder=Endian.BIG,
             wordorder=Endian.LITTLE
         )
-        
-        size_um = decoder_size.decode_32bit_float()
-        diff_m3 = decoder_diff.decode_32bit_float()
-        
-        # Store in dictionary with formatted key
-        diff_data[f"{size_um:.2f} um"] = diff_m3
-        
-    # Verify all 6 channels are present before final dict is made.
+
+        try:
+            size_um = decoder_size.decode_32bit_float()
+            diff_m3 = decoder_diff.decode_32bit_float()
+        except Exception as e:
+            print(f"[Channel {i}] Decoding error: {e}")
+            continue
+
+        # Debug: print decoded values
+        print(f"[Channel {i}] Decoded size_um: {size_um}, diff_m3: {diff_m3}")
+
+        # Store in dictionary using channel index to guarantee uniqueness
+        diff_data[f"Ch{i}_{size_um:.2f}um"] = diff_m3
+
+    # Check if all channels were read
     if len(diff_data) < NUM_CHANNELS:
-        print("Incomplete data read. Skipping this cycle.")
+        print(f"Incomplete data read. Only {len(diff_data)} of {NUM_CHANNELS} channels captured.")
         return None
 
     # Final data dictionary
@@ -163,7 +199,7 @@ def run_logging_loop():
     end_time = start_time + duration
 
     # Timing parameters
-    normal_interval = 600  # 10 minutes
+    normal_interval = 660  # 11 minutes
     alert_interval = 60    # 1 minute
     current_interval = normal_interval
     should_exit = False
@@ -234,6 +270,7 @@ def run_logging_loop():
                 
                 except (ConnectionResetError, ConnectionException, ModbusIOException) as e:
                     print(f"Connection lost: {e}. Attempting to reconnect...")
+                    time.sleep(5)
                     break  # Exit inner loop to reconnect
 
         except KeyboardInterrupt:

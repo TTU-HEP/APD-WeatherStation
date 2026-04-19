@@ -2,7 +2,7 @@ import json
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 from datetime import timedelta
-from datetime import datetime
+from datetime import datetime, date, time
 import os
 import re
 
@@ -150,7 +150,7 @@ max_vals = [102000, 35200, 8320, 8320, 293, 293]
 fig, axs = plt.subplots(3, 2, figsize=(15, 8), sharex=True)
 axs = axs.flatten()
 
-expected_channels = ["0.30 um", "0.50 um", "1.00 um", "2.50 um", "5.00 um", "10.00 um"]
+expected_channels = ["Ch0_0.30um", "Ch1_0.50um", "Ch2_1.00um", "Ch3_2.50um", "Ch4_5.00um", "Ch5_10.00um"]
 
 #for i, (channel, data_dict) in enumerate(channel_data.items()):
 for i, channel in enumerate(expected_channels):
@@ -161,8 +161,8 @@ for i, channel in enumerate(expected_channels):
         # ---- Add grey box for 9–17 each day ----
         unique_days = sorted({t.date() for t in ts})
         for day in unique_days:
-            start = datetime.datetime.combine(day, datetime.time(9, 0))
-            end   = datetime.datetime.combine(day, datetime.time(17, 0))
+            start = datetime.combine(day, time(9, 0))
+            end   = datetime.combine(day, time(17, 0))
             axs[i].axvspan(start, end, color='grey', alpha=0.2)
 
         for seg_times, seg_vals in segment_data(ts, vals):
@@ -175,7 +175,7 @@ for i, channel in enumerate(expected_channels):
             color='white', fontsize=10, bbox=dict(boxstyle="round", facecolor="black", alpha=0.5) 
             )
         axs[i].text(
-            0.5, 1.02, "Work hours (09:00–17:00)",
+            0.8, 1.02, "Work hours (09:00–17:00)",
             transform=axs[i].transAxes,
             ha='center', va='bottom', fontsize=8, color='gray'
         )
