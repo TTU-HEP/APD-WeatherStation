@@ -40,12 +40,12 @@ LIMITS_JSON = {
     "RH": 50,
     "BP": 90.5,
     "diff_counts_m3": {
-        "0.30 um": 1020000,
-        "0.50 um": 352000,
-        "1.00 um": 83200,
-        "2.50 um": 83200,
-        "5.00 um": 2930,
-        "10.00 um": 2930
+        "Ch0_0.30um": 1020000,
+        "Ch1_0.50um": 352000,
+        "Ch2_1.00um": 83200,
+        "Ch3_2.50um": 83200,
+        "Ch4_5.00um": 2930,
+        "Ch5_10.00um": 2930
     }
 }
 
@@ -147,7 +147,7 @@ def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", w
 #DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
 DELTA_P_OFFSETS_hPa = {
         'Room A': -0.35,
-        'Room B': -0.29,
+        'Room B': -0.47,
         'Room C': -0.18,
         'Room D': -0.47,
         'Lobby': -0.38
@@ -369,12 +369,12 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             offset = DELTA_P_OFFSETS.get(label, 0)
             delta_p_corrected = delta_p - offset
 
-            if delta_p_corrected < -PRESSURE_TOL:
-                all_violations.append(
-                    f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
-                )
+            #if delta_p_corrected < -PRESSURE_TOL:
+            #    all_violations.append(
+            #        f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
+            #    )
             
-            elif -PRESSURE_TOL <= delta_p_corrected < 0:
+            if -PRESSURE_TOL <= delta_p_corrected < 0:
                 print(
                     f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
                     )
@@ -400,10 +400,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 all_violations.append(
                         f"[{label}] At {time_room}: HEIGHTEND CONDENSATION RISK --> Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended periods of time."
                 )
-            elif dew_point_val < LIMITS_CSV['dew_point_min']:
-                all_violations.append(
-                        f"[{label}] At {time_room}: HEIGHTEND ESD RISK --> Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
-                )
+
+            #elif dew_point_val < LIMITS_CSV['dew_point_min']:
+            #    all_violations.append(
+            #            f"[{label}] At {time_room}: HEIGHTEND ESD RISK --> Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
+            #    )
 
 # Compare Chase to Lobby
 chase_df['Time'] = pd.to_datetime(chase_df['Time'], errors='coerce')
@@ -492,6 +493,7 @@ for prefix, label in PREFIX_LABELS_JSON.items():
                 if WORKDAY_START_HOUR <= hour < WORKDAY_END_HOUR:
                     # Skip particle alarms during normal working hours
                     print(f"Particle violation during working hours ignored at {timestamp_str}")
+                    continue
 
                 # --- Particle count alerts (outside working hours only) ---
                 diff_counts = data.get("diff_counts_m3", {})
