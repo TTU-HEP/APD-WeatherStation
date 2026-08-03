@@ -52,6 +52,20 @@ LIMITS_JSON = {
 PRESSURE_TOL = 0.01
 CHASE_OFFSET = 2.3
 
+# === Consecutive pressure violation tracking ===
+PRESSURE_STATE_FILE = "/home/daq2-admin/APD-WeatherStation/pressure_violations.json"
+CONSECUTIVE_LIMIT = 3
+
+def load_pressure_state():
+    if not os.path.exists(PRESSURE_STATE_FILE):
+        return {"consecutive_count": 0, "last_timestamp": None}
+    with open(PRESSURE_STATE_FILE, "r") as f:
+        return json.load(f)
+
+def save_pressure_state(state):
+    with open(PRESSURE_STATE_FILE, "w") as f:
+        json.dump(state, f)
+
 def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", window_days=1):
     """
     Compute robust rolling offsets for a given variable (Pressure, Temperature, RH)
@@ -144,34 +158,31 @@ def compute_weekly_sensor_offsets(variable=None, reference_label="Chase Area", w
 
     return offsets
 
-#DELTA_P_OFFSETS = compute_weekly_sensor_offsets(variable="Pressure")
+#DELTA_P_OFFSETS_hPa = compute_weekly_sensor_offsets(variable="Pressure")
 DELTA_P_OFFSETS_hPa = {
-        'Room A': -0.35,
-        'Room B': -0.47,
-        'Room C': -0.18,
-        'Room D': -0.47,
-        'Lobby': -0.38
-        }
+    'Room A': -0.11655948553054661,
+    'Room B': -0.1688102893890675,
+    'Room D': -0.12057877813504822,
+    'Lobby':  -0.18488745980707394
+    }
 
 DELTA_P_OFFSETS = {room: (val * 100) / 248.8 for room, val in DELTA_P_OFFSETS_hPa.items()}
 
 #TEMP_OFFSETS = compute_weekly_sensor_offsets(variable="Temperature")
 TEMP_OFFSETS = {
-        'Room A': -0.81,
-        'Room B': -0.56,
-        'Room C': -1.88,
-        'Room D': -1.49,
-        'Lobby': -1.55
-        }
+    'Room A': -2.07,
+    'Room B': -1.12,
+    'Room D': -0.11,
+    'Lobby':  -1.16
+    }
 
 #RH_OFFSETS = compute_weekly_sensor_offsets(variable="Humidity")
 RH_OFFSETS = {
-        'Room A': 0.0,
-        'Room B': 0.16,
-        'Room C': 0.05,
-        'Room D': 0.31,
-        'Lobby': 0.33,
-        }
+    'Room A':  4.16,
+    'Room B':  2.03,
+    'Room D': -0.61,
+    'Lobby':   3.16
+    }
 
 print("delta p offsets = ", DELTA_P_OFFSETS)
 print("temperate offsets = ", TEMP_OFFSETS)
@@ -290,7 +301,7 @@ for prefix, label in PREFIX_LABELS_CSV.items():
     except Exception as e:
         all_violations.append(f"❌ Failed to read {latest_file} ({label}): {e}")
         continue
-    
+
     # --- Freshness check ---
     if 'Time' in df.columns:
         try:
@@ -347,11 +358,11 @@ for prefix, label in PREFIX_LABELS_CSV.items():
                 print(f"⚠️ Chase–Lobby timestamp mismatch: {delta_time}")
 
         # ---- Threshold checks for temperature with offset ----
-        temp_offset = TEMP_OFFSETS.get(label, 0)  # similar to DELTA_P_OFFSETS
+        temp_offset = TEMP_OFFSETS.get(label, 0)
         raw_temp = getattr(row, "Temperature_room", None)
 
         if raw_temp is not None and pd.notna(raw_temp):
-            corrected_temp = float(raw_temp) - temp_offset  # apply offset
+            corrected_temp = float(raw_temp) + temp_offset
 
             if label == "Chase Area":
                 corrected_temp -= CHASE_OFFSET
@@ -369,27 +380,22 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             offset = DELTA_P_OFFSETS.get(label, 0)
             delta_p_corrected = delta_p - offset
 
-            #if delta_p_corrected < -PRESSURE_TOL:
-            #    all_violations.append(
-            #        f"[{label}] At {time_room}: negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Room < Chase)"
-            #    )
-            
             if -PRESSURE_TOL <= delta_p_corrected < 0:
                 print(
                     f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
                     )
-            
+
         # ---- Dew point ----
         temp = getattr(row, 'Temperature_room', None)
         hum = getattr(row, 'Humidity_room', None)
 
-        temp_corrected = temp - TEMP_OFFSETS.get(label, 0)
-        rh_corrected   = hum - RH_OFFSETS.get(label, 0)
+        temp_corrected = temp + TEMP_OFFSETS.get(label, 0)
+        rh_corrected   = hum + RH_OFFSETS.get(label, 0)
 
         if temp is not None and pd.notna(temp) and hum is not None and pd.notna(hum):
             t = float(temp_corrected)
             rh = float(rh_corrected)
-            
+
             a = 17.625
             b = 243.04
 
@@ -444,18 +450,38 @@ for row in merged_chase_lobby.itertuples():
 
     if pd.notna(p_chase) and pd.notna(p_lobby):
         delta_p = float(p_chase) - float(p_lobby)
-        
-        offset = DELTA_P_OFFSETS.get(label, 0)
+
+        offset = DELTA_P_OFFSETS.get('Lobby', 0)
         delta_p_corrected = delta_p - offset
+
+        pressure_state = load_pressure_state()
+
         if delta_p_corrected < -PRESSURE_TOL:
-            all_violations.append(
-                f"[Chase Area] At {time_chase}: Negative pressure difference ΔP = {delta_p_corrected:.2f} inH2O (Chase < Lobby)"
-            )
-        
+            pressure_state["consecutive_count"] += 1
+            pressure_state["last_timestamp"] = str(time_chase)
+            print(f"[Chase Area] Negative ΔP detected ({delta_p_corrected:.2f} inH2O). "
+                  f"Consecutive count: {pressure_state['consecutive_count']}")
+
+            if pressure_state["consecutive_count"] >= CONSECUTIVE_LIMIT:
+                all_violations.append(
+                    f"[Chase Area] At {time_chase}: PROLONGED negative pressure difference — "
+                    f"ΔP = {delta_p_corrected:.2f} inH2O (Chase < Lobby) for "
+                    f"{pressure_state['consecutive_count']} consecutive hours"
+                )
+
         elif -PRESSURE_TOL <= delta_p_corrected < 0:
-                print(
-                    f"[{label}] At {time_room}: ΔP = {delta_p_corrected:.2f} inH2O within tolerance (sensor noise)"
-                    )
+            print(f"[Chase Area] At {time_chase}: ΔP = {delta_p_corrected:.2f} inH2O "
+                  f"within tolerance (sensor noise)")
+            # Don't reset — noise readings don't clear the counter
+
+        else:
+            # Positive delta_p — pressure is fine, reset the counter
+            if pressure_state["consecutive_count"] > 0:
+                print(f"[Chase Area] Pressure restored. Resetting consecutive counter.")
+            pressure_state["consecutive_count"] = 0
+            pressure_state["last_timestamp"] = None
+
+        save_pressure_state(pressure_state)
 
 # Code to handle particle counter json files
 for prefix, label in PREFIX_LABELS_JSON.items():
@@ -513,7 +539,6 @@ for prefix, label in PREFIX_LABELS_JSON.items():
 # To include Dew Point line (which is phrased differently):
 # [Room A] At 2025-06-15 12:02:33: Dew Point = 27.00°C exceeded threshold of 18°C
 
-#most_recent_per_room_type = {}
 most_recent_per_room_type = defaultdict(list)
 
 for violation in all_violations:
@@ -536,6 +561,8 @@ for violation in all_violations:
     # --- Extract violation type safely ---
     if "Particle count" in violation:
         vtype = "particle_count"
+    elif "PROLONGED negative pressure difference" in violation:
+        vtype = "prolonged_pressure_difference"
     elif "Negative pressure difference" in violation:
         vtype = "pressure_difference"
     elif "Temperature" in violation:
@@ -548,19 +575,16 @@ for violation in all_violations:
         vtype = "general"
 
     key = (room, vtype)
-    
+
     most_recent_per_room_type[key].append((time_obj, violation))
-        
+
     # Sort the list by time, most recent first
     most_recent_per_room_type[key].sort(reverse=True, key=lambda x: x[0])
-        
+
     # Keep only the most recent violations
     most_recent_per_room_type[key] = most_recent_per_room_type[key][:1]
-        
-        #most_recent_per_room_type[key] = (time_obj, violation)
 
 # Build reduced list to email
-#summary_for_email = [v[1] for v in most_recent_per_room_type.values()]
 summary_for_email = [violation for violation_list in most_recent_per_room_type.values() for _, violation in violation_list]
 
 # --- Send the email with filtered summary ---
