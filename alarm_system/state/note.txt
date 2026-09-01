@@ -1,0 +1,3 @@
+NOTE: when you first pull this repo from github, this state/ directory will be empty. This is intentional. If you are reading this, please make sure that 
+you generate offsets for whatever you use to collect weather information.
+
