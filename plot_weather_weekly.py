@@ -13,30 +13,27 @@ OUTPUT_DIR = "/home/daq2-admin/APD-WeatherStation/weekly_plots-set2/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 DELTA_P_OFFSETS_hPa = {
-    'Room A': -0.35,
-    'Room B': -0.29,
-    'Room C': -0.18,
-    'Room D': -0.47,
-    'Lobby':  +0.38
-}
+    'Room A': -0.11655948553054661,
+    'Room B': -0.1688102893890675,
+    'Room D': -0.12057877813504822,
+    'Lobby':  -0.18488745980707394
+    }
 
 DELTA_P_OFFSETS = {room: (val * 100) / 248.8 for room, val in DELTA_P_OFFSETS_hPa.items()}
 
 TEMP_OFFSETS = {
-        'Room A': -0.81,
-        'Room B': -0.56,
-        'Room C': -1.88,
-        'Room D': -1.49,
-        'Lobby': -1.55
-        }
-        
+    'Room A': -2.07,
+    'Room B': -1.12,
+    'Room D': -0.11,
+    'Lobby':  -2.16
+    }
+
 RH_OFFSETS = {
-        'Room A': 0.0,
-        'Room B': 0.16,
-        'Room C': 0.05,
-        'Room D': 0.31,
-        'Lobby': 0.33,
-        }
+    'Room A':  4.16,
+    'Room B':  2.03,
+    'Room D': -0.61,
+    'Lobby':   3.16
+    }
 
 EXPECTED_HEADER = "Time,Temperature,Humidity,Pressure\n"
 
@@ -219,6 +216,8 @@ def whats_the_weather(start_date, end_date):
 
         ax.plot(df["Time"], df["Temperature_corrected"], 'r.', ms=3, label="Temperature")
         ax.plot(df["Time"], df["DewPoint"], 'b.', ms=3, label="Dew Point")
+
+        ax.axhline(0, color="red", linestyle="dashed", label="Danger Zone (0°C)")
 
         ax.set_ylabel("Temperature / Dew Point (°C)")
         ax.set_title(label)

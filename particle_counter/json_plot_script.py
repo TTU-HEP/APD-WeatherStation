@@ -146,7 +146,9 @@ for entry in filtered_data:
 
 
 # ---- Plot all particle channels as subplots in one figure ----
-max_vals = [102000, 35200, 8320, 8320, 293, 293]
+max_vals_iso6 = [102000, 35200, 8320, 8320, 293, 293]
+max_vals_iso7 =  [1020000, 352000, 83200, 83200, 2930,2930]
+
 fig, axs = plt.subplots(3, 2, figsize=(15, 8), sharex=True)
 axs = axs.flatten()
 
@@ -167,12 +169,23 @@ for i, channel in enumerate(expected_channels):
 
         for seg_times, seg_vals in segment_data(ts, vals):
             axs[i].plot(seg_times, seg_vals, marker='o', ms=3.0)
-        axs[i].axhline(y=max_vals[i], color='r', linestyle='--')
+        axs[i].axhline(y=max_vals_iso6[i], color='orange', linestyle='--')
+        
+        #ISO 6 Line
         axs[i].text(
             ts[0],                          # x-coordinate (start of time axis)
-            max_vals[i] * 1.0,              # y-coordinate (just above the line)
-            f"ISO 6 max: {max_vals[i]} ct/m3 ",
+            max_vals_iso6[i] * 1.0,              # y-coordinate (just above the line)
+            f"ISO 6 max: {max_vals_iso6[i]} ct/m3 ",
             color='white', fontsize=10, bbox=dict(boxstyle="round", facecolor="black", alpha=0.5) 
+            )
+
+        # ISO 7 line
+        axs[i].axhline(y=max_vals_iso7[i], color='r', linestyle='--')
+        axs[i].text(
+            ts[0],
+            max_vals_iso7[i] * 1.0,
+            f"ISO 7 max: {max_vals_iso7[i]} ct/m3 ",
+            color='white', fontsize=10, bbox=dict(boxstyle="round", facecolor="black", alpha=0.5)
             )
         axs[i].text(
             0.8, 1.02, "Work hours (09:00–17:00)",

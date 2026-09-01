@@ -2,6 +2,7 @@ import pandas as pd
 import psycopg2
 import os
 import re
+import json
 
 # =========================
 # CONFIG
@@ -102,7 +103,7 @@ def push_to_db(row):
 
         cur.execute(
             """
-            INSERT INTO particle_counts (log_timestamp, log_location, device_name,
+            INSERT INTO particulate_counts (log_timestamp, log_location, device_name,
                 prtcls_per_cubic_m_500nm, prtcls_per_cubic_m_1um, prtcls_per_cubic_m_5um)
             VALUES (%s, %s, %s, %s, %s, %s)
             """,

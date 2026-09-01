@@ -1,0 +1,127 @@
+# =============================================================================
+# alarm_config TEMPLATE
+# =============================================================================
+# Copy this file to alarm_config.yaml (or any name you like — pass it via
+# --config) and fill in the placeholders below for your lab's setup.
+# alarm_email_V2.py should never need to be edited directly — only this file.
+
+# --- Paths ---------------------------------------------------------------
+paths:
+  # Where your Pis' (or other devices') CSV output files land.
+  csv_dir: /PUT/PATH/TO/CSV/DATA/FOLDER/HERE
+
+  # Where particle counter JSON files land. Only required if
+  # particle_counter.enabled is true below — otherwise leave as-is or delete.
+  json_dir: /PUT/PATH/TO/PARTICLE/COUNTER/JSON/FOLDER/HERE
+
+  # Plain text file containing a single line: EMAIL_PASSWORD=<your app password>
+  # See email_credentials_TEMPLATE.txt for the expected format.
+  email_credentials_file: /PUT/PATH/TO/email_credentials.txt
+
+  # Plain text file, one recipient email address per line.
+  # See recipients_TEMPLATE.txt for the expected format.
+  recipients_file: /PUT/PATH/TO/recipients.txt
+
+  # Directory this script uses for its own bookkeeping (offset calibration
+  # history, pressure-violation streak counter, etc.) — created automatically
+  # on first run if it doesn't already exist. Just point this somewhere
+  # writable; you don't need to create the files inside it yourself, EXCEPT
+  # for the initial offsets history file — see the note under "calibration"
+  # below.
+  state_dir: /PUT/PATH/TO/STATE/FOLDER/HERE
+
+# --- Rooms / sensors -------------------------------------------------------
+# prefix_labels_csv maps each device's CSV filename prefix (the part of the
+# filename before "_output_<timestamp>.csv") to a human-readable room label
+# of your choosing.
+#
+# reference_room MUST exactly match one of the labels below — this is the
+# room every other room's temperature/humidity/pressure gets compared
+# against, so pick whichever room/sensor you consider your baseline.
+#
+# entrance_room is OPTIONAL. Set it to one of the labels below to enable a
+# negative-pressure "outside air ingress" check for that room relative to
+# reference_room — useful if you have a lobby/vestibule/anteroom that should
+# stay at a different pressure than your cleanroom. If you don't have (or
+# don't care about) a room like that, delete the entrance_room line entirely
+# (or leave it blank) and that check is skipped automatically.
+rooms:
+  reference_room: "PUT YOUR REFERENCE ROOM LABEL HERE"
+  entrance_room: "PUT YOUR ENTRANCE ROOM LABEL HERE (OR DELETE THIS LINE)"
+  prefix_labels_csv:
+    "PUT_DEVICE_1_FILENAME_PREFIX_HERE": "PUT ROOM 1 LABEL HERE"
+    "PUT_DEVICE_2_FILENAME_PREFIX_HERE": "PUT ROOM 2 LABEL HERE"
+    # Add one line per device/room you're monitoring. Example, for reference
+    # (delete once you've added your own):
+    # "p192.168.1.101_output": "Cleanroom"
+
+# --- Particle counter --------------------------------------------------
+# Set enabled: false if you don't have a particle counter at all — the
+# script will then skip this section completely and won't expect json_dir
+# or prefix_labels_json to be set to anything meaningful.
+particle_counter:
+  enabled: false
+  prefix_labels_json:
+    "PUT_PARTICLE_COUNTER_FILENAME_PREFIX_HERE": "PUT ROOM LABEL HERE"
+
+# --- Thresholds -------------------------------------------------------------
+# The values that trigger an alert. Adjust every number below for your lab —
+# these are NOT reasonable defaults for anyone else's space, just placeholders.
+thresholds:
+  csv:
+    temperature: 00.0        # degrees C — alert if corrected temp exceeds this
+    dew_point_max: 00        # degrees C — alert if dew point exceeds this (condensation risk)
+    dew_point_min: 00        # degrees C — currently unused/commented out in the
+                              # script (ESD-risk check), left here for future use
+  json:
+    temp: 00.0
+    RH: 00
+    BP: 00.0
+    diff_counts_m3:
+      # Particle size bins and their per-cubic-meter differential count
+      # thresholds. Adjust bin names/values to match your particle counter's
+      # actual output fields.
+      Ch0_0.30um: 0
+      Ch1_0.50um: 0
+      Ch2_1.00um: 0
+      Ch3_2.50um: 0
+      Ch4_5.00um: 0
+      Ch5_10.00um: 0
+
+# --- Calibration -------------------------------------------------------
+# NOTE: the per-room temperature/humidity/pressure calibration offsets
+# themselves are NOT set here — they live in a separate JSONL file inside
+# state_dir (state_dir/computed_offset_history.json by default; check the
+# OFFSETS_HISTORY_FILE constant near the top of alarm_email_V2.py for the
+# exact filename it expects). Generate that file the first time by running
+# the script once with --recompute-offsets while every sensor is physically
+# co-located with your reference_room's sensor. Do not run
+# --recompute-offsets during normal operation — only for a deliberate
+# calibration pass.
+calibration:
+  chase_offset: 0.0          # correction applied to the reference room's OWN
+                              # reading, if its sensor has a known bias. 0 if
+                              # you don't have/need this.
+  pressure_tolerance: 0.00   # inH2O — pressure differences within this band
+                              # are treated as sensor noise, not a real violation
+
+# --- Operational safeguards ---------------------------------------------
+operational:
+  time_tolerance_minutes: 2        # how far apart two rooms' timestamps can be
+                                    # and still be compared as "the same reading"
+  stale_limit_hours: 2             # how old data can be before it's flagged stale
+  workday_start_hour: 9            # 24-hour clock. Particle-count alerts are
+  workday_end_hour: 17             # suppressed between these hours (adjust to
+                                    # your lab's actual working hours, or set
+                                    # start/end equal to disable suppression)
+  consecutive_pressure_limit: 3    # how many consecutive negative-pressure
+                                    # readings in a row before an ingress alert
+                                    # actually fires (only relevant if
+                                    # entrance_room is set above)
+
+# --- Email ---------------------------------------------------------------
+email:
+  subject: "⚠️ PUT YOUR ALERT EMAIL SUBJECT LINE HERE"
+  from_address: "PUT THE SENDING EMAIL ADDRESS HERE"
+  smtp_host: "smtp.gmail.com"   # change if not using Gmail
+  smtp_port: 587

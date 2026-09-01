@@ -1,0 +1,4 @@
+# recipients TEMPLATE
+#This is where you put emails for people who wish to get an email from the alarm system.
+Johndoe@place.edu
+#obviously, just put the emails in this txt file. Nothing else goes here

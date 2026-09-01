@@ -1,0 +1,88 @@
+# =============================================================================
+# APD Weather Station — Alarm Configuration
+# =============================================================================
+# This file holds everything that is specific to YOUR lab's setup. The
+# alarm_email.py script itself should not need to be edited — only this file.
+# Just to be clear, this file is set up for the APD-Lab & its equipment.
+# THIS WILL NOT WORK IMMEDIATELY OUT OF BOX.
+
+# --- Paths ---------------------------------------------------------------
+paths:
+  csv_dir: /home/daq2-admin/APD-WeatherStation/data_folder
+  json_dir: /home/daq2-admin/APD-WeatherStation/particle_counter/data_files
+  email_credentials_file: /home/daq2-admin/APD-WeatherStation/email_credentials.txt
+  recipients_file: /home/daq2-admin/APD-WeatherStation/recipients.txt
+  
+  # state_dir holds everything this script writes/reads for its own bookkeeping
+  # (pressure-violation streak counter, offset calibration history, alert
+  # dedup state, etc.) — one directory, so a new lab only has to think about
+  # where the package's runtime state lives once, not per-file. The script
+  # creates this directory automatically if it doesn't already exist.
+  state_dir: /home/daq2-admin/APD-WeatherStation/alarm_system/state
+
+# --- Rooms / sensors -------------------------------------------------------
+# prefix_labels_csv maps each device's CSV filename prefix to a human-readable
+# room label. reference_room MUST be one of the labels below — it's the room
+# every other room's temperature/humidity/pressure gets compared against.
+# entrance_room is optional: set it to a label below to enable the
+# negative-pressure "outside air ingress" check for that room relative to
+# reference_room (e.g. a lobby/vestibule that should stay slightly
+# depressurized relative to the cleanroom). Leave it blank/omit it to skip
+# that check entirely.
+rooms:
+  reference_room: "Chase Area"
+  entrance_room: "Lobby"
+  prefix_labels_csv:
+    "p129.118.107.232_output": "Lobby"
+    "p129.118.107.233_output": "Room A"
+    "p129.118.107.234_output": "Room B"
+    "p129.118.107.235_output": "Chase Area"
+    "p129.118.107.204_output": "Room C"
+    "p129.118.107.205_output": "Room D"
+
+# --- Particle counter --------------------------------------------------
+# Set enabled: false if this lab has no particle counter (or you just want
+# to skip that section) — the script will not look for or expect any
+# particle counter JSON files at all in that case.
+particle_counter:
+  enabled: true
+  prefix_labels_json:
+    counter_data_file: "Room B"
+
+# --- Thresholds -------------------------------------------------------------
+thresholds:
+  csv:
+    temperature: 26.5
+    dew_point_max: 18
+    dew_point_min: 0
+  json:
+    temp: 26.5
+    RH: 50
+    BP: 90.5
+    diff_counts_m3:
+      Ch0_0.30um: 1020000
+      Ch1_0.50um: 352000
+      Ch2_1.00um: 83200
+      Ch3_2.50um: 83200
+      Ch4_5.00um: 2930
+      Ch5_10.00um: 2930
+
+# --- Calibration -------------------------------------------------------
+calibration:
+  chase_offset: 2.3
+  pressure_tolerance: 0.01
+
+# --- Operational safeguards ---------------------------------------------
+operational:
+  time_tolerance_minutes: 2
+  stale_limit_hours: 2
+  workday_start_hour: 9
+  workday_end_hour: 17
+  consecutive_pressure_limit: 3
+
+# --- Email ---------------------------------------------------------------
+email:
+  subject: "⚠️ APD Lab Weather Threshold Violations Detected"
+  from_address: "apd.weatherstation.alarm@gmail.com"
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
