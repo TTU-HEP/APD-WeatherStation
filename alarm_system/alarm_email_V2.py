@@ -73,9 +73,12 @@ RECIPIENTS_FILE = require(_paths, "recipients_file", "paths")
 STATE_DIR = require(_paths, "state_dir", "paths")
 os.makedirs(STATE_DIR, exist_ok=True)
 PRESSURE_STATE_FILE = os.path.join(STATE_DIR, "pressure_violations.json")
-# Reserved for the offset-history work (#3): a JSONL file of past computed
-# offsets, one line per computation, so "most recent" is just "last line".
+# Offset calibration history — one JSON object per line, so "most recent" is
+# just the last line. Filename matches what's deployed in production.
 OFFSETS_HISTORY_FILE = os.path.join(STATE_DIR, "computed_offset_history.json")
+# Tracks consecutive dew-point violations per room, so we alert once at the
+# start of a violation streak and once when it resolves, instead of every run.
+DEW_POINT_STATE_FILE = os.path.join(STATE_DIR, "dew_point_streak_state.json")
 # json_dir is only required if the particle counter is enabled (checked below)
 JSON_DIR = _paths.get("json_dir")
 
@@ -176,6 +179,30 @@ def load_pressure_state():
 
 def save_pressure_state(state):
     with open(PRESSURE_STATE_FILE, "w") as f:
+        json.dump(state, f)
+
+# === Consecutive dew-point violation tracking ===
+# Keyed by room label. Same self-healing behavior as the pressure state
+# above: a missing/empty/corrupted file just means "no room has an active
+# streak yet," not a crash.
+
+def load_dew_point_state():
+    default_state = {}
+    if not os.path.exists(DEW_POINT_STATE_FILE):
+        return default_state
+    with open(DEW_POINT_STATE_FILE, "r") as f:
+        content = f.read().strip()
+    if not content:
+        print(f"⚠️ {DEW_POINT_STATE_FILE} is empty — starting fresh with no active streaks.")
+        return default_state
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"⚠️ {DEW_POINT_STATE_FILE} contains invalid JSON ({e}) — starting fresh with no active streaks.")
+        return default_state
+
+def save_dew_point_state(state):
+    with open(DEW_POINT_STATE_FILE, "w") as f:
         json.dump(state, f)
 
 def compute_weekly_sensor_offsets(variable=None, reference_label=REFERENCE_ROOM, window_days=1):
@@ -443,6 +470,8 @@ for name, df_check in _freshness_checks:
             print(f"⚠️ {name} has no valid timestamps!")
 
 # Compare every room (including the entrance room) to the reference room
+dew_point_state = load_dew_point_state()
+
 for prefix, label in PREFIX_LABELS_CSV.items():
     if entrance_prefix and prefix == entrance_prefix:
         # The entrance room is handled separately below (pressure-only,
@@ -499,6 +528,14 @@ for prefix, label in PREFIX_LABELS_CSV.items():
 
     if merged['Pressure_chase'].isna().all():
         print(f"⚠️ No valid {REFERENCE_ROOM} data within tolerance window for {label}")
+
+    # Track only the LAST (most recent) sample's dew point status for this
+    # room this run — that's what determines the room's "current" state for
+    # streak purposes, consistent with how freshness/status is judged
+    # elsewhere in this script.
+    last_dew_point_val = None
+    last_dew_point_time = None
+    last_dew_point_exceeded = False
 
     for row in merged.itertuples():
 
@@ -562,15 +599,78 @@ for prefix, label in PREFIX_LABELS_CSV.items():
             gamma = math.log(rh / 100.0) + (a * t) / (b + t)
             dew_point_val = (b * gamma) / (a - gamma)
 
-            if dew_point_val > LIMITS_CSV['dew_point_max']:
-                all_violations.append(
-                        f"[{label}] At {time_room}: HEIGHTEND CONDENSATION RISK --> Dew Point = {dew_point_val:.2f}°C exceeded threshold of {LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended periods of time."
-                )
+            # Don't email on every sample — just remember the most recent
+            # reading's status. The actual streak start/continue/resolve
+            # decision happens once, after this inner loop, using only the
+            # latest value (see below).
+            last_dew_point_val = dew_point_val
+            last_dew_point_time = time_room
+            last_dew_point_exceeded = dew_point_val > LIMITS_CSV['dew_point_max']
 
             #elif dew_point_val < LIMITS_CSV['dew_point_min']:
             #    all_violations.append(
             #            f"[{label}] At {time_room}: HEIGHTEND ESD RISK --> Dew Point = {dew_point_val:.2f}°C was below {LIMITS_CSV['dew_point_min']}°C. Please take care when handling modules."
             #    )
+
+    # ---- Dew point streak transition (once per room per run) ----
+    # Alert immediately on the FIRST violation (a condensation risk is real
+    # from the first hour it appears — unlike pressure noise, this isn't
+    # something we want to wait out before saying anything). Then stay
+    # silent while it continues, and send exactly one more email — the
+    # resolution — once it drops back below threshold, reporting total
+    # consecutive hours and the peak dew point reached.
+    #
+    # Only act if we actually got a valid dew point reading this run for this
+    # room. If not, leave the existing streak state untouched — we don't want
+    # missing/unparseable data to falsely look like a "recovery."
+    if last_dew_point_time is not None:
+        entry = dew_point_state.get(
+            label,
+            {"active": False, "start_time": None, "consecutive_count": 0, "peak_dew_point": None},
+        )
+
+        if last_dew_point_exceeded:
+            if not entry["active"]:
+                # START of a new violation streak — alert immediately.
+                entry["active"] = True
+                entry["start_time"] = str(last_dew_point_time)
+                entry["consecutive_count"] = 1
+                entry["peak_dew_point"] = last_dew_point_val
+                all_violations.append(
+                    f"[{label}] At {last_dew_point_time}: HEIGHTENED CONDENSATION RISK BEGAN --> "
+                    f"Dew Point = {last_dew_point_val:.2f}°C exceeded threshold of "
+                    f"{LIMITS_CSV['dew_point_max']}°C. Please do not leave modules out for extended "
+                    f"periods of time."
+                )
+            else:
+                # Still violating — stay silent, just keep counting and
+                # tracking the peak for the eventual resolution email.
+                entry["consecutive_count"] += 1
+                if entry["peak_dew_point"] is None or last_dew_point_val > entry["peak_dew_point"]:
+                    entry["peak_dew_point"] = last_dew_point_val
+                print(
+                    f"[{label}] Dew point still above threshold "
+                    f"({last_dew_point_val:.2f}°C) — {entry['consecutive_count']} consecutive hour(s), "
+                    f"no repeat alert."
+                )
+        else:
+            if entry["active"]:
+                # Just recovered — send exactly one resolution email with the
+                # total duration and peak value, then reset.
+                all_violations.append(
+                    f"[{label}] At {last_dew_point_time}: CONDENSATION RISK RESOLVED --> Dew Point "
+                    f"dropped back to {last_dew_point_val:.2f}°C, below the "
+                    f"{LIMITS_CSV['dew_point_max']}°C threshold, after "
+                    f"{entry['consecutive_count']} consecutive hour(s) above threshold "
+                    f"(peak {entry['peak_dew_point']:.2f}°C)."
+                )
+            # else: not active and not violating — nothing to do, stays quiet.
+            entry = {"active": False, "start_time": None, "consecutive_count": 0, "peak_dew_point": None}
+
+        dew_point_state[label] = entry
+
+save_dew_point_state(dew_point_state)
+
 
 # Compare reference room to entrance room (ingress-pressure risk) — only if
 # an entrance room is configured.
